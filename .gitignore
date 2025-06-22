@@ -37,3 +37,64 @@ cmake-build-debug/
 cmake-build-release/
 build/
 dist/
+
+### Visual Studio 核心忽略项 ###
+# VS 用户特定目录（含 IDE 设置缓存）
+.vs/
+# 编译输出目录
+bin/
+obj/
+# 用户会话文件（窗口布局等）
+*.suo
+# 用户选项文件（调试路径等）
+*.user
+*.userosscache
+*.sln.docstates
+
+### 项目构建中间文件 ###
+# MSBuild 临时文件
+*.tlog
+*.log
+*.scc
+*.vsp
+*.vspx
+*.sc
+*.psess
+*.cache
+*.ncb
+# 预编译头文件
+*.pch
+*.ipch
+
+### 包管理 & 依赖项 ###
+# NuGet 包目录
+packages/
+# NuGet 缓存
+.nuget/
+*.nupkg
+.nuget.targets
+# 前端依赖 (Node.js)
+node_modules/
+
+### 测试与覆盖率报告 ###
+TestResult/
+*.coverage
+*.coveragexml
+
+### 操作系统元数据 ###
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+# macOS
+.DS_Store
+# Linux
+*~
+
+### 其他开发工具文件 ###
+# ReSharper
+_ReSharper.*
+*.resharper
+# Rider
+.idea/
+*.dotCover

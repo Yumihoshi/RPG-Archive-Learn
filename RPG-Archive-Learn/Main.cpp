@@ -1,5 +1,5 @@
-#include <iostream>
-#include "../include/Base/Singleton.h"
+﻿#include <iostream>
+#include "Singleton.h"
 
 class GameManager : public Singleton<GameManager>
 {

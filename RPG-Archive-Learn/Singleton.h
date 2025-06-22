@@ -1,3 +1,4 @@
+#pragma once
 /*******************************************************************************
 * @author: Yumihoshi
 * @email: xiaoyuesun915@gmail.com
