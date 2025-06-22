@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file Singleton.h
  * @brief 控制台游戏专用线程安全单例模板基类
  *
@@ -18,7 +18,7 @@
  * };
  *
  * // 使用单例：
- * GameManager::getInstance().update();
+ * GameManager::GetInstance().update();
  */
 #pragma once
 #include <iostream>

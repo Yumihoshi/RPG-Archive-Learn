@@ -34,18 +34,33 @@
     <Filter Include="源文件\MVC\Controllers">
       <UniqueIdentifier>{e2b3a017-e659-4578-91ab-334166e29619}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Managers">
+      <UniqueIdentifier>{90cfe119-e864-4bf5-977a-a42ee7132060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Managers\Log">
+      <UniqueIdentifier>{b392aa94-b832-42d0-9390-afb14ee75b14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Managers">
+      <UniqueIdentifier>{20e014ff-5e5f-4e24-a071-f7f2bfc06e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Managers\Log">
+      <UniqueIdentifier>{c88be2b8-bee6-4b85-a3ed-fa457d57431d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LogManager.cpp">
+      <Filter>源文件\Managers\Log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
       <Filter>头文件\Base</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="LogManager.h">
+      <Filter>头文件\Managers\Log</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
