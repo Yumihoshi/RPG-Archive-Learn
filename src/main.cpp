@@ -1,7 +1,23 @@
 #include <iostream>
+#include "../include/Base/Singleton.h"
+
+class GameManager : public Singleton<GameManager>
+{
+public:
+    int GetLevel()
+    {
+        return level;
+    }
+
+private:
+    int level = 1;
+    friend class Singleton<GameManager>;
+
+    GameManager() = default;
+};
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << GameManager::GetInstance().GetLevel();
     return 0;
 }
