@@ -1,14 +1,3 @@
-#pragma once
-/*******************************************************************************
-* @author: Yumihoshi
-* @email: xiaoyuesun915@gmail.com
-* @creationDate: 2025/6/22 下午3:32
-* @version: 1.0
-* @description: 单例模板基类
-*******************************************************************************/
-#ifndef RPG_ARCHIVE_LEARN_SINGLETON_H
-#define RPG_ARCHIVE_LEARN_SINGLETON_H
-
 /**
  * @file Singleton.h
  * @brief 控制台游戏专用线程安全单例模板基类
@@ -31,7 +20,7 @@
  * // 使用单例：
  * GameManager::getInstance().update();
  */
-
+#pragma once
 #include <iostream>
 #include <mutex>
 #include <memory>
@@ -39,9 +28,9 @@
 template <typename T>
 class Singleton {
 public:
-    // 获取单例实例（线程安全）
+    // 获取单例实例
     static T& GetInstance() {
-        static T instance; // C++11 Magic Static特性（线程安全）
+        static T instance;
         return instance;
     }
 
@@ -54,5 +43,3 @@ protected:
     Singleton() = default;
     virtual ~Singleton() = default;
 };
-
-#endif //RPG_ARCHIVE_LEARN_SINGLETON_H
