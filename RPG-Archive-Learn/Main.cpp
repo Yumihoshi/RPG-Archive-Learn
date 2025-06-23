@@ -12,9 +12,10 @@ int main()
     FirePokeView fView(f);
     fView.ShowPokemonInfo();
     f->TakeDamage(100);
-    fView.ShowPokemonInfo();
-    f->TakeDamage(100);
-    f->TakeDamage(100);
+    for (size_t i = 0; i < 20; i++)
+    {
+        f->TakeDamage(5);
+    }
     fView.ShowPokemonSkillInfo();
     return 0;
 }

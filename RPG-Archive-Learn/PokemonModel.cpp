@@ -1,5 +1,6 @@
 ﻿#include <algorithm>
 #include <string>
+#include <random>
 #include "PokemonModel.h"
 #include "LogManager.h"
 
@@ -134,4 +135,18 @@ float PokemonModel::GetFleeRate()
 float PokemonModel::GetCritRate()
 {
     return _critRate;
+}
+
+/// <summary>
+/// 检验是否触发闪避
+/// </summary>
+/// <returns></returns>
+bool PokemonModel::CheckFlee() {
+    // 生成0.0~1.0的随机浮点数
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
+
+    double randValue = dist(gen);
+    return randValue < _fleeRate; // 若随机数小于闪避率，返回true
 }

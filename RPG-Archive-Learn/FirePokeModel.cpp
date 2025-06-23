@@ -1,1 +1,19 @@
-#include "FirePokeModel.h"
+﻿#include "FirePokeModel.h"
+#include "LogManager.h"
+
+void FirePokeModel::TakeDamage(int amount)
+{
+    auto& logger = LogManager::GetInstance();
+    // 闪避
+    if (PokemonModel::CheckFlee())
+    {
+        logger.PrintByChar(_name + "触发了");
+        logger.PrintByChar("闪避", LogColor::Yellow);
+        logger.PrintByChar("！\n");
+        return;
+    }
+    else
+    {
+        PokemonModel::TakeDamage(amount);
+    }
+}

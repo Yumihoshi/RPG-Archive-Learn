@@ -84,7 +84,7 @@ public:
     float GetFleeRate();
     float GetCritRate();
 
-private:
+protected:
     string _name;      // 宝可梦名
     ElementType _element;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型
@@ -104,4 +104,6 @@ private:
 
     float _fleeRate;        // 闪避率
     float _critRate;        // 暴击率
+
+    bool CheckFlee();
 };

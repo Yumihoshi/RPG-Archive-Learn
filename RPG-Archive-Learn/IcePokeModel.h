@@ -14,5 +14,6 @@ public:
     void TakeDamage(int amount) override;
 private:
     int _defendValue = 15;        // 魔法盾防御值
+    bool CheckFlee();
 };
 

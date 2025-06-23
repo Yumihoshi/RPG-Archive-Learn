@@ -12,5 +12,6 @@ public:
     /// 显示宝可梦所有技能信息
     /// </summary>
     virtual void ShowPokemonSkillInfo();
+protected:
 };
 
