@@ -2,7 +2,7 @@
 #include "LogManager.h"
 using namespace std;
 
-CharacterModel::CharacterModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
+PokemonModel::PokemonModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
 {
     _name = name;
     _profession = profession;
@@ -15,7 +15,7 @@ CharacterModel::CharacterModel(string name, ProfessionType profession, int maxHp
 /// 回血
 /// </summary>
 /// <param name="amount"></param>
-void CharacterModel::Heal(int amount)
+void PokemonModel::Heal(int amount)
 {
     // TODO: muliao实现
     if (amount >= 0) {
@@ -31,7 +31,7 @@ void CharacterModel::Heal(int amount)
 /// 扣血
 /// </summary>
 /// <param name="amount"></param>
-void CharacterModel::TakeDamage(int amount)
+void PokemonModel::TakeDamage(int amount)
 {
     // TODO: muliao实现
 }
@@ -40,7 +40,7 @@ void CharacterModel::TakeDamage(int amount)
 /// 回复魔法值
 /// </summary>
 /// <param name="amount"></param>
-void CharacterModel::AddMp(int amount)
+void PokemonModel::AddMp(int amount)
 {
     // TODO: muliao实现
 }
@@ -49,7 +49,7 @@ void CharacterModel::AddMp(int amount)
 /// 减少魔法值
 /// </summary>
 /// <param name="amount"></param>
-void CharacterModel::ReduceMp(int amount)
+void PokemonModel::ReduceMp(int amount)
 {
     // TODO: muliao实现
 }
@@ -58,7 +58,7 @@ void CharacterModel::ReduceMp(int amount)
 /// 增加经验值
 /// </summary>
 /// <param name="amount"></param>
-void CharacterModel::AddExp(int amount)
+void PokemonModel::AddExp(int amount)
 {
     // TODO: muliao实现
 }
@@ -67,7 +67,7 @@ void CharacterModel::AddExp(int amount)
 /// 升级
 /// </summary>
 /// <param name="levelCount">升级等级数</param>
-void CharacterModel::LevelUp(int levelCount)
+void PokemonModel::LevelUp(int levelCount)
 {
     // TODO: muliao实现
 }

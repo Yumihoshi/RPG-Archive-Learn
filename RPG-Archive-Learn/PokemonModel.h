@@ -27,10 +27,10 @@ enum class CampType
     Enemy
 };
 
-class CharacterModel
+class PokemonModel
 {
 public:
-    CharacterModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
+    PokemonModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
 
     /// <summary>
     /// 回血
