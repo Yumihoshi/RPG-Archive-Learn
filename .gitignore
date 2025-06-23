@@ -98,3 +98,6 @@ _ReSharper.*
 # Rider
 .idea/
 *.dotCover
+
+*.idb
+*.pdb
