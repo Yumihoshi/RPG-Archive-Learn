@@ -28,5 +28,7 @@ int main()
     PokemonModel c("muliao", ElementType::Fire, 100, 100, 1, CampType::Friend, 100, 20, 0.3, 0.3);
     c.Heal(-5);
     c.TakeDamage(-9);
+    c.AddMp(1);
+    c.ReduceMp(8);
     return 0;
 }
