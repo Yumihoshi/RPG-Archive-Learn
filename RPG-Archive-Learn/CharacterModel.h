@@ -56,6 +56,18 @@ public:
     /// <param name="amount"></param>
     void ReduceMp(int amount);
 
+    /// <summary>
+    /// 增加经验值
+    /// </summary>
+    /// <param name="amount"></param>
+    void AddExp(int amount);
+
+    /// <summary>
+    /// 升级
+    /// </summary>
+    /// <param name="levelCount">升级等级数</param>
+    void LevelUp(int levelCount = 1);
+
 private:
     string _name;      // 角色名
     ProfessionType _profession;     // 职业枚举类型
