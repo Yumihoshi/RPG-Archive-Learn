@@ -1,6 +1,7 @@
 #include "CharacterModel.h"
+using namespace std;
 
-CharacterModel::CharacterModel(const std::string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
+CharacterModel::CharacterModel(const string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
 {
     _name = name;
     _profession = profession;

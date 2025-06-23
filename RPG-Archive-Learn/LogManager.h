@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Singleton.h"
+using namespace std;
 
 class LogManager : public Singleton<LogManager>
 {
@@ -17,7 +18,7 @@ public:
     /// <summary>
     /// 逐字输出
     /// </summary>
-    void PrintByChar(const std::string& text, int delayMs = 30);
+    void PrintByChar(const string& text, int delayMs = 30);
 
 private:
     friend class Singleton<LogManager>;

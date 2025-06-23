@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+using namespace std;
+
 enum ProfessionType
 {
     /// <summary>
@@ -28,7 +30,7 @@ enum CampType
 class CharacterModel
 {
 public:
-    CharacterModel(const std::string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
+    CharacterModel(const string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
 
     /// <summary>
     /// 回血
@@ -55,7 +57,7 @@ public:
     void ReduceMp(int amount);
 
 private:
-    std::string _name;      // 角色名
+    string _name;      // 角色名
     ProfessionType _profession;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型
 

@@ -1,5 +1,6 @@
 ﻿#include <windows.h>
 #include "LogManager.h"
+using namespace std;
 
 /// <summary>
 /// 打印回合开始
@@ -24,7 +25,7 @@ void LogManager::PrintByChar(const std::string& text, int delayMs)
 {
     for (char c : text)
     {
-        std::cout << c << std::flush;  // 立即刷新缓冲区
+        cout << c << std::flush;  // 立即刷新缓冲区
         Sleep(delayMs);               // 暂停指定毫秒
     }
 }

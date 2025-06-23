@@ -2,6 +2,8 @@
 #include "Singleton.h"
 #include "LogManager.h"
 
+using namespace std;
+
 class GameManager : public Singleton<GameManager>
 {
 public:
@@ -20,7 +22,7 @@ private:
 int main()
 {
     LogManager::GetInstance().PrintTurnStart();
-    std::cout << "回合数：" << GameManager::GetInstance().GetLevel() << std::endl;
+    cout << "回合数：" << GameManager::GetInstance().GetLevel() << endl;
     LogManager::GetInstance().PrintTurnEnd();
     return 0;
 }
