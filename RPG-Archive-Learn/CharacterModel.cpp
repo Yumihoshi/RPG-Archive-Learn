@@ -34,7 +34,7 @@ void CharacterModel::TakeDamage(int amount)
 /// <param name="amount"></param>
 void CharacterModel::AddMp(int amount)
 {
-
+    // TODO: muliao实现
 }
 
 /// <summary>
@@ -43,5 +43,23 @@ void CharacterModel::AddMp(int amount)
 /// <param name="amount"></param>
 void CharacterModel::ReduceMp(int amount)
 {
+    // TODO: muliao实现
+}
 
+/// <summary>
+/// 增加经验值
+/// </summary>
+/// <param name="amount"></param>
+void CharacterModel::AddExp(int amount)
+{
+    // TODO: muliao实现
+}
+
+/// <summary>
+/// 升级
+/// </summary>
+/// <param name="levelCount">升级等级数</param>
+void CharacterModel::LevelUp(int levelCount = 1)
+{
+    // TODO: muliao实现
 }
