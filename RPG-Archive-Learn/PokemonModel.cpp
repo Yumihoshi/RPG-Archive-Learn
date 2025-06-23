@@ -1,4 +1,4 @@
-﻿#include "CharacterModel.h"
+﻿#include "PokemonModel.h"
 #include "LogManager.h"
 using namespace std;
 

@@ -69,7 +69,7 @@ public:
     void LevelUp(int levelCount = 1);
 
 private:
-    string _name;      // 角色名
+    string _name;      // 宝可梦名
     ProfessionType _profession;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型
 

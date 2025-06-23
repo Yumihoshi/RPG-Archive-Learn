@@ -58,14 +58,14 @@
     <Filter Include="头文件\MVC\Models">
       <UniqueIdentifier>{2002b5b9-36f1-4610-9210-17d77766d5c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\MVC\Models\Character">
-      <UniqueIdentifier>{520e7ebf-1237-41f1-a5e6-b9d41c94f7e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\MVC\Models\Character">
-      <UniqueIdentifier>{26452069-3048-4c2e-8355-7d1df9a471bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\Types">
       <UniqueIdentifier>{e2c92423-66a9-4b8f-af22-c1bfda9d8f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\MVC\Models\Pokemon">
+      <UniqueIdentifier>{520e7ebf-1237-41f1-a5e6-b9d41c94f7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\MVC\Models\Pokemon">
+      <UniqueIdentifier>{26452069-3048-4c2e-8355-7d1df9a471bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,11 +75,11 @@
     <ClCompile Include="LogManager.cpp">
       <Filter>源文件\Managers\Log</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterModel.cpp">
-      <Filter>源文件\MVC\Models\Character</Filter>
+    <ClCompile Include="PokemonModel.cpp">
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="WarriorModel.cpp">
-      <Filter>源文件\MVC\Models\Character</Filter>
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,11 +89,11 @@
     <ClInclude Include="LogManager.h">
       <Filter>头文件\Managers\Log</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterModel.h">
-      <Filter>头文件\MVC\Models\Character</Filter>
+    <ClInclude Include="PokemonModel.h">
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="WarriorModel.h">
-      <Filter>头文件\MVC\Models\Character</Filter>
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

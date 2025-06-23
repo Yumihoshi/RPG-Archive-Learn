@@ -123,13 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterModel.cpp" />
+    <ClCompile Include="PokemonModel.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="WarriorModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CharacterModel.h" />
+    <ClInclude Include="PokemonModel.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="WarriorModel.h" />
