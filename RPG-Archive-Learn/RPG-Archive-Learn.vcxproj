@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterModel.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterModel.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
