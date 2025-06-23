@@ -102,3 +102,5 @@ _ReSharper.*
 *.idb
 *.pdb
 *.ilk
+x64/
+RPG-Archive-Learn/x64/
