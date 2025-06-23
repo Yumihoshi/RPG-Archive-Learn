@@ -3,7 +3,7 @@
 
 using namespace std;
 
-enum ProfessionType
+enum class ProfessionType
 {
     /// <summary>
     /// 战士
@@ -21,7 +21,7 @@ enum ProfessionType
     Archer
 };
 
-enum CampType
+enum class CampType
 {
     Friend,
     Enemy
@@ -30,7 +30,7 @@ enum CampType
 class CharacterModel
 {
 public:
-    CharacterModel(const string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
+    CharacterModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
 
     /// <summary>
     /// 回血

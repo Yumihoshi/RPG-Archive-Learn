@@ -25,8 +25,7 @@ int main()
     LogManager::GetInstance().PrintTurnStart();
     cout << "回合数：" << GameManager::GetInstance().GetLevel() << endl;
     LogManager::GetInstance().PrintTurnEnd();
-    string s = "muliao";
-    CharacterModel c(s, (ProfessionType)1, 100, 100, 1);
+    CharacterModel c("muliao", ProfessionType::Warrior, 100, 100, 1);
     c.Heal(-5);
     return 0;
 }

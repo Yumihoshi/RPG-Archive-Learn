@@ -78,6 +78,9 @@
     <ClCompile Include="CharacterModel.cpp">
       <Filter>源文件\MVC\Models\Character</Filter>
     </ClCompile>
+    <ClCompile Include="WarriorModel.cpp">
+      <Filter>源文件\MVC\Models\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -87,6 +90,9 @@
       <Filter>头文件\Managers\Log</Filter>
     </ClInclude>
     <ClInclude Include="CharacterModel.h">
+      <Filter>头文件\MVC\Models\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="WarriorModel.h">
       <Filter>头文件\MVC\Models\Character</Filter>
     </ClInclude>
   </ItemGroup>
