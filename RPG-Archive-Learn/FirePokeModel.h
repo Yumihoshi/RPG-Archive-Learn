@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "PokemonModel.h"
 class FirePokeModel : public PokemonModel
 {

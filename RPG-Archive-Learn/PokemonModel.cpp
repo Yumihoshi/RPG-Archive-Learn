@@ -1,4 +1,5 @@
-﻿#include "PokemonModel.h"
+﻿#include <algorithm>
+#include "PokemonModel.h"
 #include "LogManager.h"
 using namespace std;
 
@@ -29,19 +30,12 @@ PokemonModel::PokemonModel(string name, ElementType ele, int maxHp, int maxMp, i
 /// <param name="amount"></param>
 void PokemonModel::Heal(int amount)
 {
-    // TODO: muliao实现
-    if (amount > 0) 
+    if (amount <= 0)
     {
-        int a = _curHp + amount;
-        if (a <= _maxHp)
-        {
-            _curHp = a;
-        }
+        LogManager::GetInstance().PrintByChar("【错误】Heal方法参数必须为非负数\n");
+        return;
     }
-    else
-    {
-        LogManager::GetInstance().PrintByChar("Heal方法回血不能为负数\n");
-    }
+    _curHp = clamp(_curHp + amount, 0, _maxHp);
 }
 
 /// <summary>
@@ -50,19 +44,12 @@ void PokemonModel::Heal(int amount)
 /// <param name="amount"></param>
 void PokemonModel::TakeDamage(int amount)
 {
-    // TODO: muliao实现
-    if(amount> 0)
+    if (amount <= 0)
     {
-        int b = _curHp - amount;
-       if (b >= 0 )
-       {
-           _curHp = b;
-       }
+        LogManager::GetInstance().PrintByChar("【错误】TakeDamage方法参数必须为非负数\n");
+        return;
     }
-    else
-    {
-        LogManager::GetInstance().PrintByChar("TakeDamage方法扣血不能为负数\n");
-    }
+    _curHp = clamp(_curHp - amount, 0, _maxHp);
 }
 
 /// <summary>
@@ -71,19 +58,12 @@ void PokemonModel::TakeDamage(int amount)
 /// <param name="amount"></param>
 void PokemonModel::AddMp(int amount)
 {
-    // TODO: muliao实现
-    if (amount > 0)
+    if (amount <= 0)
     {
-        int c = _curMp + amount;
-        if (c <= _curMp)
-        {
-            _curMp = c;
-        }
+        LogManager::GetInstance().PrintByChar("【错误】AddMp方法参数必须为非负数\n");
+        return;
     }
-    else
-    {
-        LogManager::GetInstance().PrintByChar("AddMp方法回魔不能为负数\n");
-    }
+    _curMp = clamp(_curMp + amount, 0, _maxMp);
 }
 
 /// <summary>
@@ -92,29 +72,35 @@ void PokemonModel::AddMp(int amount)
 /// <param name="amount"></param>
 void PokemonModel::ReduceMp(int amount)
 {
-    // TODO: muliao实现
-    if (amount > 0)
+    if (amount <= 0)
     {
-        int d = _curMp - amount;
-        if (d >= 0)
-        {
-            _curMp = d;
-        }
+        LogManager::GetInstance().PrintByChar("【错误】ReduceMp方法参数必须为非负数\n");
+        return;
     }
-    else
-    {
-        LogManager::GetInstance().PrintByChar("ReduceMp方法扣魔不能为负数\n");
-    }
+    _curMp = clamp(_curMp - amount, 0, _maxMp);
 }
 
 /// <summary>
-/// 增加经验值
+/// 增加经验值，会自动处理升级
 /// </summary>
 /// <param name="amount"></param>
 void PokemonModel::AddExp(int amount)
 {
-    // TODO: muliao实现
-
+    if (amount <= 0)
+    {
+        LogManager::GetInstance().PrintByChar("【错误】AddExp方法参数必须为非负数\n");
+        return;
+    }
+    int levelUp = amount / _maxExp;
+    int restExp = amount % _maxExp;
+    int tempExp = _curExp + restExp;
+    if (tempExp >= _maxExp)
+    {
+        tempExp = 0;
+        levelUp++;
+    }
+    _curExp = tempExp;
+    LevelUp(levelUp);
 }
 
 /// <summary>
@@ -123,6 +109,10 @@ void PokemonModel::AddExp(int amount)
 /// <param name="levelCount">升级等级数</param>
 void PokemonModel::LevelUp(int levelCount)
 {
-    // TODO: muliao实现
-
+    if (levelCount <= 0)
+    {
+        LogManager::GetInstance().PrintByChar("【错误】LevelUp方法参数必须为非负数\n");
+        return;
+    }
+    _curLevel = clamp(_curLevel + levelCount, 1, _maxLevel);
 }
