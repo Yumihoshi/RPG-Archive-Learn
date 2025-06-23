@@ -1,4 +1,5 @@
 #include "CharacterModel.h"
+#include "LogManager.h"
 using namespace std;
 
 CharacterModel::CharacterModel(const string& name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
@@ -17,6 +18,13 @@ CharacterModel::CharacterModel(const string& name, ProfessionType profession, in
 void CharacterModel::Heal(int amount)
 {
     // TODO: muliao实现
+    if (amount >= 0) {
+        _curHp += amount;
+    }
+    else
+    {
+        LogManager::GetInstance().PrintByChar("Heal方法回血不能为负数\n");
+    }
 }
 
 /// <summary>
@@ -59,7 +67,7 @@ void CharacterModel::AddExp(int amount)
 /// 升级
 /// </summary>
 /// <param name="levelCount">升级等级数</param>
-void CharacterModel::LevelUp(int levelCount = 1)
+void CharacterModel::LevelUp(int levelCount)
 {
     // TODO: muliao实现
 }
