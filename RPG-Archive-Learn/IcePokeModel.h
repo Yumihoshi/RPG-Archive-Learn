@@ -1,5 +1,7 @@
 #pragma once
+
 #include "PokemonModel.h"
+
 class IcePokeModel : public PokemonModel
 {
 public:

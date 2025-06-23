@@ -6,21 +6,6 @@
 
 using namespace std;
 
-class GameManager : public Singleton<GameManager>
-{
-public:
-    int GetLevel()
-    {
-        return level;
-    }
-
-private:
-    int level = 1;
-    friend class Singleton<GameManager>;
-
-    GameManager() = default;
-};
-
 int main()
 {
     shared_ptr<FirePokeModel> f = make_shared<FirePokeModel>("小火龙", 200, 50, 10, CampType::Friend, 100, 20, 0.5, 0.5);

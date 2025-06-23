@@ -1,6 +1,7 @@
 ﻿#include <algorithm>
 #include "PokemonModel.h"
 #include "LogManager.h"
+
 using namespace std;
 
 PokemonModel::PokemonModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,

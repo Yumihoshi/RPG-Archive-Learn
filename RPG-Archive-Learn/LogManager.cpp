@@ -1,5 +1,6 @@
 ﻿#include "windows.h"
 #include "LogManager.h"
+
 using namespace std;
 
 /// <summary>

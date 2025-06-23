@@ -1,5 +1,7 @@
 ﻿#pragma once
+
 #include "Singleton.h"
+
 using namespace std;
 
 class LogManager : public Singleton<LogManager>

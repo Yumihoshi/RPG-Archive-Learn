@@ -1,6 +1,8 @@
 #pragma once
+
 #include "PokemonView.h"
 #include "FirePokeModel.h"
+
 using namespace std;
 
 class FirePokeView : public PokemonView
