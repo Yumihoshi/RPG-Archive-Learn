@@ -7,7 +7,6 @@ class GameManager : public Singleton<GameManager>
 public:
     int GetLevel()
     {
-        // ajlfkjdaslkjf
         return level;
     }
 
