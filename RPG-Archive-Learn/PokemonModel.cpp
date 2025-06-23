@@ -30,11 +30,7 @@ PokemonModel::PokemonModel(string name, ElementType ele, int maxHp, int maxMp, i
 /// <param name="amount"></param>
 void PokemonModel::Heal(int amount)
 {
-    if (amount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】Heal方法参数必须为非负数\n");
-        return;
-    }
+    if (amount <= 0) return;
     _curHp = clamp(_curHp + amount, 0, _maxHp);
 }
 
@@ -44,11 +40,7 @@ void PokemonModel::Heal(int amount)
 /// <param name="amount"></param>
 void PokemonModel::TakeDamage(int amount)
 {
-    if (amount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】TakeDamage方法参数必须为非负数\n");
-        return;
-    }
+    if (amount <= 0) return;
     _curHp = clamp(_curHp - amount, 0, _maxHp);
 }
 
@@ -58,11 +50,7 @@ void PokemonModel::TakeDamage(int amount)
 /// <param name="amount"></param>
 void PokemonModel::AddMp(int amount)
 {
-    if (amount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】AddMp方法参数必须为非负数\n");
-        return;
-    }
+    if (amount <= 0) return;
     _curMp = clamp(_curMp + amount, 0, _maxMp);
 }
 
@@ -72,11 +60,7 @@ void PokemonModel::AddMp(int amount)
 /// <param name="amount"></param>
 void PokemonModel::ReduceMp(int amount)
 {
-    if (amount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】ReduceMp方法参数必须为非负数\n");
-        return;
-    }
+    if (amount <= 0) return;
     _curMp = clamp(_curMp - amount, 0, _maxMp);
 }
 
@@ -86,11 +70,7 @@ void PokemonModel::ReduceMp(int amount)
 /// <param name="amount"></param>
 void PokemonModel::AddExp(int amount)
 {
-    if (amount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】AddExp方法参数必须为非负数\n");
-        return;
-    }
+    if (amount <= 0) return;
     int levelUp = amount / _maxExp;
     int restExp = amount % _maxExp;
     int tempExp = _curExp + restExp;
@@ -109,10 +89,6 @@ void PokemonModel::AddExp(int amount)
 /// <param name="levelCount">升级等级数</param>
 void PokemonModel::LevelUp(int levelCount)
 {
-    if (levelCount <= 0)
-    {
-        LogManager::GetInstance().PrintByChar("【错误】LevelUp方法参数必须为非负数\n");
-        return;
-    }
+    if (levelCount <= 0) return;
     _curLevel = clamp(_curLevel + levelCount, 1, _maxLevel);
 }

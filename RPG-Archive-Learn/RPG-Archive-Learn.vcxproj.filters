@@ -78,14 +78,14 @@
     <ClCompile Include="PokemonModel.cpp">
       <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
+    <ClCompile Include="FirePokeModel.cpp">
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
+    </ClCompile>
     <ClCompile Include="IcePokeModel.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="NaturePokeModel.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="FirePokeModel.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,14 +98,14 @@
     <ClInclude Include="PokemonModel.h">
       <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
+    <ClInclude Include="FirePokeModel.h">
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
+    </ClInclude>
     <ClInclude Include="IcePokeModel.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="NaturePokeModel.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="FirePokeModel.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

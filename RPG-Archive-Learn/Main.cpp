@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "Singleton.h"
 #include "PokemonModel.h"
+#include "FirePokeModel.h"
 #include "LogManager.h"
 
 using namespace std;

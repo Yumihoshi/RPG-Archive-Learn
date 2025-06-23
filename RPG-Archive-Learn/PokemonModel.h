@@ -49,7 +49,7 @@ public:
     /// 扣血
     /// </summary>
     /// <param name="amount"></param>
-    void TakeDamage(int amount);
+    virtual void TakeDamage(int amount);
 
     /// <summary>
     /// 回复魔法值
