@@ -18,7 +18,7 @@ public:
     /// <summary>
     /// 逐字输出
     /// </summary>
-    void PrintByChar(const string& text, int delayMs = 30);
+    void PrintByChar(string text, int delayMs = 30);
 
 private:
     friend class Singleton<LogManager>;
