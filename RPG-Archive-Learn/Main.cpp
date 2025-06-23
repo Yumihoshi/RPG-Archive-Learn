@@ -27,5 +27,6 @@ int main()
     LogManager::GetInstance().PrintTurnEnd();
     PokemonModel c("muliao", ProfessionType::Warrior, 100, 100, 1);
     c.Heal(-5);
+    c.TakeDamage(-9);
     return 0;
 }
