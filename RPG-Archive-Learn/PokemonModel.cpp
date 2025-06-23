@@ -2,13 +2,25 @@
 #include "LogManager.h"
 using namespace std;
 
-PokemonModel::PokemonModel(string name, ElementType profession, int maxHp, int maxMp, int turnRecoverMp)
+PokemonModel::PokemonModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
+    CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate)
 {
     _name = name;
-    _profession = profession;
+    _element = ele;
     _maxHp = maxHp;
     _maxMp = maxMp;
+    _maxExp = maxExp;
+    _maxLevel = maxLevel;
     _turnRecoverMp = turnRecoverMp;
+    _camp = camp;
+    _critRate = critRate;
+    _fleeRate = fleeRate;
+
+    // 当前状态初始化
+    _curHp = maxHp;
+    _curMp = maxMp;
+    _curLevel = 1;
+    _curExp = 0;
 }
 
 /// <summary>

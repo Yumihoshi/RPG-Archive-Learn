@@ -3,6 +3,9 @@
 
 using namespace std;
 
+/// <summary>
+/// 元素属性枚举
+/// </summary>
 enum class ElementType
 {
     /// <summary>
@@ -21,6 +24,9 @@ enum class ElementType
     Nature
 };
 
+/// <summary>
+/// 阵营枚举
+/// </summary>
 enum class CampType
 {
     Friend,
@@ -30,7 +36,8 @@ enum class CampType
 class PokemonModel
 {
 public:
-    PokemonModel(string name, ElementType profession, int maxHp, int maxMp, int turnRecoverMp);
+    PokemonModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
+        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate);
 
     /// <summary>
     /// 回血
@@ -70,7 +77,7 @@ public:
 
 private:
     string _name;      // 宝可梦名
-    ProfessionType _profession;     // 职业枚举类型
+    ElementType _element;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型
 
     int _curHp;     // 当前血量
