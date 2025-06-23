@@ -28,5 +28,6 @@ int main()
     string s = "muliao";
     CharacterModel c(s, (ProfessionType)1, 100, 100, 1);
     c.Heal(-5);
+    c.TakeDamage(-9);
     return 0;
 }

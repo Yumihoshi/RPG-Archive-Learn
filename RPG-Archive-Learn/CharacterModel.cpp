@@ -18,8 +18,13 @@ CharacterModel::CharacterModel(const string& name, ProfessionType profession, in
 void CharacterModel::Heal(int amount)
 {
     // TODO: muliao实现
-    if (amount >= 0) {
-        _curHp += amount;
+    if (amount > 0) 
+    {
+        int a = _curHp + amount;
+        if (a <= _maxHp)
+        {
+            _curHp = a;
+        }
     }
     else
     {
@@ -34,6 +39,18 @@ void CharacterModel::Heal(int amount)
 void CharacterModel::TakeDamage(int amount)
 {
     // TODO: muliao实现
+    if(amount> 0)
+    {
+        int b = _curHp - amount;
+       if (b >= 0 )
+       {
+           _curHp = b;
+       }
+    }
+    else
+    {
+        LogManager::GetInstance().PrintByChar("TakeDamage方法扣血不能为负数\n");
+    }
 }
 
 /// <summary>
