@@ -1,4 +1,5 @@
 ﻿#include <algorithm>
+#include <string>
 #include "PokemonModel.h"
 #include "LogManager.h"
 
@@ -33,6 +34,7 @@ void PokemonModel::Heal(int amount)
 {
     if (amount <= 0) return;
     _curHp = clamp(_curHp + amount, 0, _maxHp);
+    LogManager::GetInstance().PrintByChar(_name + "回血" + to_string(amount) + "，现在血量为：" + to_string(_curHp) + "\n");
 }
 
 /// <summary>
@@ -43,6 +45,7 @@ void PokemonModel::TakeDamage(int amount)
 {
     if (amount <= 0) return;
     _curHp = clamp(_curHp - amount, 0, _maxHp);
+    LogManager::GetInstance().PrintByChar(_name + "扣血" + to_string(amount) + "，现在血量为：" + to_string(_curHp) + "\n");
 }
 
 /// <summary>
@@ -53,6 +56,7 @@ void PokemonModel::AddMp(int amount)
 {
     if (amount <= 0) return;
     _curMp = clamp(_curMp + amount, 0, _maxMp);
+    LogManager::GetInstance().PrintByChar(_name + "回魔" + to_string(amount) + "，现在魔法值为：" + to_string(_curMp) + "\n");
 }
 
 /// <summary>
@@ -63,6 +67,7 @@ void PokemonModel::ReduceMp(int amount)
 {
     if (amount <= 0) return;
     _curMp = clamp(_curMp - amount, 0, _maxMp);
+    LogManager::GetInstance().PrintByChar(_name + "扣魔" + to_string(amount) + "，现在魔法值为：" + to_string(_curMp) + "\n");
 }
 
 /// <summary>
@@ -81,6 +86,7 @@ void PokemonModel::AddExp(int amount)
         levelUp++;
     }
     _curExp = tempExp;
+    LogManager::GetInstance().PrintByChar(_name + "经验值增加" + to_string(amount) + "，现在经验值为：" + to_string(_curExp) + "\n");
     LevelUp(levelUp);
 }
 
@@ -92,6 +98,7 @@ void PokemonModel::LevelUp(int levelCount)
 {
     if (levelCount <= 0) return;
     _curLevel = clamp(_curLevel + levelCount, 1, _maxLevel);
+    LogManager::GetInstance().PrintByChar(_name + "升级啦，现在等级为：" + to_string(_curLevel) + "\n");
 }
 
 string PokemonModel::GetName()
@@ -102,4 +109,19 @@ string PokemonModel::GetName()
 int PokemonModel::GetCurHp()
 {
     return _curHp;
+}
+
+int PokemonModel::GetMaxHp()
+{
+    return _maxHp;
+}
+
+int PokemonModel::GetCurMp()
+{
+    return _curMp;
+}
+
+int PokemonModel::GetMaxMp()
+{
+    return _maxMp;
 }

@@ -8,7 +8,7 @@ using namespace std;
 /// </summary>
 void LogManager::PrintTurnStart()
 {
-    PrintByChar("======回合开始======\n");
+    PrintByChar("============回合开始============\n");
 }
 
 /// <summary>
@@ -16,7 +16,7 @@ void LogManager::PrintTurnStart()
 /// </summary>
 void LogManager::PrintTurnEnd()
 {
-    PrintByChar("======回合结束======\n");
+    PrintByChar("============回合结束============\n");
 }
 
 /// <summary>
@@ -28,6 +28,31 @@ void LogManager::PrintByChar(string text, int delayMs)
     {
         cout << c << std::flush;  // 立即刷新缓冲区
         Sleep(delayMs);               // 暂停指定毫秒
+    }
+}
+
+void LogManager::PrintByChar(string text, LogColor color)
+{
+    switch (color)
+    {
+    case LogColor::Red:
+        PrintByChar(RED_CODE + text + END_CODE);
+        break;
+    case LogColor::Green:
+        PrintByChar(GREEN_CODE + text + END_CODE);
+        break;
+    case LogColor::Yellow:
+        PrintByChar(YELLOW_CODE + text + END_CODE);
+        break;
+    case LogColor::Blue:
+        PrintByChar(BLUE_CODE + text + END_CODE);
+        break;
+    case LogColor::Purple:
+        PrintByChar(PURPLE_CODE + text + END_CODE);
+        break;
+    default:
+        PrintByChar(text);
+        break;
     }
 }
 

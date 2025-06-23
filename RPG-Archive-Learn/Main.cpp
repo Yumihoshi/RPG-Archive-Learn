@@ -13,5 +13,7 @@ int main()
     fView.ShowPokemonInfo();
     f->TakeDamage(100);
     fView.ShowPokemonInfo();
+    f->TakeDamage(100);
+    f->TakeDamage(100);
     return 0;
 }

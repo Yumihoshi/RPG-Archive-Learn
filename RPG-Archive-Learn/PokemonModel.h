@@ -78,6 +78,9 @@ public:
 
     string GetName();
     int GetCurHp();
+    int GetMaxHp();
+    int GetCurMp();
+    int GetMaxMp();
 
 private:
     string _name;      // 宝可梦名
