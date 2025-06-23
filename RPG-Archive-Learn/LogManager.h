@@ -34,6 +34,8 @@ public:
 
     void PrintByChar(string text, LogColor color);
 
+    void PrintByCharWithFlash(string text);
+
 private:
     friend class Singleton<LogManager>;
     LogManager();
@@ -44,5 +46,7 @@ private:
     const string BLUE_CODE = "\033[36m";
     const string PURPLE_CODE = "\033[35m";
     const string END_CODE = "\033[0m";
+
+    const string FLASH_CODE = "\033[5m";
 };
 

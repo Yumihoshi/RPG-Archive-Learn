@@ -125,3 +125,13 @@ int PokemonModel::GetMaxMp()
 {
     return _maxMp;
 }
+
+float PokemonModel::GetFleeRate()
+{
+    return _fleeRate;
+}
+
+float PokemonModel::GetCritRate()
+{
+    return _critRate;
+}

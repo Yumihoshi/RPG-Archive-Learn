@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Common.cpp" />
     <ClCompile Include="FirePokeView.cpp" />
     <ClCompile Include="IcePokeModel.cpp" />
     <ClCompile Include="NaturePokeModel.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="PokemonView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common.h" />
     <ClInclude Include="FirePokeView.h" />
     <ClInclude Include="IcePokeModel.h" />
     <ClInclude Include="NaturePokeModel.h" />

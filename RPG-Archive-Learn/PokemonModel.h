@@ -81,6 +81,8 @@ public:
     int GetMaxHp();
     int GetCurMp();
     int GetMaxMp();
+    float GetFleeRate();
+    float GetCritRate();
 
 private:
     string _name;      // 宝可梦名

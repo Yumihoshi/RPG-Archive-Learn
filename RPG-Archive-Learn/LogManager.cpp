@@ -1,4 +1,5 @@
-﻿#include "windows.h"
+﻿#include <iomanip>
+#include "windows.h"
 #include "LogManager.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ void LogManager::PrintTurnEnd()
 /// </summary>
 void LogManager::PrintByChar(string text, int delayMs)
 {
+    cout << fixed << setprecision(2);
     for (char c : text)
     {
         cout << c << std::flush;  // 立即刷新缓冲区
@@ -54,6 +56,11 @@ void LogManager::PrintByChar(string text, LogColor color)
         PrintByChar(text);
         break;
     }
+}
+
+void LogManager::PrintByCharWithFlash(string text)
+{
+    PrintByChar(FLASH_CODE + text + END_CODE);
 }
 
 LogManager::LogManager() = default;

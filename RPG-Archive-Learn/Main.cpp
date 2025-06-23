@@ -15,5 +15,6 @@ int main()
     fView.ShowPokemonInfo();
     f->TakeDamage(100);
     f->TakeDamage(100);
+    fView.ShowPokemonSkillInfo();
     return 0;
 }

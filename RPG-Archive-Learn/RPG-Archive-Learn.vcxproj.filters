@@ -67,6 +67,12 @@
     <Filter Include="源文件\MVC\Views\Pokemon">
       <UniqueIdentifier>{07026add-c7e6-4132-a7d5-225a4aa211af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Common">
+      <UniqueIdentifier>{c332d93c-220f-4b2f-a02c-b2aba2834ba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Common">
+      <UniqueIdentifier>{03432561-37b8-4350-b263-928c5d992925}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -93,6 +99,9 @@
     <ClCompile Include="LogManager.cpp">
       <Filter>源文件\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -118,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="LogManager.h">
       <Filter>头文件\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>头文件\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
