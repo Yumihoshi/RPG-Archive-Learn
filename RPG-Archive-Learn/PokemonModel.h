@@ -3,22 +3,22 @@
 
 using namespace std;
 
-enum class ProfessionType
+enum class ElementType
 {
     /// <summary>
-    /// 战士
+    /// 火
     /// </summary>
-    Warrior = 1,
+    Fire = 1,
 
     /// <summary>
-    /// 元素法师
+    /// 冰
     /// </summary>
-    EleMage,
+    Ice,
 
     /// <summary>
-    /// 弓箭手
+    /// 自然
     /// </summary>
-    Archer
+    Nature
 };
 
 enum class CampType
@@ -30,7 +30,7 @@ enum class CampType
 class PokemonModel
 {
 public:
-    PokemonModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp);
+    PokemonModel(string name, ElementType profession, int maxHp, int maxMp, int turnRecoverMp);
 
     /// <summary>
     /// 回血

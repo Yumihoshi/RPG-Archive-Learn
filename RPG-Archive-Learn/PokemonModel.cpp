@@ -2,7 +2,7 @@
 #include "LogManager.h"
 using namespace std;
 
-PokemonModel::PokemonModel(string name, ProfessionType profession, int maxHp, int maxMp, int turnRecoverMp)
+PokemonModel::PokemonModel(string name, ElementType profession, int maxHp, int maxMp, int turnRecoverMp)
 {
     _name = name;
     _profession = profession;

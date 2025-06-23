@@ -25,7 +25,7 @@ int main()
     LogManager::GetInstance().PrintTurnStart();
     cout << "回合数：" << GameManager::GetInstance().GetLevel() << endl;
     LogManager::GetInstance().PrintTurnEnd();
-    PokemonModel c("muliao", ProfessionType::Warrior, 100, 100, 1);
+    PokemonModel c("muliao", ElementType::Warrior, 100, 100, 1);
     c.Heal(-5);
     c.TakeDamage(-9);
     return 0;
