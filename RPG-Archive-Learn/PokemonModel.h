@@ -75,6 +75,9 @@ public:
     /// <param name="levelCount">升级等级数</param>
     void LevelUp(int levelCount = 1);
 
+    string GetName();
+    int GetCurHp();
+
 private:
     string _name;      // 宝可梦名
     ElementType _element;     // 职业枚举类型

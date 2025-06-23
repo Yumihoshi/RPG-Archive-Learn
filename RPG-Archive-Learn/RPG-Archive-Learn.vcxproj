@@ -124,18 +124,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FirePokeView.cpp" />
     <ClCompile Include="IcePokeModel.cpp" />
     <ClCompile Include="NaturePokeModel.cpp" />
     <ClCompile Include="PokemonModel.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="FirePokeModel.cpp" />
+    <ClCompile Include="PokemonView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FirePokeView.h" />
     <ClInclude Include="IcePokeModel.h" />
     <ClInclude Include="NaturePokeModel.h" />
     <ClInclude Include="PokemonModel.h" />
     <ClInclude Include="LogManager.h" />
+    <ClInclude Include="PokemonView.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="FirePokeModel.h" />
   </ItemGroup>

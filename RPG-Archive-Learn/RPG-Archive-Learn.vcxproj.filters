@@ -67,6 +67,12 @@
     <Filter Include="源文件\MVC\Models\Pokemon">
       <UniqueIdentifier>{26452069-3048-4c2e-8355-7d1df9a471bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\MVC\Views\Pokemon">
+      <UniqueIdentifier>{ef2d3164-f9e2-499f-bfc4-e2cead60b595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\MVC\Views\Pokemon">
+      <UniqueIdentifier>{07026add-c7e6-4132-a7d5-225a4aa211af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,6 +93,12 @@
     <ClCompile Include="NaturePokeModel.cpp">
       <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
+    <ClCompile Include="PokemonView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="FirePokeView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -106,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="NaturePokeModel.h">
       <Filter>头文件\MVC\Models\Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="PokemonView.h">
+      <Filter>头文件\MVC\Views\Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePokeView.h">
+      <Filter>头文件\MVC\Views\Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

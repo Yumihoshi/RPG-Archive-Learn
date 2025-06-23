@@ -3,8 +3,8 @@
 class IcePokeModel : public PokemonModel
 {
 public:
-    IcePokeModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : PokemonModel(name, ele,
+    IcePokeModel(string name, int maxHp, int maxMp, int turnRecoverMp,
+        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : PokemonModel(name, ElementType::Ice,
             maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
     {
     }

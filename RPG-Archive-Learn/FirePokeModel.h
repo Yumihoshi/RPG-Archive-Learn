@@ -3,8 +3,8 @@
 class FirePokeModel : public PokemonModel
 {
 public:
-    FirePokeModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : PokemonModel(name, ele,
+    FirePokeModel(string name, int maxHp, int maxMp, int turnRecoverMp,
+        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : PokemonModel(name, ElementType::Fire,
             maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
     {
     }

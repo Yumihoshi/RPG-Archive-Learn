@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include "Singleton.h"
-#include "PokemonModel.h"
 #include "FirePokeModel.h"
+#include "FirePokeView.h"
 #include "LogManager.h"
 
 using namespace std;
@@ -23,13 +23,10 @@ private:
 
 int main()
 {
-    LogManager::GetInstance().PrintTurnStart();
-    cout << "回合数：" << GameManager::GetInstance().GetLevel() << endl;
-    LogManager::GetInstance().PrintTurnEnd();
-    PokemonModel c("muliao", ElementType::Fire, 100, 100, 1, CampType::Friend, 100, 20, 0.3, 0.3);
-    c.Heal(-5);
-    c.TakeDamage(-9);
-    c.AddMp(1);
-    c.ReduceMp(8);
+    shared_ptr<FirePokeModel> f = make_shared<FirePokeModel>("小火龙", 200, 50, 10, CampType::Friend, 100, 20, 0.5, 0.5);
+    FirePokeView fView(f);
+    fView.ShowPokemonInfo();
+    f->TakeDamage(100);
+    fView.ShowPokemonInfo();
     return 0;
 }

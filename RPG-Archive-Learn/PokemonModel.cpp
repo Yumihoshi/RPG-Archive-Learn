@@ -92,3 +92,13 @@ void PokemonModel::LevelUp(int levelCount)
     if (levelCount <= 0) return;
     _curLevel = clamp(_curLevel + levelCount, 1, _maxLevel);
 }
+
+string PokemonModel::GetName()
+{
+    return _name;
+}
+
+int PokemonModel::GetCurHp()
+{
+    return _curHp;
+}
