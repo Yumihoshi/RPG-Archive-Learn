@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+﻿#include "windows.h"
 #include "LogManager.h"
 using namespace std;
 
@@ -21,7 +21,7 @@ void LogManager::PrintTurnEnd()
 /// <summary>
 /// 逐字输出
 /// </summary>
-void LogManager::PrintByChar(const std::string& text, int delayMs)
+void LogManager::PrintByChar(const string& text, int delayMs)
 {
     for (char c : text)
     {
