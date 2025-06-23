@@ -72,6 +72,18 @@ void PokemonModel::TakeDamage(int amount)
 void PokemonModel::AddMp(int amount)
 {
     // TODO: muliao实现
+    if (amount > 0)
+    {
+        int c = _curMp + amount;
+        if (c <= _curMp)
+        {
+            _curMp = c;
+        }
+    }
+    else
+    {
+        LogManager::GetInstance().PrintByChar("AddMp方法回魔不能为负数\n");
+    }
 }
 
 /// <summary>
@@ -81,6 +93,18 @@ void PokemonModel::AddMp(int amount)
 void PokemonModel::ReduceMp(int amount)
 {
     // TODO: muliao实现
+    if (amount > 0)
+    {
+        int d = _curMp - amount;
+        if (d >= 0)
+        {
+            _curMp = d;
+        }
+    }
+    else
+    {
+        LogManager::GetInstance().PrintByChar("ReduceMp方法扣魔不能为负数\n");
+    }
 }
 
 /// <summary>
@@ -90,6 +114,7 @@ void PokemonModel::ReduceMp(int amount)
 void PokemonModel::AddExp(int amount)
 {
     // TODO: muliao实现
+
 }
 
 /// <summary>
@@ -99,4 +124,5 @@ void PokemonModel::AddExp(int amount)
 void PokemonModel::LevelUp(int levelCount)
 {
     // TODO: muliao实现
+
 }
