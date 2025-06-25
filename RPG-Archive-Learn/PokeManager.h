@@ -7,88 +7,50 @@
 
 using namespace std;
 
-class PokeManager:public Singleton<PokeManager>
+class PokeManager :public Singleton<PokeManager>
 {
 public:
     /// <summary>
-    /// Ìí¼Ó±¦¿ÉÃÎµ½¶ÔÓ¦ÔªËØÀàĞÍµÄÈİÆ÷ÖĞ
+    /// æ·»åŠ å®å¯æ¢¦åˆ°å¯¹åº”å…ƒç´ ç±»å‹çš„å®¹å™¨ä¸­
     /// </summary>
-    /// <param name="elementType">±¦¿ÉÃÎÔªËØÀàĞÍ</param>
-    /// <param name="model">±¦¿ÉÃÎÄ£ĞÍÖ¸Õë</param>
-    void AddPoke(ElementType elementType, shared_ptr<BasePokeModel> model)
-    {
-        // ¼ì²éÔªËØÀàĞÍÊÇ·ñÒÑ´æÔÚÓÚmapÖĞ
-        if (_pokeMap.find(elementType) == _pokeMap.end())
-        {
-            // Èç¹û²»´æÔÚ£¬´´½¨Ò»¸öĞÂµÄvector
-            _pokeMap[elementType] = vector<shared_ptr<BasePokeModel>>();
-        }
-
-        // ½«±¦¿ÉÃÎÌí¼Óµ½¶ÔÓ¦ÔªËØÀàĞÍµÄvectorÖĞ
-        _pokeMap[elementType].push_back(model);
-    }
+    /// <param name="elementType">å®å¯æ¢¦å…ƒç´ ç±»å‹</param>
+    /// <param name="model">å®å¯æ¢¦æ¨¡å‹æŒ‡é’ˆ</param>
+    void AddPoke(ElementType elementType, shared_ptr<BasePokeModel> model);
 
     /// <summary>
-    /// »ñÈ¡Ö¸¶¨ÔªËØÀàĞÍµÄËùÓĞ±¦¿ÉÃÎ
+    /// è·å–æŒ‡å®šå…ƒç´ ç±»å‹çš„æ‰€æœ‰å®å¯æ¢¦
     /// </summary>
-    /// <param name="elementType">ÔªËØÀàĞÍ</param>
-    /// <returns>±¦¿ÉÃÎÖ¸ÕëµÄvector</returns>
-    vector<shared_ptr<BasePokeModel>> GetPokesByElement(ElementType elementType)
-    {
-        if (_pokeMap.find(elementType) != _pokeMap.end())
-        {
-            return _pokeMap[elementType];
-        }
-        return vector<shared_ptr<BasePokeModel>>(); // ·µ»Ø¿Õvector
-    }
+    /// <param name="elementType">å…ƒç´ ç±»å‹</param>
+    /// <returns>å®å¯æ¢¦æŒ‡é’ˆçš„vector</returns>
+    vector<shared_ptr<BasePokeModel>> GetPokesByElement(ElementType elementType);
 
     /// <summary>
-    /// »ñÈ¡ËùÓĞ±¦¿ÉÃÎ
+    /// è·å–æ‰€æœ‰å®å¯æ¢¦
     /// </summary>
-    /// <returns>°üº¬ËùÓĞ±¦¿ÉÃÎµÄmap</returns>
-    map<ElementType, vector<shared_ptr<BasePokeModel>>> GetAllPokes()
-    {
-        return _pokeMap;
-    }
+    /// <returns>åŒ…å«æ‰€æœ‰å®å¯æ¢¦çš„map</returns>
+    map<ElementType, vector<shared_ptr<BasePokeModel>>> GetAllPokes();
 
     /// <summary>
-    /// É¾³ı±¦¿ÉÃÎ
+    /// åˆ é™¤å®å¯æ¢¦
     /// </summary>
     /// <param name="elementType"></param>
     /// <returns></returns>
-    bool RemovePokesByElement(ElementType elementType)
-    {
-        return _pokeMap.erase(elementType) > 0;
-    }
+    bool RemovePokesByElement(ElementType elementType);
 
     /// <summary>
-    /// É¾³ıÌØ¶¨µÄ±¦¿ÉÃÎ
+    /// åˆ é™¤ç‰¹å®šçš„å®å¯æ¢¦
     /// </summary>
-    /// <param name="model">ÒªÉ¾³ıµÄ±¦¿ÉÃÎÖ¸Õë</param>
-    /// <returns>ÊÇ·ñÕÒµ½²¢É¾³ı</returns>
-    bool RemoveSpecificPoke(shared_ptr<BasePokeModel> model)
-    {
-        for (auto& pair : _pokeMap) {
-            auto& pokeVector = pair.second;
-            auto it = find(pokeVector.begin(), pokeVector.end(), model);
-            if (it != pokeVector.end()) {
-                pokeVector.erase(it);
-                return true;
-            }
-        }
-        return false;
-    }
+    /// <param name="model">è¦åˆ é™¤çš„å®å¯æ¢¦æŒ‡é’ˆ</param>
+    /// <returns>æ˜¯å¦æ‰¾åˆ°å¹¶åˆ é™¤</returns>
+    bool RemoveSpecificPoke(shared_ptr<BasePokeModel> model);
 
     /// <summary>
-    /// Çå¿ÕËùÓĞ±¦¿ÉÃÎ
+    /// æ¸…ç©ºæ‰€æœ‰å®å¯æ¢¦
     /// </summary>
-    void ClearAllPokes()
-    {
-        _pokeMap.clear();
-    }
+    void ClearAllPokes();
 
 private:
-	friend class Singleton<PokeManager>;
-	map < ElementType, vector<shared_ptr<BasePokeModel> >> _pokeMap;
-	PokeManager();
+    friend class Singleton<PokeManager>;
+    map < ElementType, vector<shared_ptr<BasePokeModel> >> _pokeMap;
+    PokeManager();
 };
