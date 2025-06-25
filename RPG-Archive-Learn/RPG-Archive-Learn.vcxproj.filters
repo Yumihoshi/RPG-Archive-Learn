@@ -73,6 +73,9 @@
     <Filter Include="头文件\管理器">
       <UniqueIdentifier>{20e014ff-5e5f-4e24-a071-f7f2bfc06e23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\枚举">
+      <UniqueIdentifier>{c23f7d19-33f3-4c72-9362-1b5c9a6f3c31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="Signal.h">
       <Filter>头文件\通用</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>头文件\枚举</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

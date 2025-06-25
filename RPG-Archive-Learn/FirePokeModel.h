@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "BasePokeModel.h"
+#include "Types.h"
 
 class FirePokeModel : public BasePokeModel
 {

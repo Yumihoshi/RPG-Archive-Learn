@@ -146,6 +146,7 @@
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="FirePokeModel.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
