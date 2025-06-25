@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\Base">
-      <UniqueIdentifier>{328b2f95-e7a0-44b3-a98d-c7c86bd1684f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Base">
-      <UniqueIdentifier>{68f51433-11ac-4034-915e-298eee63e7ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Test">
-      <UniqueIdentifier>{0fd6181c-a19e-4907-b26e-bca5a39d5337}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\MVC">
       <UniqueIdentifier>{ab2c27e1-07fc-4395-bb4f-3336bf9941f2}</UniqueIdentifier>
     </Filter>
@@ -33,12 +24,6 @@
     </Filter>
     <Filter Include="源文件\MVC\Controllers">
       <UniqueIdentifier>{e2b3a017-e659-4578-91ab-334166e29619}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Managers">
-      <UniqueIdentifier>{90cfe119-e864-4bf5-977a-a42ee7132060}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Managers">
-      <UniqueIdentifier>{20e014ff-5e5f-4e24-a071-f7f2bfc06e23}</UniqueIdentifier>
     </Filter>
     <Filter Include="头文件\MVC">
       <UniqueIdentifier>{be0c5571-7fcd-41f3-ba28-0a12b9231488}</UniqueIdentifier>
@@ -52,9 +37,6 @@
     <Filter Include="头文件\MVC\Models">
       <UniqueIdentifier>{2002b5b9-36f1-4610-9210-17d77766d5c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Types">
-      <UniqueIdentifier>{e2c92423-66a9-4b8f-af22-c1bfda9d8f0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\MVC\Models\Pokemon">
       <UniqueIdentifier>{520e7ebf-1237-41f1-a5e6-b9d41c94f7e5}</UniqueIdentifier>
     </Filter>
@@ -67,18 +49,36 @@
     <Filter Include="源文件\MVC\Views\Pokemon">
       <UniqueIdentifier>{07026add-c7e6-4132-a7d5-225a4aa211af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Common">
+    <Filter Include="头文件\基类">
+      <UniqueIdentifier>{328b2f95-e7a0-44b3-a98d-c7c86bd1684f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\通用">
+      <UniqueIdentifier>{03432561-37b8-4350-b263-928c5d992925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\基类">
+      <UniqueIdentifier>{68f51433-11ac-4034-915e-298eee63e7ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\通用">
       <UniqueIdentifier>{c332d93c-220f-4b2f-a02c-b2aba2834ba4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\Common">
-      <UniqueIdentifier>{03432561-37b8-4350-b263-928c5d992925}</UniqueIdentifier>
+    <Filter Include="源文件\管理器">
+      <UniqueIdentifier>{90cfe119-e864-4bf5-977a-a42ee7132060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\测试">
+      <UniqueIdentifier>{0fd6181c-a19e-4907-b26e-bca5a39d5337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\枚举">
+      <UniqueIdentifier>{e2c92423-66a9-4b8f-af22-c1bfda9d8f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\管理器">
+      <UniqueIdentifier>{20e014ff-5e5f-4e24-a071-f7f2bfc06e23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PokemonModel.cpp">
+    <ClCompile Include="BasePokeModel.cpp">
       <Filter>源文件\MVC\Models\Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="FirePokeModel.cpp">
@@ -97,17 +97,20 @@
       <Filter>源文件\MVC\Views\Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="LogManager.cpp">
-      <Filter>源文件\Managers</Filter>
+      <Filter>源文件\管理器</Filter>
     </ClCompile>
     <ClCompile Include="Common.cpp">
-      <Filter>源文件\Common</Filter>
+      <Filter>源文件\通用</Filter>
+    </ClCompile>
+    <ClCompile Include="Signal.cpp">
+      <Filter>源文件\通用</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
-      <Filter>头文件\Base</Filter>
+      <Filter>头文件\基类</Filter>
     </ClInclude>
-    <ClInclude Include="PokemonModel.h">
+    <ClInclude Include="BasePokeModel.h">
       <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="FirePokeModel.h">
@@ -126,10 +129,13 @@
       <Filter>头文件\MVC\Views\Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="LogManager.h">
-      <Filter>头文件\Managers</Filter>
+      <Filter>头文件\管理器</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>头文件\Common</Filter>
+      <Filter>头文件\通用</Filter>
+    </ClInclude>
+    <ClInclude Include="Signal.h">
+      <Filter>头文件\通用</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "PokemonModel.h"
+#include "BasePokeModel.h"
 
-class IcePokeModel : public PokemonModel
+class IcePokeModel : public BasePokeModel
 {
 public:
     IcePokeModel(string name, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : PokemonModel(name, ElementType::Ice,
+        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : BasePokeModel(name, ElementType::Ice,
             maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
     {
     }

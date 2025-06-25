@@ -34,10 +34,10 @@ enum class CampType
     Enemy
 };
 
-class PokemonModel
+class BasePokeModel
 {
 public:
-    PokemonModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
+    BasePokeModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate);
 
     /// <summary>

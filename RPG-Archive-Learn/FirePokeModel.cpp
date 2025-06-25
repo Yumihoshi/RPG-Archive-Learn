@@ -5,7 +5,7 @@ void FirePokeModel::TakeDamage(int amount)
 {
     auto& logger = LogManager::GetInstance();
     // 闪避
-    if (PokemonModel::CheckFlee())
+    if (BasePokeModel::CheckFlee())
     {
         logger.PrintByChar(_name + "触发了");
         logger.PrintByChar("闪避", LogColor::Yellow);
@@ -14,6 +14,6 @@ void FirePokeModel::TakeDamage(int amount)
     }
     else
     {
-        PokemonModel::TakeDamage(amount);
+        BasePokeModel::TakeDamage(amount);
     }
 }

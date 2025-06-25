@@ -6,7 +6,7 @@ void IcePokeModel::TakeDamage(int amount)
 {
     auto& logger = LogManager::GetInstance();
     // 闪避逻辑
-    if (PokemonModel::CheckFlee())
+    if (BasePokeModel::CheckFlee())
     {
         logger.PrintByChar(_name + "触发了");
         logger.PrintByChar("闪避", LogColor::Yellow);
@@ -15,6 +15,6 @@ void IcePokeModel::TakeDamage(int amount)
     }
     else
     {
-        PokemonModel::TakeDamage(amount - _defendValue);
+        BasePokeModel::TakeDamage(amount - _defendValue);
     }
 }
