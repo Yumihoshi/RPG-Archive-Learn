@@ -14,7 +14,5 @@ public:
 
     void TakeDamage(int amount) override;
 private:
-    bool _isKuangBao = false;       // 是否处于狂暴状态
-    int _KuangBaoZengShang = 20;         // 狂暴增伤数值
 };
 

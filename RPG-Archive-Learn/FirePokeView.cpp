@@ -25,8 +25,7 @@ void FirePokeView::ShowPokemonInfo()
     logger.PrintByChar("魔法值：", LogColor::Blue);
     logger.PrintByChar(to_string((*ModelPtr).GetCurMp()) + "/" +
         to_string((*ModelPtr).GetMaxMp()) + "\n");
-    logger.PrintByChar("属性：");
-    logger.PrintByChar("火\n", LogColor::Red);
+    logger.PrintByChar("属性：火\n");
 
     // 格式化百分号
     logger.PrintByChar("闪避率：" + Common::GetFormattedFloat(pokemon.GetFleeRate() * 100) + "%\n");
