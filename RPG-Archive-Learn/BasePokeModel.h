@@ -52,6 +52,11 @@ public:
     int GetMaxHp();
     int GetCurMp();
     int GetMaxMp();
+    int GetCurExp();
+    int GetMaxExp();
+    int GetCurLevel();
+    int GetMaxLevel();
+    CampType GetCamp();
     float GetFleeRate();
     float GetCritRate();
 

@@ -150,3 +150,27 @@ bool BasePokeModel::CheckFlee() {
     double randValue = dist(gen);
     return randValue < _fleeRate; // 若随机数小于闪避率，返回true
 }
+
+int BasePokeModel::GetCurExp()
+{
+    return _curExp;
+}
+
+int BasePokeModel::GetMaxExp()
+{
+    return _maxExp;
+}
+int BasePokeModel::GetCurLevel()
+{
+    return _curLevel;
+}
+
+int BasePokeModel::GetMaxLevel()
+{
+    return _maxLevel;
+}
+
+CampType BasePokeModel::GetCamp()
+{
+    return _camp;
+}
