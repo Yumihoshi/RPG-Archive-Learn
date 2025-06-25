@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include "Types.h"
-#include "Weapon.h"
 #include "Armor.h"
+#include "Weapon.h"
 
 class BasePokeModel
 {
@@ -51,6 +51,8 @@ public:
     void Equip(std::shared_ptr<Weapon> weapon);
     // 装备防具
     void Equip(std::shared_ptr<Armor> armor);
+    // 卸下装备
+    void Unequip(EquipType equipType);
 
     // getter和setter
     std::string GetName();

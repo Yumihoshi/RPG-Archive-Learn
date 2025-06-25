@@ -1,12 +1,16 @@
 #include <iostream>
+#include <Windows.h>
 #include "Singleton.h"
 #include "FirePokeModel.h"
 #include "FirePokeView.h"
 #include "LogManager.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 
 int main()
 {
+    SetConsoleOutputCP(65001);
     std::shared_ptr<FirePokeModel> f = std::make_shared<FirePokeModel>("小火龙", 200, 50, 10, CampType::Friend, 100, 20, 0.5, 0.5);
     FirePokeView fView(f);
     fView.ShowPokemonInfo();
@@ -16,5 +20,10 @@ int main()
         f->TakeDamage(5);
     }
     fView.ShowPokemonSkillInfo();
+    std::shared_ptr<Weapon> w = std::make_shared<Weapon>("大剑", 10, 20, 0.5);
+    std::shared_ptr<Armor> a = std::make_shared<Armor>("锁链甲", 100, 0.5);
+    f->Equip(w);
+    f->Equip(a);
+    fView.ShowPokemonInfo();
     return 0;
 }

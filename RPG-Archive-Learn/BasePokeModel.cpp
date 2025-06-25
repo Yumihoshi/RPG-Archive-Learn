@@ -192,6 +192,32 @@ void BasePokeModel::Equip(std::shared_ptr<Armor> armor)
     _fleeRate += _armor->FleeRateBonus;
 }
 
+// 卸下装备
+void BasePokeModel::Unequip(EquipType equipType)
+{
+    if (equipType == EquipType::Weapon)
+    {
+        if (_weapon == nullptr) return;
+        _damage -= _weapon->AttackBonus;
+        _maxMp -= _weapon->MaxMpBonus;
+        _critRate -= _weapon->CritRateBonus;
+        _weapon->Owner = nullptr;
+        _weapon = nullptr;
+    }
+    else if (equipType == EquipType::Armor)
+    {
+        if (_armor == nullptr) return;
+        _maxHp -= _armor->MaxHpBonus;
+        _fleeRate -= _armor->FleeRateBonus;
+        _armor->Owner = nullptr;
+        _armor = nullptr;
+    }
+    else
+    {
+        throw std::invalid_argument("equipType");
+    }
+}
+
 int BasePokeModel::GetDamage()
 {
     return _damage;

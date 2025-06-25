@@ -1,13 +1,14 @@
 #pragma once
 
 #include <iostream>
-#include "BasePokeModel.h"
+class BasePokeModel;
 
 class BaseEquipment
 {
 public:
 	std::string Name;
 	std::shared_ptr<BasePokeModel> Owner;
-	virtual void showinfo() = 0;
+	virtual void ShowInfo() = 0;
+	BaseEquipment(std::string name);
 };
 
