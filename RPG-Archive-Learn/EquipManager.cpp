@@ -46,7 +46,7 @@ std::shared_ptr<BaseEquipment> EquipManager::GetEquipmentByName(std::string name
 {
     for (const auto& pair : _equipMap)
     {
-        if (pair.second->name == name)
+        if (pair.second->Name == name)
         {
             return pair.second;
         }

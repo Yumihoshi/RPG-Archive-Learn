@@ -172,3 +172,27 @@ CampType BasePokeModel::GetCamp()
 {
     return _camp;
 }
+
+// 装备武器
+void BasePokeModel::Equip(std::shared_ptr<Weapon> weapon)
+{
+    _weapon = weapon;
+    _weapon->Owner = std::make_shared<BasePokeModel>(*this);
+    _damage += _weapon->AttackBonus;
+    _maxMp += _weapon->MaxMpBonus;
+    _critRate += _weapon->CritRateBonus;
+}
+
+// 装备防具
+void BasePokeModel::Equip(std::shared_ptr<Armor> armor)
+{
+    _armor = armor;
+    _armor->Owner = std::make_shared<BasePokeModel>(*this);
+    _maxHp += _armor->MaxHpBonus;
+    _fleeRate += _armor->FleeRateBonus;
+}
+
+int BasePokeModel::GetDamage()
+{
+    return _damage;
+}

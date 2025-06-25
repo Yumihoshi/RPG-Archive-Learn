@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "Types.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 class BasePokeModel
 {
@@ -45,6 +47,12 @@ public:
     /// <param name="levelCount">升级等级数</param>
     void LevelUp(int levelCount = 1);
 
+    // 装备武器
+    void Equip(std::shared_ptr<Weapon> weapon);
+    // 装备防具
+    void Equip(std::shared_ptr<Armor> armor);
+
+    // getter和setter
     std::string GetName();
     int GetCurHp();
     int GetMaxHp();
@@ -57,6 +65,7 @@ public:
     CampType GetCamp();
     float GetFleeRate();
     float GetCritRate();
+    int GetDamage();
 
 protected:
     std::string _name;      // 宝可梦名
@@ -79,5 +88,10 @@ protected:
     float _fleeRate;        // 闪避率
     float _critRate;        // 暴击率
 
+    int _damage;        // 攻击力
+
+    std::shared_ptr<Weapon> _weapon;        // 武器
+    std::shared_ptr<Armor> _armor;          // 防具
+protected:
     bool CheckFlee();
 };
