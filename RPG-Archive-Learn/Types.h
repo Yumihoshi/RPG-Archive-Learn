@@ -18,7 +18,19 @@ enum class ElementType
     /// <summary>
     /// 自然
     /// </summary>
-    Nature
+    Nature,
+
+
+    /// <summary>
+    /// 飞行
+    /// </summary>
+    Fly,
+
+
+    /// <summary>
+    /// 幽灵
+    /// </summary>
+    Ghost,
 };
 
 /// <summary>

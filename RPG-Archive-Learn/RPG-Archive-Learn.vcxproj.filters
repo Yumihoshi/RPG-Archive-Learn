@@ -108,6 +108,12 @@
     <ClCompile Include="Signal.cpp">
       <Filter>源文件\通用</Filter>
     </ClCompile>
+    <ClCompile Include="FlyPokeModel.cpp">
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostPokeModel.cpp">
+      <Filter>源文件\MVC\Models\Pokemon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -142,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="Types.h">
       <Filter>头文件\枚举</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyPokeModel.h">
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostPokeModel.h">
+      <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

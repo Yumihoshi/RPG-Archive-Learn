@@ -126,6 +126,8 @@
   <ItemGroup>
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="FirePokeView.cpp" />
+    <ClCompile Include="FlyPokeModel.cpp" />
+    <ClCompile Include="GhostPokeModel.cpp" />
     <ClCompile Include="IcePokeModel.cpp" />
     <ClCompile Include="NaturePokeModel.cpp" />
     <ClCompile Include="BasePokeModel.cpp" />
@@ -138,6 +140,8 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="FirePokeView.h" />
+    <ClInclude Include="FlyPokeModel.h" />
+    <ClInclude Include="GhostPokeModel.h" />
     <ClInclude Include="IcePokeModel.h" />
     <ClInclude Include="NaturePokeModel.h" />
     <ClInclude Include="BasePokeModel.h" />
