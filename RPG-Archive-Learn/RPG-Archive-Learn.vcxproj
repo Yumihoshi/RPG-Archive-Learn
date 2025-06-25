@@ -127,8 +127,11 @@
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="BaseEquipment.cpp" />
     <ClCompile Include="Common.cpp" />
+    <ClCompile Include="DialogueManager.cpp" />
+    <ClCompile Include="EquipManager.cpp" />
     <ClCompile Include="FirePokeView.cpp" />
     <ClCompile Include="FlyPokeModel.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GhostPokeModel.cpp" />
     <ClCompile Include="IcePokeModel.cpp" />
     <ClCompile Include="NaturePokeModel.cpp" />
@@ -139,14 +142,18 @@
     <ClCompile Include="PokeManager.cpp" />
     <ClCompile Include="PokemonView.cpp" />
     <ClCompile Include="Signal.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="BaseEquipment.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="DialogueManager.h" />
+    <ClInclude Include="EquipManager.h" />
     <ClInclude Include="FirePokeView.h" />
     <ClInclude Include="FlyPokeModel.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GhostPokeModel.h" />
     <ClInclude Include="IcePokeModel.h" />
     <ClInclude Include="NaturePokeModel.h" />
@@ -158,6 +165,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="FirePokeModel.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

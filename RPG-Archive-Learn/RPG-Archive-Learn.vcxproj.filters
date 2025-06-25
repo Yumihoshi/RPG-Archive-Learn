@@ -132,6 +132,18 @@
     <ClCompile Include="PokeManager.cpp">
       <Filter>源文件\管理器</Filter>
     </ClCompile>
+    <ClCompile Include="DialogueManager.cpp">
+      <Filter>源文件\管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipManager.cpp">
+      <Filter>源文件\管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>源文件\管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>源文件\管理器</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -184,6 +196,18 @@
     </ClInclude>
     <ClInclude Include="Armor.h">
       <Filter>头文件\装备</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueManager.h">
+      <Filter>头文件\管理器</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipManager.h">
+      <Filter>头文件\管理器</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>头文件\管理器</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>头文件\管理器</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
