@@ -11,7 +11,7 @@ FirePokeView::FirePokeView(std::shared_ptr<FirePokeModel> model)
 
 void FirePokeView::ShowPokemonInfo()
 {
-    PokemonView::ShowPokemonInfo();
+    BasePokeView::ShowPokemonInfo();
     auto& logger = LogManager::GetInstance();  // 缓存日志管理器实例
     FirePokeModel& pokemon = *ModelPtr;              // 使用引用避免重复解引用
 
@@ -24,6 +24,7 @@ void FirePokeView::ShowPokemonInfo()
     logger.PrintByChar("魔法值：", LogColor::Blue);
     logger.PrintByChar(std::to_string((*ModelPtr).GetCurMp()) + "/" +
         std::to_string((*ModelPtr).GetMaxMp()) + "\n");
+    logger.PrintByChar("伤害：" + std::to_string((*ModelPtr).GetDamage()) + "\n");
     logger.PrintByChar("属性：火\n");
 
     // 格式化百分号
@@ -36,5 +37,5 @@ void FirePokeView::ShowPokemonSkillInfo()
 {
     FirePokeModel& pokemon = *ModelPtr;              // 使用引用避免重复解引用
     // TODO: 完善技能信息显示
-    PokemonView::ShowPokemonSkillInfo();
+    BasePokeView::ShowPokemonSkillInfo();
 }

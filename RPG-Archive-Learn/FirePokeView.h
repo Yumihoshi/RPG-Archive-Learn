@@ -1,10 +1,10 @@
 #pragma once
 
-#include "PokemonView.h"
+#include "BasePokeView.h"
 #include "FirePokeModel.h"
 
 
-class FirePokeView : public PokemonView
+class FirePokeView : public BasePokeView
 {
 public:
     std::shared_ptr<FirePokeModel> ModelPtr;

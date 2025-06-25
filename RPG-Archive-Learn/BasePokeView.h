@@ -1,6 +1,6 @@
 #pragma once
 
-class PokemonView
+class BasePokeView
 {
 public:
     /// <summary>

@@ -161,7 +161,7 @@
     <ClInclude Include="NaturePokeModel.h">
       <Filter>头文件\MVC\Models\Pokemon</Filter>
     </ClInclude>
-    <ClInclude Include="PokemonView.h">
+    <ClInclude Include="BasePokeView.h">
       <Filter>头文件\MVC\Views\Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="FirePokeView.h">
