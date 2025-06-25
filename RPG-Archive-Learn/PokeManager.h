@@ -22,13 +22,13 @@ public:
     /// </summary>
     /// <param name="elementType">元素类型</param>
     /// <returns>宝可梦指针的vector</returns>
-    vector<shared_ptr<BasePokeModel>> GetPokesByElement(ElementType elementType);
+    vector<shared_ptr<BasePokeModel>>& GetPokesByElement(ElementType elementType);
 
     /// <summary>
     /// 获取所有宝可梦
     /// </summary>
     /// <returns>包含所有宝可梦的map</returns>
-    map<ElementType, vector<shared_ptr<BasePokeModel>>> GetAllPokes();
+    map<ElementType, vector<shared_ptr<BasePokeModel>>>& GetAllPokes();
 
     /// <summary>
     /// 删除宝可梦

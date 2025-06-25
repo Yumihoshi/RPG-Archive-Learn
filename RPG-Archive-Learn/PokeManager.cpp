@@ -25,20 +25,21 @@ void PokeManager::AddPoke(ElementType elementType, shared_ptr<BasePokeModel> mod
 /// </summary>
 /// <param name="elementType">元素类型</param>
 /// <returns>宝可梦指针的vector</returns>
-vector<shared_ptr<BasePokeModel>> PokeManager::GetPokesByElement(ElementType elementType)
+vector<shared_ptr<BasePokeModel>>& PokeManager::GetPokesByElement(ElementType elementType)
 {
     if (_pokeMap.find(elementType) != _pokeMap.end())
     {
         return _pokeMap[elementType];
     }
-    return vector<shared_ptr<BasePokeModel>>(); // 返回空vector
+    _pokeMap[elementType] = vector<shared_ptr<BasePokeModel>>();
+    return _pokeMap[elementType]; // 返回空vector
 }
 
 /// <summary>
 /// 获取所有宝可梦
 /// </summary>
 /// <returns>包含所有宝可梦的map</returns>
-map<ElementType, vector<shared_ptr<BasePokeModel>>> PokeManager::GetAllPokes()
+map<ElementType, vector<shared_ptr<BasePokeModel>>>& PokeManager::GetAllPokes()
 {
     return _pokeMap;
 }
