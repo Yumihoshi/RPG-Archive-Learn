@@ -1,4 +1,4 @@
-#include "PokeManager.h"
+﻿#include "PokeManager.h"
 
 PokeManager::PokeManager() = default;
 
