@@ -5,7 +5,7 @@
 class IcePokeModel : public BasePokeModel
 {
 public:
-    IcePokeModel(string name, int maxHp, int maxMp, int turnRecoverMp,
+    IcePokeModel(std::string name, int maxHp, int maxMp, int turnRecoverMp,
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : BasePokeModel(name, ElementType::Ice,
             maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
     {

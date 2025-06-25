@@ -1,8 +1,7 @@
-﻿#include <iomanip>
+#include <iomanip>
 #include "windows.h"
 #include "LogManager.h"
 
-using namespace std;
 
 /// <summary>
 /// 打印回合开始
@@ -23,17 +22,17 @@ void LogManager::PrintTurnEnd()
 /// <summary>
 /// 逐字输出
 /// </summary>
-void LogManager::PrintByChar(string text, int delayMs)
+void LogManager::PrintByChar(std::string text, int delayMs)
 {
-    cout << fixed << setprecision(2);
+    std::cout << std::fixed << std::setprecision(2);
     for (char c : text)
     {
-        cout << c << std::flush;  // 立即刷新缓冲区
+        std::cout << c << std::flush;  // 立即刷新缓冲区
         Sleep(delayMs);               // 暂停指定毫秒
     }
 }
 
-void LogManager::PrintByChar(string text, LogColor color)
+void LogManager::PrintByChar(std::string text, LogColor color)
 {
     switch (color)
     {
@@ -58,7 +57,7 @@ void LogManager::PrintByChar(string text, LogColor color)
     }
 }
 
-void LogManager::PrintByCharWithFlash(string text)
+void LogManager::PrintByCharWithFlash(std::string text)
 {
     PrintByChar(FLASH_CODE + text + END_CODE);
 }

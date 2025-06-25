@@ -1,4 +1,4 @@
-﻿#include "FirePokeModel.h"
+#include "FirePokeModel.h"
 #include "LogManager.h"
 
 void FirePokeModel::TakeDamage(int amount)

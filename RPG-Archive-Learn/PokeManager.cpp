@@ -1,4 +1,4 @@
-﻿#include "PokeManager.h"
+#include "PokeManager.h"
 
 PokeManager::PokeManager() = default;
 
@@ -7,13 +7,13 @@ PokeManager::PokeManager() = default;
 /// </summary>
 /// <param name="elementType">宝可梦元素类型</param>
 /// <param name="model">宝可梦模型指针</param>
-void PokeManager::AddPoke(ElementType elementType, shared_ptr<BasePokeModel> model)
+void PokeManager::AddPoke(ElementType elementType, std::shared_ptr<BasePokeModel> model)
 {
     // 检查元素类型是否已存在于map中
     if (_pokeMap.find(elementType) == _pokeMap.end())
     {
         // 如果不存在，创建一个新的vector
-        _pokeMap[elementType] = vector<shared_ptr<BasePokeModel>>();
+        _pokeMap[elementType] = std::vector<std::shared_ptr<BasePokeModel>>();
     }
 
     // 将宝可梦添加到对应元素类型的vector中
@@ -25,13 +25,13 @@ void PokeManager::AddPoke(ElementType elementType, shared_ptr<BasePokeModel> mod
 /// </summary>
 /// <param name="elementType">元素类型</param>
 /// <returns>宝可梦指针的vector</returns>
-vector<shared_ptr<BasePokeModel>>& PokeManager::GetPokesByElement(ElementType elementType)
+std::vector<std::shared_ptr<BasePokeModel>>& PokeManager::GetPokesByElement(ElementType elementType)
 {
     if (_pokeMap.find(elementType) != _pokeMap.end())
     {
         return _pokeMap[elementType];
     }
-    _pokeMap[elementType] = vector<shared_ptr<BasePokeModel>>();
+    _pokeMap[elementType] = std::vector<std::shared_ptr<BasePokeModel>>();
     return _pokeMap[elementType]; // 返回空vector
 }
 
@@ -39,7 +39,7 @@ vector<shared_ptr<BasePokeModel>>& PokeManager::GetPokesByElement(ElementType el
 /// 获取所有宝可梦
 /// </summary>
 /// <returns>包含所有宝可梦的map</returns>
-map<ElementType, vector<shared_ptr<BasePokeModel>>>& PokeManager::GetAllPokes()
+std::map<ElementType, std::vector<std::shared_ptr<BasePokeModel>>>& PokeManager::GetAllPokes()
 {
     return _pokeMap;
 }
@@ -59,7 +59,7 @@ bool PokeManager::RemovePokesByElement(ElementType elementType)
 /// </summary>
 /// <param name="model">要删除的宝可梦指针</param>
 /// <returns>是否找到并删除</returns>
-bool PokeManager::RemoveSpecificPoke(shared_ptr<BasePokeModel> model)
+bool PokeManager::RemoveSpecificPoke(std::shared_ptr<BasePokeModel> model)
 {
     for (auto& pair : _pokeMap)
     {
@@ -83,8 +83,8 @@ void PokeManager::ClearAllPokes()
 }
 
 bool PokeManager::UpdatePokeAttributes(
-    shared_ptr<BasePokeModel> model,
-    function<void(shared_ptr<BasePokeModel>)> updateFunction)
+    std::shared_ptr<BasePokeModel> model,
+    std::function<void(std::shared_ptr<BasePokeModel>)> updateFunction)
 {
     // 遍历所有元素类型容器
     for (auto& [element, pokeList] : _pokeMap)
@@ -103,7 +103,7 @@ bool PokeManager::UpdatePokeAttributes(
 }
 
 bool PokeManager::UpdatePokeElementType(
-    shared_ptr<BasePokeModel> model,
+    std::shared_ptr<BasePokeModel> model,
     ElementType newElementType)
 {
     bool found = false;
@@ -138,7 +138,7 @@ bool PokeManager::UpdatePokeElementType(
 /// </summary>
 /// <param name="name"></param>
 /// <returns></returns>
-shared_ptr<BasePokeModel> PokeManager::GetPokeByName(string name)
+std::shared_ptr<BasePokeModel> PokeManager::GetPokeByName(std::string name)
 {
     for (auto& [element, pokeList] : _pokeMap)
     {
@@ -158,7 +158,7 @@ shared_ptr<BasePokeModel> PokeManager::GetPokeByName(string name)
 /// </summary>
 /// <param name="campType"></param>
 /// <returns></returns>
-shared_ptr<BasePokeModel> PokeManager::GetPokeByCamp(CampType campType)
+std::shared_ptr<BasePokeModel> PokeManager::GetPokeByCamp(CampType campType)
 {
     for (auto& [element, pokeList] : _pokeMap)
     {

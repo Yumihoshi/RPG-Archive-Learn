@@ -3,11 +3,10 @@
 #include <iostream>
 #include "Singleton.h"
 
-using namespace std;
 
 class Common : public Singleton<Common>
 {
 public:
-    static string GetFormattedFloat(float num, int wei = 2);
+    static std::string GetFormattedFloat(float num, int wei = 2);
 };
 

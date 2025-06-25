@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <map>
 #include <vector>
 #include <functional>
@@ -6,7 +6,6 @@
 #include "Types.h"
 #include "BasePokeModel.h"
 
-using namespace std;
 
 class PokeManager :public Singleton<PokeManager>
 {
@@ -18,7 +17,7 @@ public:
     /// </summary>
     /// <param name="elementType">宝可梦元素类型</param>
     /// <param name="model">宝可梦模型指针</param>
-    void AddPoke(ElementType elementType, shared_ptr<BasePokeModel> model);
+    void AddPoke(ElementType elementType, std::shared_ptr<BasePokeModel> model);
 
     // ##########查找##########
 
@@ -27,27 +26,27 @@ public:
     /// </summary>
     /// <param name="elementType">元素类型</param>
     /// <returns>宝可梦指针的vector</returns>
-    vector<shared_ptr<BasePokeModel>>& GetPokesByElement(ElementType elementType);
+    std::vector<std::shared_ptr<BasePokeModel>>& GetPokesByElement(ElementType elementType);
 
     /// <summary>
     /// 获取所有宝可梦
     /// </summary>
     /// <returns>包含所有宝可梦的map</returns>
-    map<ElementType, vector<shared_ptr<BasePokeModel>>>& GetAllPokes();
+    std::map<ElementType, std::vector<std::shared_ptr<BasePokeModel>>>& GetAllPokes();
 
     /// <summary>
     /// 根据名称获取宝可梦
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    shared_ptr<BasePokeModel> GetPokeByName(string name);
+    std::shared_ptr<BasePokeModel> GetPokeByName(std::string name);
 
     /// <summary>
     /// 根据阵营获取宝可梦
     /// </summary>
     /// <param name="campType"></param>
     /// <returns></returns>
-    shared_ptr<BasePokeModel> GetPokeByCamp(CampType campType);
+    std::shared_ptr<BasePokeModel> GetPokeByCamp(CampType campType);
 
     // ##########删除##########
 
@@ -63,7 +62,7 @@ public:
     /// </summary>
     /// <param name="model">要删除的宝可梦指针</param>
     /// <returns>是否找到并删除</returns>
-    bool RemoveSpecificPoke(shared_ptr<BasePokeModel> model);
+    bool RemoveSpecificPoke(std::shared_ptr<BasePokeModel> model);
 
     /// <summary>
     /// 清空所有宝可梦
@@ -79,8 +78,8 @@ public:
     /// <param name="updateFunction">自定义更新函数</param>
     /// <returns>是否成功找到并更新</returns>
     bool UpdatePokeAttributes(
-        shared_ptr<BasePokeModel> model,
-        function<void(shared_ptr<BasePokeModel>)> updateFunction
+        std::shared_ptr<BasePokeModel> model,
+        std::function<void(std::shared_ptr<BasePokeModel>)> updateFunction
     );
 
     /// <summary>
@@ -90,12 +89,12 @@ public:
     /// <param name="newElementType">新的元素类型</param>
     /// <returns>是否成功更新</returns>
     bool UpdatePokeElementType(
-        shared_ptr<BasePokeModel> model,
+        std::shared_ptr<BasePokeModel> model,
         ElementType newElementType
     );
 
 private:
     friend class Singleton<PokeManager>;
-    map < ElementType, vector<shared_ptr<BasePokeModel> >> _pokeMap;
+    std::map < ElementType, std::vector<std::shared_ptr<BasePokeModel> >> _pokeMap;
     PokeManager();
 };

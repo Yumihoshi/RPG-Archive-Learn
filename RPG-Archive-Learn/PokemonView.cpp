@@ -1,7 +1,6 @@
-﻿#include "PokemonView.h"
+#include "PokemonView.h"
 #include "LogManager.h"
 
-using namespace std;
 
 void PokemonView::ShowPokemonInfo()
 {

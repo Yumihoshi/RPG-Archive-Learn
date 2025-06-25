@@ -1,14 +1,12 @@
-﻿#pragma once
+#pragma once
 
 #include <iostream>
 #include "Types.h"
 
-using namespace std;
-
 class BasePokeModel
 {
 public:
-    BasePokeModel(string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
+    BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate);
 
     /// <summary>
@@ -47,7 +45,7 @@ public:
     /// <param name="levelCount">升级等级数</param>
     void LevelUp(int levelCount = 1);
 
-    string GetName();
+    std::string GetName();
     int GetCurHp();
     int GetMaxHp();
     int GetCurMp();
@@ -61,7 +59,7 @@ public:
     float GetCritRate();
 
 protected:
-    string _name;      // 宝可梦名
+    std::string _name;      // 宝可梦名
     ElementType _element;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型
 

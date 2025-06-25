@@ -1,11 +1,10 @@
-﻿#include <string>
+#include <string>
 #include "Common.h"
 #include "FirePokeView.h"
 #include "LogManager.h"
 
-using namespace std;
 
-FirePokeView::FirePokeView(shared_ptr<FirePokeModel> model)
+FirePokeView::FirePokeView(std::shared_ptr<FirePokeModel> model)
 {
     ModelPtr = model;
 }
@@ -20,11 +19,11 @@ void FirePokeView::ShowPokemonInfo()
     logger.PrintByChar("名称：" + pokemon.GetName() + "\n");
 
     logger.PrintByChar("血量：", LogColor::Red);
-    logger.PrintByChar(to_string((*ModelPtr).GetCurHp()) +
-        "/" + to_string((*ModelPtr).GetMaxHp()) + "\n");
+    logger.PrintByChar(std::to_string((*ModelPtr).GetCurHp()) +
+        "/" + std::to_string((*ModelPtr).GetMaxHp()) + "\n");
     logger.PrintByChar("魔法值：", LogColor::Blue);
-    logger.PrintByChar(to_string((*ModelPtr).GetCurMp()) + "/" +
-        to_string((*ModelPtr).GetMaxMp()) + "\n");
+    logger.PrintByChar(std::to_string((*ModelPtr).GetCurMp()) + "/" +
+        std::to_string((*ModelPtr).GetMaxMp()) + "\n");
     logger.PrintByChar("属性：火\n");
 
     // 格式化百分号

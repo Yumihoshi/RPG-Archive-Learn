@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "IcePokeModel.h"
 #include "LogManager.h"
 
