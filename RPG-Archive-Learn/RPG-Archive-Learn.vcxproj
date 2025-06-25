@@ -124,6 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Armor.cpp" />
+    <ClCompile Include="BaseEquipment.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="FirePokeView.cpp" />
     <ClCompile Include="FlyPokeModel.cpp" />
@@ -136,8 +138,11 @@
     <ClCompile Include="FirePokeModel.cpp" />
     <ClCompile Include="PokemonView.cpp" />
     <ClCompile Include="Signal.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Armor.h" />
+    <ClInclude Include="BaseEquipment.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="FirePokeView.h" />
     <ClInclude Include="FlyPokeModel.h" />
@@ -151,6 +156,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="FirePokeModel.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -76,6 +76,12 @@
     <Filter Include="头文件\枚举">
       <UniqueIdentifier>{c23f7d19-33f3-4c72-9362-1b5c9a6f3c31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\装备">
+      <UniqueIdentifier>{c9c85a23-619d-4280-a301-5a65edbe6bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\装备">
+      <UniqueIdentifier>{fff0c2ca-dc04-4c42-8503-5906473c91d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -113,6 +119,15 @@
     </ClCompile>
     <ClCompile Include="GhostPokeModel.cpp">
       <Filter>源文件\MVC\Models\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEquipment.cpp">
+      <Filter>源文件\装备</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>源文件\装备</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="GhostPokeModel.h">
       <Filter>头文件\MVC\Models\Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEquipment.h">
+      <Filter>头文件\装备</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>头文件\装备</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

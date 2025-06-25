@@ -41,3 +41,12 @@ enum class CampType
     Friend,
     Enemy
 };
+/// <summary>
+/// 装备枚举
+/// </summary>
+enum class EquipType
+{
+    Weapon,
+    Armor
+};
+
