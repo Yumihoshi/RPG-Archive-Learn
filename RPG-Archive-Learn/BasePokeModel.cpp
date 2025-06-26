@@ -271,3 +271,18 @@ void BasePokeModel::ResetCur()
     _curHp = _maxHp;
     _curMp = _maxMp;
 }
+
+ElementType BasePokeModel::GetElement()
+{
+    return _element;
+}
+
+std::string BasePokeModel::GetStory()
+{
+    return _story;
+}
+
+void BasePokeModel::SetStory(std::string story)
+{
+    _story = story;
+}

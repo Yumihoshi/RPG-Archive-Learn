@@ -11,6 +11,7 @@ public:
     {
         PerturbAttribute();
         ResetCur();
+        SetStory("高生命值，低魔法值，在某次洪灾中牺牲自己，救下了人们，后被念时复活。");
     }
 private:
 };

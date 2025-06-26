@@ -4,14 +4,13 @@
 #include "FirePokeModel.h"
 
 
-class FirePokeView : public BasePokeView
+class FirePokeView : public BasePokeView<FirePokeModel>
 {
 public:
-    std::shared_ptr<FirePokeModel> ModelPtr;
+    FirePokeView(std::shared_ptr<FirePokeModel> model) : BasePokeView(model)
+    {
+    }
 
-    FirePokeView(std::shared_ptr<FirePokeModel> model);
-    void ShowPokemonInfo() override;
-    void ShowPokemonSkillInfo() override;
 private:
 };
 

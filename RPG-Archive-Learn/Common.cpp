@@ -26,3 +26,22 @@ float Common::GetRandomFloat(float min, float max)
 
     return result;
 }
+
+std::string Common::GetElementName(ElementType type)
+{
+    switch (type)
+    {
+    case ElementType::Fire:
+        return "火";
+    case ElementType::Fly:
+        return "飞行";
+    case ElementType::Ghost:
+        return "幽灵";
+    case ElementType::Grass:
+        return "草";
+    case ElementType::Ice:
+        return "冰";
+    default:
+        return "无";
+    }
+}

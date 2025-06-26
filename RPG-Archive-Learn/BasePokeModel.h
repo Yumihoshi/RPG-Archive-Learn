@@ -72,6 +72,9 @@ public:
     float GetFleeRate();
     float GetCritRate();
     int GetDamage();
+    ElementType GetElement();
+    std::string GetStory();
+    void SetStory(std::string story);
 
 protected:
     std::string _name;      // 宝可梦名
@@ -98,6 +101,8 @@ protected:
 
     std::shared_ptr<Decoration> _decoration;        // 饰品
     std::shared_ptr<Armor> _armor;          // 防具
+
+    std::string _story;
 protected:
     // 数值随机扰动（0.9到1.1）
     virtual void PerturbAttribute();

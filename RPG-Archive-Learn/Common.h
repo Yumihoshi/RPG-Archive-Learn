@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include "Singleton.h"
+#include "Types.h"
 
 
 class Common : public Singleton<Common>
@@ -10,6 +11,7 @@ class Common : public Singleton<Common>
 public:
     std::string GetFormattedFloat(float num, int wei = 2);
     float GetRandomFloat(float min, float max);
+    std::string GetElementName(ElementType type);
 private:
     friend class Singleton<Common>;
     Common();
