@@ -94,6 +94,6 @@ protected:
 
     std::shared_ptr<Decoration> _decoration;        // 饰品
     std::shared_ptr<Armor> _armor;          // 防具
-protected:
+private:
     bool CheckFlee();
 };
