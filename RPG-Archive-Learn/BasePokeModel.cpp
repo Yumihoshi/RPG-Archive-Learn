@@ -153,8 +153,8 @@ float BasePokeModel::GetCritRate()
 /// <returns></returns>
 bool BasePokeModel::CheckFlee() {
     // 生成0.0~1.0的随机浮点数
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
+    static std::random_device _rd;
+    static std::mt19937 gen(_rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
 
     double randValue = dist(gen);
