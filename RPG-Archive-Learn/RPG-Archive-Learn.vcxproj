@@ -135,7 +135,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GhostPokeModel.cpp" />
     <ClCompile Include="IcePokeModel.cpp" />
-    <ClCompile Include="NaturePokeModel.cpp" />
+    <ClCompile Include="GrassPokeModel.cpp" />
     <ClCompile Include="BasePokeModel.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -157,7 +157,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GhostPokeModel.h" />
     <ClInclude Include="IcePokeModel.h" />
-    <ClInclude Include="NaturePokeModel.h" />
+    <ClInclude Include="GrassPokeModel.h" />
     <ClInclude Include="BasePokeModel.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="PokeManager.h" />

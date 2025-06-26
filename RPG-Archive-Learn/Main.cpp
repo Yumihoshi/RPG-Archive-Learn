@@ -11,7 +11,7 @@
 int main()
 {
     SetConsoleOutputCP(65001);
-    std::shared_ptr<FirePokeModel> f = std::make_shared<FirePokeModel>("小火龙", 200, 50, 10, CampType::Friend, 100, 20, 0.5, 0.5);
+    std::shared_ptr<FirePokeModel> f = std::make_shared<FirePokeModel>("小火龙", CampType::Friend);
     FirePokeView fView(f);
     fView.ShowPokemonInfo();
     f->TakeDamage(100);

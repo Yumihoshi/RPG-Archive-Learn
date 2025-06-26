@@ -6,10 +6,10 @@
 class FirePokeModel : public BasePokeModel
 {
 public:
-    FirePokeModel(std::string name, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : BasePokeModel(name, ElementType::Fire,
-            maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
+    FirePokeModel(std::string name, CampType camp ): BasePokeModel(name, ElementType::Fire,
+            120, 30, 5, camp, 100, 10l, 0.2, 0.1, 8 )
     {
+        
     }
 
     void TakeDamage(int amount) override;

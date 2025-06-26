@@ -2,9 +2,8 @@
 #include "BasePokeModel.h"
 class FlyPokeModel :public BasePokeModel
 {
-	FlyPokeModel(std::string name, int maxHp, int maxMp, int turnRecoverMp,
-		CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) :BasePokeModel(name, ElementType::Fly,
-			maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
+	FlyPokeModel(std::string name, CampType camp ):BasePokeModel(name, ElementType::Fly,
+			50, 50, 5, camp, 100, 10, 0.15, 10, 30)
 	{
 
 	}

@@ -5,7 +5,7 @@
 #include "LogManager.h"
 
 BasePokeModel::BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
-    CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate)
+    CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage)
 {
     _name = name;
     _element = ele;
@@ -17,7 +17,7 @@ BasePokeModel::BasePokeModel(std::string name, ElementType ele, int maxHp, int m
     _camp = camp;
     _critRate = critRate;
     _fleeRate = fleeRate;
-
+    _damage = damage;
     // 当前状态初始化
     _curHp = maxHp;
     _curMp = maxMp;

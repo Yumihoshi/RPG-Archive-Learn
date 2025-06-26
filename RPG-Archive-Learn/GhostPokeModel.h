@@ -2,9 +2,8 @@
 #include "BasePokeModel.h"
 class GhostPokeModel :public BasePokeModel
 {
-	GhostPokeModel(std::string name, int maxHp, int maxMp, int turnRecoverMp,
-		CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) :BasePokeModel(name, ElementType::Ghost,
-			maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
+	GhostPokeModel(std::string name, CampType camp ) :BasePokeModel(name, ElementType::Ghost,	
+			80, 50, 5, camp, 100, 10, 0.15, 0.3, 10)
 	{
 
 	}

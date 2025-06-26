@@ -5,10 +5,10 @@
 class IcePokeModel : public BasePokeModel
 {
 public:
-    IcePokeModel(std::string name, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate) : BasePokeModel(name, ElementType::Ice,
-            maxHp, maxMp, turnRecoverMp, camp, maxExp, maxLevel, critRate, fleeRate)
+    IcePokeModel(std::string name,CampType camp) : BasePokeModel(name, ElementType::Ice, 
+        100, 50, 10, camp, 100, 10, 0.15, 0.1, 10)
     {
+
     }
 
     void TakeDamage(int amount) override;

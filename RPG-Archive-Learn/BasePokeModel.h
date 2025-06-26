@@ -9,7 +9,7 @@ class BasePokeModel
 {
 public:
     BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
-        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate);
+        CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage);
 
     /// <summary>
     /// 回血
