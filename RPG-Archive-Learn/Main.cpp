@@ -6,6 +6,7 @@
 #include "FlyPokeModel.h"
 #include "GhostPokeModel.h"
 #include "Common.h"
+#include "PokeManager.h"
 
 
 int main()
@@ -16,6 +17,6 @@ int main()
     GrassPokeModel g("草草草", CampType::Friend);
     FlyPokeModel f1("飞飞飞", CampType::Friend);
     GhostPokeModel g1("鬼鬼鬼", CampType::Friend);
-
+    
     return 0;
 }

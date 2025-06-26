@@ -93,8 +93,13 @@ public:
         ElementType newElementType
     );
 
+    // 随机获取宝可梦名字
+    std::string GetPokeDefaultNameByElement(ElementType elementType);
+
 private:
     friend class Singleton<PokeManager>;
-    std::map < ElementType, std::vector<std::shared_ptr<BasePokeModel> >> _pokeMap;
     PokeManager();
+private:
+    std::map < ElementType, std::vector<std::shared_ptr<BasePokeModel> >> _pokeMap;
+    std::map<ElementType, std::vector<std::string>> _pokeNameMap;
 };

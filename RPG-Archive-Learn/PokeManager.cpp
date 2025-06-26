@@ -1,6 +1,13 @@
 #include "PokeManager.h"
 
-PokeManager::PokeManager() = default;
+PokeManager::PokeManager()
+{
+    _pokeNameMap[ElementType::Fire] = { "小火龙", "烈焰马", "暖暖猪", "火狐狸" };
+    _pokeNameMap[ElementType::Ice] = { "迷你冰", "雪童子", "冰伊布", "喷嚏熊" };
+    _pokeNameMap[ElementType::Grass] = { "草苗龟", "樱花宝", "青藤蛇", "坐骑山羊" };
+    _pokeNameMap[ElementType::Fly] = { "大比鸟", "飞天螳螂", "长翅鸥", "彩粉蝶" };
+    _pokeNameMap[ElementType::Ghost] = { "耿鬼", "魔灵珊瑚", "灵幽马", "黑夜魔灵" };
+}
 
 /// <summary>
 /// 添加宝可梦到对应元素类型的容器中
@@ -171,4 +178,10 @@ std::shared_ptr<BasePokeModel> PokeManager::GetPokeByCamp(CampType campType)
         }
     }
     return nullptr;
+}
+
+// 随机获取宝可梦名字
+std::string PokeManager::GetPokeDefaultNameByElement(ElementType elementType)
+{
+    return _pokeNameMap[elementType][rand() % _pokeNameMap[elementType].size()];
 }

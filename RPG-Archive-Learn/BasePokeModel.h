@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "Types.h"
 #include "Armor.h"
 #include "Decoration.h"

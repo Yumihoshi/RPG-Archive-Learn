@@ -20,7 +20,7 @@ enum class ElementType
     /// <summary>
     /// 自然
     /// </summary>
-    Nature,
+    Grass,
 
 
     /// <summary>

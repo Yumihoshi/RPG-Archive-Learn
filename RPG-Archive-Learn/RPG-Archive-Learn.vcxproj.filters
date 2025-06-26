@@ -16,35 +16,11 @@
     <Filter Include="源文件\MVC">
       <UniqueIdentifier>{ab2c27e1-07fc-4395-bb4f-3336bf9941f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\MVC\Models">
-      <UniqueIdentifier>{0831e0eb-2f1f-4e90-b813-a5d0629b5621}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\MVC\Views">
       <UniqueIdentifier>{1cadb1b2-02dc-4726-94c8-f253af957b08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\MVC\Controllers">
-      <UniqueIdentifier>{e2b3a017-e659-4578-91ab-334166e29619}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\MVC">
       <UniqueIdentifier>{be0c5571-7fcd-41f3-ba28-0a12b9231488}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\MVC\Controllers">
-      <UniqueIdentifier>{83145c9c-dc25-4e4a-8b3a-d3a28b12d146}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\MVC\Views">
-      <UniqueIdentifier>{98877ff2-abb6-4af5-94e2-8c8a9363e881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\MVC\Models">
-      <UniqueIdentifier>{2002b5b9-36f1-4610-9210-17d77766d5c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\MVC\Models\Pokemon">
-      <UniqueIdentifier>{520e7ebf-1237-41f1-a5e6-b9d41c94f7e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\MVC\Models\Pokemon">
-      <UniqueIdentifier>{26452069-3048-4c2e-8355-7d1df9a471bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\MVC\Views\Pokemon">
-      <UniqueIdentifier>{ef2d3164-f9e2-499f-bfc4-e2cead60b595}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\MVC\Views\Pokemon">
       <UniqueIdentifier>{07026add-c7e6-4132-a7d5-225a4aa211af}</UniqueIdentifier>
@@ -82,22 +58,43 @@
     <Filter Include="头文件\装备">
       <UniqueIdentifier>{fff0c2ca-dc04-4c42-8503-5906473c91d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\MVC\控制器">
+      <UniqueIdentifier>{83145c9c-dc25-4e4a-8b3a-d3a28b12d146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\MVC\模型">
+      <UniqueIdentifier>{2002b5b9-36f1-4610-9210-17d77766d5c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\MVC\模型\宝可梦">
+      <UniqueIdentifier>{520e7ebf-1237-41f1-a5e6-b9d41c94f7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\MVC\视图">
+      <UniqueIdentifier>{98877ff2-abb6-4af5-94e2-8c8a9363e881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\MVC\视图\宝可梦">
+      <UniqueIdentifier>{ef2d3164-f9e2-499f-bfc4-e2cead60b595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\MVC\控制器">
+      <UniqueIdentifier>{e2b3a017-e659-4578-91ab-334166e29619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\MVC\模型">
+      <UniqueIdentifier>{0831e0eb-2f1f-4e90-b813-a5d0629b5621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\MVC\模型\宝可梦">
+      <UniqueIdentifier>{26452069-3048-4c2e-8355-7d1df9a471bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="BasePokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
     </ClCompile>
     <ClCompile Include="FirePokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
     </ClCompile>
     <ClCompile Include="IcePokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
-    </ClCompile>
-    <ClCompile Include="NaturePokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
     </ClCompile>
     <ClCompile Include="PokemonView.cpp">
       <Filter>源文件\MVC\Views\Pokemon</Filter>
@@ -115,10 +112,10 @@
       <Filter>源文件\通用</Filter>
     </ClCompile>
     <ClCompile Include="FlyPokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
     </ClCompile>
     <ClCompile Include="GhostPokeModel.cpp">
-      <Filter>源文件\MVC\Models\Pokemon</Filter>
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
     </ClCompile>
     <ClCompile Include="BaseEquipment.cpp">
       <Filter>源文件\装备</Filter>
@@ -144,28 +141,58 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>源文件\管理器</Filter>
     </ClCompile>
+    <ClCompile Include="BasePokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="FirePokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyPokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostPokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassPokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="IcePokeController.cpp">
+      <Filter>源文件\MVC\控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyPokeView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostPokeView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassPokeView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="IcePokeView.cpp">
+      <Filter>源文件\MVC\Views\Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassPokeModel.cpp">
+      <Filter>源文件\MVC\模型\宝可梦</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
       <Filter>头文件\基类</Filter>
     </ClInclude>
     <ClInclude Include="BasePokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="FirePokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="IcePokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
-    </ClInclude>
-    <ClInclude Include="NaturePokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="BasePokeView.h">
-      <Filter>头文件\MVC\Views\Pokemon</Filter>
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="FirePokeView.h">
-      <Filter>头文件\MVC\Views\Pokemon</Filter>
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="LogManager.h">
       <Filter>头文件\管理器</Filter>
@@ -180,10 +207,10 @@
       <Filter>头文件\枚举</Filter>
     </ClInclude>
     <ClInclude Include="FlyPokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="GhostPokeModel.h">
-      <Filter>头文件\MVC\Models\Pokemon</Filter>
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
     <ClInclude Include="BaseEquipment.h">
       <Filter>头文件\装备</Filter>
@@ -208,6 +235,39 @@
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>头文件\管理器</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyPokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostPokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassPokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="IcePokeController.h">
+      <Filter>头文件\MVC\控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyPokeView.h">
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostPokeView.h">
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassPokeView.h">
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
+    </ClInclude>
+    <ClInclude Include="IcePokeView.h">
+      <Filter>头文件\MVC\视图\宝可梦</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassPokeModel.h">
+      <Filter>头文件\MVC\模型\宝可梦</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
