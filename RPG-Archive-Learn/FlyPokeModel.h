@@ -4,7 +4,7 @@ class FlyPokeModel :public BasePokeModel
 {
 public:
     FlyPokeModel(std::string name, CampType camp) :BasePokeModel(name, ElementType::Fly,
-        50, 50, 5, camp, 100, 10, 0.15, 10, 30)
+        50, 50, 5, camp, 100, 10, 0.15, 0.10, 30)
     {
         PerturbAttribute();
         ResetCur();

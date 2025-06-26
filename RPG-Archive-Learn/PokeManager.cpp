@@ -2,6 +2,7 @@
 
 PokeManager::PokeManager()
 {
+    _gen = std::mt19937(_rd());
     _pokeNameMap[ElementType::Fire] = { "小火龙", "烈焰马", "暖暖猪", "火狐狸" };
     _pokeNameMap[ElementType::Ice] = { "迷你冰", "雪童子", "冰伊布", "喷嚏熊" };
     _pokeNameMap[ElementType::Grass] = { "草苗龟", "樱花宝", "青藤蛇", "坐骑山羊" };
@@ -183,5 +184,6 @@ std::shared_ptr<BasePokeModel> PokeManager::GetPokeByCamp(CampType campType)
 // 随机获取宝可梦名字
 std::string PokeManager::GetPokeDefaultNameByElement(ElementType elementType)
 {
-    return _pokeNameMap[elementType][rand() % _pokeNameMap[elementType].size()];
+    std::uniform_int_distribution<size_t> dist(0, _pokeNameMap[elementType].size() - 1);
+    return _pokeNameMap[elementType][dist(_gen)];
 }

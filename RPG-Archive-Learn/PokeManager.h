@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <functional>
+#include <random>
 #include "Singleton.h"
 #include "Types.h"
 #include "BasePokeModel.h"
@@ -102,4 +103,6 @@ private:
 private:
     std::map < ElementType, std::vector<std::shared_ptr<BasePokeModel> >> _pokeMap;
     std::map<ElementType, std::vector<std::string>> _pokeNameMap;
+    std::random_device _rd;
+    std::mt19937 _gen;
 };
