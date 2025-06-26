@@ -3,6 +3,26 @@
 #include <random>
 #include "BasePokeModel.h"
 #include "LogManager.h"
+#include "Common.h"
+
+BasePokeModel::BasePokeModel()
+{
+    _name = "";
+    _element = ElementType::None;
+    _maxHp = 100;
+    _maxMp = 50;
+    _maxExp = 100;
+    _maxLevel = 10;
+    _critRate = 0.15f;
+    _fleeRate = 0.1f;
+    _damage = 10;
+    _turnRecoverMp = 5;
+    _camp = CampType::None;
+    _curHp = _maxHp;
+    _curMp = _maxMp;
+    _curExp = 0;
+    _curLevel = 1;
+}
 
 BasePokeModel::BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
     CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage)
@@ -233,4 +253,21 @@ void BasePokeModel::Unequip(EquipType equipType)
 int BasePokeModel::GetDamage()
 {
     return _damage;
+}
+
+// 属性随机扰动
+void BasePokeModel::PerturbAttribute()
+{
+    _maxHp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _maxMp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _damage *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _critRate *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _fleeRate *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _turnRecoverMp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+}
+
+void BasePokeModel::ResetCur()
+{
+    _curHp = _maxHp;
+    _curMp = _maxMp;
 }

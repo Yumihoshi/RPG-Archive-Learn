@@ -8,6 +8,7 @@
 class BasePokeModel
 {
 public:
+    BasePokeModel();
     BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage);
 
@@ -54,6 +55,8 @@ public:
     // 卸下饰品
     void Unequip(EquipType equipType);
 
+    void ResetCur();
+
     // getter和setter
     std::string GetName();
     int GetCurHp();
@@ -94,6 +97,9 @@ protected:
 
     std::shared_ptr<Decoration> _decoration;        // 饰品
     std::shared_ptr<Armor> _armor;          // 防具
+protected:
+    // 数值随机扰动（0.9到1.1）
+    virtual void PerturbAttribute();
 private:
     bool CheckFlee();
 };

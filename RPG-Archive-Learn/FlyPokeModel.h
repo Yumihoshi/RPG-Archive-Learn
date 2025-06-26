@@ -2,11 +2,13 @@
 #include "BasePokeModel.h"
 class FlyPokeModel :public BasePokeModel
 {
-	FlyPokeModel(std::string name, CampType camp ):BasePokeModel(name, ElementType::Fly,
-			50, 50, 5, camp, 100, 10, 0.15, 10, 30)
-	{
-
-	}
+public:
+    FlyPokeModel(std::string name, CampType camp) :BasePokeModel(name, ElementType::Fly,
+        50, 50, 5, camp, 100, 10, 0.15, 10, 30)
+    {
+        PerturbAttribute();
+        ResetCur();
+    }
 
 };
 

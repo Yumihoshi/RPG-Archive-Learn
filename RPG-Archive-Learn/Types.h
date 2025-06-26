@@ -5,10 +5,12 @@
 /// </summary>
 enum class ElementType
 {
+    None,
+
     /// <summary>
     /// 火
     /// </summary>
-    Fire = 1,
+    Fire,
 
     /// <summary>
     /// 冰
@@ -38,6 +40,7 @@ enum class ElementType
 /// </summary>
 enum class CampType
 {
+    None,
     Friend,
     Enemy
 };
@@ -46,6 +49,7 @@ enum class CampType
 /// </summary>
 enum class EquipType
 {
+    None,
     Decoration,
     Armor
 };
