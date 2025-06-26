@@ -11,8 +11,6 @@ public:
     {
         
     }
-
-    void TakeDamage(int amount) override;
 private:
 };
 

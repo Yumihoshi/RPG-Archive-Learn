@@ -43,8 +43,20 @@ void BasePokeModel::Heal(int amount)
 void BasePokeModel::TakeDamage(int amount)
 {
     if (amount <= 0) return;
-    _curHp = std::clamp(_curHp - amount, 0, _maxHp);
-    LogManager::GetInstance().PrintByChar(_name + "扣血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
+    auto& logger = LogManager::GetInstance();
+    // 闪避
+    if (CheckFlee())
+    {
+        logger.PrintByChar(_name + "触发了");
+        logger.PrintByChar("闪避", LogColor::Yellow);
+        logger.PrintByChar("！\n");
+        return;
+    }
+    else
+    {
+        _curHp = std::clamp(_curHp - amount, 0, _maxHp);
+        LogManager::GetInstance().PrintByChar(_name + "扣血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
+    }
 }
 
 /// <summary>

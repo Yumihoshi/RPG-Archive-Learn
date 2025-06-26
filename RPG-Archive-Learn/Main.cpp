@@ -1,11 +1,9 @@
 #include <iostream>
 #include <Windows.h>
-#include "Singleton.h"
 #include "FirePokeModel.h"
 #include "FirePokeView.h"
-#include "LogManager.h"
-#include "Decoration.h"
-#include "Armor.h"
+#include "GhostPokeModel.h"
+#include "GhostPokeView.h"
 
 
 int main()
