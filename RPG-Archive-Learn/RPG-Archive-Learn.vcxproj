@@ -144,7 +144,7 @@
     <ClCompile Include="PokemonView.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="Decoration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
@@ -167,7 +167,7 @@
     <ClInclude Include="FirePokeModel.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIManager.h" />
-    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Decoration.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

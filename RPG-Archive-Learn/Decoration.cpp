@@ -1,6 +1,6 @@
-#include "Weapon.h"
+#include "Decoration.h"
 
-void Weapon::ShowInfo()
+void Decoration::ShowInfo()
 { 
     std::cout << "显示武器" << std::endl;
 }

@@ -123,7 +123,7 @@
     <ClCompile Include="BaseEquipment.cpp">
       <Filter>源文件\装备</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
+    <ClCompile Include="Decoration.cpp">
       <Filter>源文件\装备</Filter>
     </ClCompile>
     <ClCompile Include="Armor.cpp">
@@ -188,7 +188,7 @@
     <ClInclude Include="BaseEquipment.h">
       <Filter>头文件\装备</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="Decoration.h">
       <Filter>头文件\装备</Filter>
     </ClInclude>
     <ClInclude Include="PokeManager.h">

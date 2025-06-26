@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Types.h"
 #include "Armor.h"
-#include "Weapon.h"
+#include "Decoration.h"
 
 class BasePokeModel
 {
@@ -48,7 +48,7 @@ public:
     void LevelUp(int levelCount = 1);
 
     // 装备武器
-    void Equip(std::shared_ptr<Weapon> weapon);
+    void Equip(std::shared_ptr<Decoration> weapon);
     // 装备防具
     void Equip(std::shared_ptr<Armor> armor);
     // 卸下装备
@@ -92,7 +92,7 @@ protected:
 
     int _damage;        // 攻击力
 
-    std::shared_ptr<Weapon> _weapon;        // 武器
+    std::shared_ptr<Decoration> _weapon;        // 武器
     std::shared_ptr<Armor> _armor;          // 防具
 protected:
     bool CheckFlee();

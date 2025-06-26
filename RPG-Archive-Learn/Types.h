@@ -46,7 +46,7 @@ enum class CampType
 /// </summary>
 enum class EquipType
 {
-    Weapon,
+    Decoration,
     Armor
 };
 

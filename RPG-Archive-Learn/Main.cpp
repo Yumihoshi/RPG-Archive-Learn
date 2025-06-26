@@ -4,7 +4,7 @@
 #include "FirePokeModel.h"
 #include "FirePokeView.h"
 #include "LogManager.h"
-#include "Weapon.h"
+#include "Decoration.h"
 #include "Armor.h"
 
 
@@ -20,7 +20,7 @@ int main()
         f->TakeDamage(5);
     }
     fView.ShowPokemonSkillInfo();
-    std::shared_ptr<Weapon> w = std::make_shared<Weapon>("大剑", 10, 20, 0.5);
+    std::shared_ptr<Decoration> w = std::make_shared<Decoration>("大剑", 10, 20, 0.5);
     std::shared_ptr<Armor> a = std::make_shared<Armor>("锁链甲", 100, 0.5);
     f->Equip(w);
     f->Equip(a);
