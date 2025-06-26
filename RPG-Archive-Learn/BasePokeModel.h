@@ -47,11 +47,11 @@ public:
     /// <param name="levelCount">升级等级数</param>
     void LevelUp(int levelCount = 1);
 
-    // 装备武器
-    void Equip(std::shared_ptr<Decoration> weapon);
+    // 装备饰品
+    void Equip(std::shared_ptr<Decoration> decoration);
     // 装备防具
     void Equip(std::shared_ptr<Armor> armor);
-    // 卸下装备
+    // 卸下饰品
     void Unequip(EquipType equipType);
 
     // getter和setter
@@ -92,7 +92,7 @@ protected:
 
     int _damage;        // 攻击力
 
-    std::shared_ptr<Decoration> _weapon;        // 武器
+    std::shared_ptr<Decoration> _decoration;        // 饰品
     std::shared_ptr<Armor> _armor;          // 防具
 protected:
     bool CheckFlee();

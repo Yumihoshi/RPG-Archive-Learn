@@ -173,14 +173,14 @@ CampType BasePokeModel::GetCamp()
     return _camp;
 }
 
-// 装备武器
-void BasePokeModel::Equip(std::shared_ptr<Decoration> weapon)
+// 装备饰品
+void BasePokeModel::Equip(std::shared_ptr<Decoration> decoration)
 {
-    _weapon = weapon;
-    _weapon->Owner = std::make_shared<BasePokeModel>(*this);
-    _damage += _weapon->AttackBonus;
-    _maxMp += _weapon->MaxMpBonus;
-    _critRate += _weapon->CritRateBonus;
+    _decoration = decoration;
+    _decoration->Owner = std::make_shared<BasePokeModel>(*this);
+    _damage += _decoration->AttackBonus;
+    _maxMp += _decoration->MaxMpBonus;
+    _critRate += _decoration->CritRateBonus;
 }
 
 // 装备防具
@@ -192,17 +192,17 @@ void BasePokeModel::Equip(std::shared_ptr<Armor> armor)
     _fleeRate += _armor->FleeRateBonus;
 }
 
-// 卸下装备
+// 卸下饰品
 void BasePokeModel::Unequip(EquipType equipType)
 {
     if (equipType == EquipType::Decoration)
     {
-        if (_weapon == nullptr) return;
-        _damage -= _weapon->AttackBonus;
-        _maxMp -= _weapon->MaxMpBonus;
-        _critRate -= _weapon->CritRateBonus;
-        _weapon->Owner = nullptr;
-        _weapon = nullptr;
+        if (_decoration == nullptr) return;
+        _damage -= _decoration->AttackBonus;
+        _maxMp -= _decoration->MaxMpBonus;
+        _critRate -= _decoration->CritRateBonus;
+        _decoration->Owner = nullptr;
+        _decoration = nullptr;
     }
     else if (equipType == EquipType::Armor)
     {

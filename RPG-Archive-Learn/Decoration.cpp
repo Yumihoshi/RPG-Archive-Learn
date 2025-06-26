@@ -2,5 +2,5 @@
 
 void Decoration::ShowInfo()
 { 
-    std::cout << "显示武器" << std::endl;
+    std::cout << "显示饰品" << std::endl;
 }
