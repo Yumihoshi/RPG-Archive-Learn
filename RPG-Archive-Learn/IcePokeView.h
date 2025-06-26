@@ -9,5 +9,7 @@ public:
     IcePokeView(std::shared_ptr<IcePokeModel> model) : BasePokeView(model)
     {
     }
+
+    void ShowPokeInfo() override;
 };
 

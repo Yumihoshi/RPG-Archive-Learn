@@ -31,7 +31,7 @@ public:
     void ClearAll();
 private:
     std::map<EquipType, std::shared_ptr<BaseEquipment>> _equipMap;
-    // TODO: 根据ai的代码补全
+    
 private:
     friend class Singleton<EquipManager>;
     EquipManager();

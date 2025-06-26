@@ -35,9 +35,17 @@ int main()
     // 测试
     fc.ViewPtr->ShowPokeInfo();
     ic.ViewPtr->ShowPokeInfo();
-    gc.ViewPtr->ShowPokeInfo();
+    for (size_t i = 0; i < 50; i++)
+    {
+        ic.Attack(fc.ModelPtr);
+    }
+    
+    fc.ViewPtr->ShowPokeInfo();
+    ic.ViewPtr->ShowPokeInfo();
+
+    /*gc.ViewPtr->ShowPokeInfo();
     gc1.ViewPtr->ShowPokeInfo();
-    fc1.ViewPtr->ShowPokeInfo();
+    fc1.ViewPtr->ShowPokeInfo();*/
     
     return 0;
 }

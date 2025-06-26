@@ -62,6 +62,7 @@ void BasePokeModel::Heal(int amount)
 /// <param name="amount"></param>
 void BasePokeModel::TakeDamage(int amount)
 {
+    if (!IsAlive()) return;
     if (amount <= 0) return;
     auto& logger = LogManager::GetInstance();
     // 闪避
@@ -76,6 +77,10 @@ void BasePokeModel::TakeDamage(int amount)
     {
         _curHp = std::clamp(_curHp - amount, 0, _maxHp);
         LogManager::GetInstance().PrintByChar(_name + "扣血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
+        if (!IsAlive())
+        {
+            LogManager::GetInstance().PrintByChar(_name + "已死亡！\n", LogColor::Red);
+        }
     }
 }
 
@@ -285,4 +290,9 @@ std::string BasePokeModel::GetStory()
 void BasePokeModel::SetStory(std::string story)
 {
     _story = story;
+}
+
+bool BasePokeModel::IsAlive()
+{
+    return _curHp > 0;
 }

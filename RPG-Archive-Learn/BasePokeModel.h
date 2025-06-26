@@ -75,6 +75,7 @@ public:
     ElementType GetElement();
     std::string GetStory();
     void SetStory(std::string story);
+    bool IsAlive();
 
 protected:
     std::string _name;      // 宝可梦名
