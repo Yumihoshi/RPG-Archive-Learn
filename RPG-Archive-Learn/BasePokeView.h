@@ -43,7 +43,7 @@ public:
         // 格式化百分号
         logger.PrintByChar("闪避率：" + Common::GetInstance().GetFormattedFloat(pokemon.GetFleeRate() * 100) + "%\n");
         logger.PrintByChar("暴击率：" + Common::GetInstance().GetFormattedFloat(pokemon.GetCritRate() * 100) + "%\n");
-        logger.PrintByChar("详情：" + pokemon.GetStory() + "\n\n");
+        logger.PrintByChar("特性&背景：" + pokemon.GetStory() + "\n\n");
     }
 };
 

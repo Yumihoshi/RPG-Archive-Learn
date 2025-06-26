@@ -8,6 +8,7 @@ public:
     {
         PerturbAttribute();
         ResetCur();
+        SetStory("高闪避率。");
     }
 
 };

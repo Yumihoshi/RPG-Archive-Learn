@@ -8,6 +8,7 @@ public:
     {
         PerturbAttribute();
         ResetCur();
+        SetStory("高攻击力，低血量。");
     }
 
 };

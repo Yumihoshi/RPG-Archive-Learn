@@ -10,6 +10,7 @@ public:
     {
         PerturbAttribute();
         ResetCur();
+        SetStory("拥有回血技能。");
     }
 private:
 };

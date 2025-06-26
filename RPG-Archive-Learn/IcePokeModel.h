@@ -10,6 +10,7 @@ public:
     {
         PerturbAttribute();
         ResetCur();
+        SetStory("拥有防御力，魔法值恢复较快。");
     }
 
     void TakeDamage(int amount) override;
