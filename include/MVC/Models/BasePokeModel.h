@@ -61,24 +61,28 @@ public:
 
     // getter和setter
     std::string GetName();
-    int GetCurHp() const;
-    int GetMaxHp() const;
-    int GetCurMp() const;
-    int GetMaxMp() const;
-    int GetCurExp() const;
-    int GetMaxExp() const;
-    int GetCurLevel() const;
-    int GetMaxLevel() const;
+    [[nodiscard]] int GetCurHp() const;
+    [[nodiscard]] int GetMaxHp() const;
+    [[nodiscard]] int GetCurMp() const;
+    [[nodiscard]] int GetMaxMp() const;
+    [[nodiscard]] int GetCurExp() const;
+    [[nodiscard]] int GetMaxExp() const;
+    [[nodiscard]] int GetCurLevel() const;
+    [[nodiscard]] int GetMaxLevel() const;
     CampType GetCamp();
-    float GetFleeRate() const;
-    float GetCritRate() const;
-    int GetDamage() const;
+    [[nodiscard]] float GetFleeRate() const;
+    [[nodiscard]] float GetCritRate() const;
+    [[nodiscard]] int GetDamage() const;
     ElementType GetElement();
     std::string GetStory();
     void SetStory(std::string story);
-    bool IsAlive() const;
+    [[nodiscard]] unsigned int GetId() const;
+
+    // 检查是否存活
+    [[nodiscard]] bool IsAlive() const;
 
 protected:
+    unsigned int _id;       // id
     std::string _name;      // 宝可梦名
     ElementType _element;     // 职业枚举类型
     CampType _camp;     // 阵营枚举类型

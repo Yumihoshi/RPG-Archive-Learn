@@ -38,4 +38,6 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         src/MVC/Views/GhostPokeView.cpp
         src/MVC/Views/GrassPokeView.cpp
         src/MVC/Views/IcePokeView.cpp
+        src/Managers/UserManager.cpp
+        include/Managers/UserManager.h
 )

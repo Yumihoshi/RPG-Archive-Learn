@@ -302,3 +302,8 @@ void BasePokeModel::Init()
     PerturbAttribute();
     ResetCur();
 }
+
+unsigned int BasePokeModel::GetId() const
+{
+    return _id;
+}
