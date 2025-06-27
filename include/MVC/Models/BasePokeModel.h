@@ -14,42 +14,28 @@ public:
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage);
     virtual void Init();
 
-    /// <summary>
-    /// 回血
-    /// </summary>
-    /// <param name="amount"></param>
+    // 回血
     void Heal(int amount);
 
-    /// <summary>
-    /// 扣血
-    /// </summary>
-    /// <param name="amount"></param>
+    // 扣血
     virtual void TakeDamage(int amount);
 
-    /// <summary>
-    /// 回复魔法值
-    /// </summary>
-    /// <param name="amount"></param>
+    // 回复魔法值
     void AddMp(int amount);
 
-    /// <summary>
-    /// 减少魔法值
-    /// </summary>
-    /// <param name="amount"></param>
+    // 减少魔法值
     void ReduceMp(int amount);
 
-    /// <summary>
-    /// 增加经验值
-    /// </summary>
-    /// <param name="amount"></param>
+    // 增加经验值
     void AddExp(int amount);
 
-    /// <summary>
-    /// 升级
-    /// </summary>
-    /// <param name="levelCount">升级等级数</param>
+    // 升级
     void LevelUp(int levelCount = 1);
 
+    // 获取装备的饰品
+    [[nodiscard]] std::shared_ptr<Decoration> GetDecoration() const;
+    // 获取装备的防具
+    [[nodiscard]] std::shared_ptr<Armor> GetArmor() const;
     // 装备饰品
     void Equip(std::shared_ptr<Decoration> decoration);
     // 装备防具
@@ -77,6 +63,7 @@ public:
     std::string GetStory();
     void SetStory(std::string story);
     [[nodiscard]] unsigned int GetId() const;
+    void SetId(unsigned int id);
 
     // 检查是否存活
     [[nodiscard]] bool IsAlive() const;

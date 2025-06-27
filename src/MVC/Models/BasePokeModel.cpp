@@ -307,3 +307,18 @@ unsigned int BasePokeModel::GetId() const
 {
     return _id;
 }
+
+void BasePokeModel::SetId(unsigned int id)
+{
+    _id = id;
+}
+
+std::shared_ptr<Decoration> BasePokeModel::GetDecoration() const
+{
+    return _decoration;
+}
+
+std::shared_ptr<Armor> BasePokeModel::GetArmor() const
+{
+    return _armor;
+}

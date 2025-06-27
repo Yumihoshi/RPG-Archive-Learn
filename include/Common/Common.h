@@ -12,6 +12,7 @@ public:
     static std::string GetFormattedFloat(float num, int wei = 2);
     static float GetRandomFloat(float min, float max);
     static std::string GetElementName(ElementType type);
+    static std::string ToLower(std::string str);
 private:
     friend class Singleton<Common>;
     Common();
