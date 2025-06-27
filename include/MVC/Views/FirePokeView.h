@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 #include "BasePokeView.h"
 #include "../Models/FirePokeModel.h"
 
@@ -7,7 +9,7 @@
 class FirePokeView : public BasePokeView<FirePokeModel>
 {
 public:
-    FirePokeView(std::shared_ptr<FirePokeModel> model) : BasePokeView(model)
+    explicit FirePokeView(std::shared_ptr<FirePokeModel> model) : BasePokeView(std::move(model))
     {
     }
 

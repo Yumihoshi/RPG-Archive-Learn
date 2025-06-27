@@ -9,9 +9,9 @@
 class Common : public Singleton<Common>
 {
 public:
-    std::string GetFormattedFloat(float num, int wei = 2);
-    float GetRandomFloat(float min, float max);
-    std::string GetElementName(ElementType type);
+    static std::string GetFormattedFloat(float num, int wei = 2);
+    static float GetRandomFloat(float min, float max);
+    static std::string GetElementName(ElementType type);
 private:
     friend class Singleton<Common>;
     Common();

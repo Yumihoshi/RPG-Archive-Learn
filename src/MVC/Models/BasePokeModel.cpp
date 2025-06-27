@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <string>
 #include <random>
+#include <utility>
 #include "../../../include/MVC/Models/BasePokeModel.h"
 #include "../../../include/Managers/LogManager.h"
 #include "../../../include/Common/Common.h"
@@ -27,7 +28,7 @@ BasePokeModel::BasePokeModel()
 BasePokeModel::BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
     CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage)
 {
-    _name = name;
+    _name = std::move(name);
     _element = ele;
     _maxHp = maxHp;
     _maxMp = maxMp;
@@ -53,7 +54,7 @@ void BasePokeModel::Heal(int amount)
 {
     if (amount <= 0) return;
     _curHp = std::clamp(_curHp + amount, 0, _maxHp);
-    LogManager::GetInstance().PrintByChar(_name + "回血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
+    LogManager::PrintByChar(_name + "回血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
 }
 
 /// <summary>
@@ -64,22 +65,21 @@ void BasePokeModel::TakeDamage(int amount)
 {
     if (!IsAlive()) return;
     if (amount <= 0) return;
-    auto& logger = LogManager::GetInstance();
     // 闪避
     if (CheckFlee())
     {
-        logger.PrintByChar(_name + "触发了");
-        logger.PrintByChar("闪避", LogColor::Yellow);
-        logger.PrintByChar("！\n");
+        LogManager::PrintByChar(_name + "触发了");
+        LogManager::PrintByChar("闪避", LogColor::Yellow);
+        LogManager::PrintByChar("！\n");
         return;
     }
     else
     {
         _curHp = std::clamp(_curHp - amount, 0, _maxHp);
-        LogManager::GetInstance().PrintByChar(_name + "扣血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
+        LogManager::PrintByChar(_name + "扣血" + std::to_string(amount) + "，现在血量为：" + std::to_string(_curHp) + "\n");
         if (!IsAlive())
         {
-            LogManager::GetInstance().PrintByChar(_name + "已死亡！\n", LogColor::Red);
+            LogManager::PrintByChar(_name + "已死亡！\n", LogColor::Red);
         }
     }
 }
@@ -92,7 +92,7 @@ void BasePokeModel::AddMp(int amount)
 {
     if (amount <= 0) return;
     _curMp = std::clamp(_curMp + amount, 0, _maxMp);
-    LogManager::GetInstance().PrintByChar(_name + "回魔" + std::to_string(amount) + "，现在魔法值为：" + std::to_string(_curMp) + "\n");
+    LogManager::PrintByChar(_name + "回魔" + std::to_string(amount) + "，现在魔法值为：" + std::to_string(_curMp) + "\n");
 }
 
 /// <summary>
@@ -103,7 +103,7 @@ void BasePokeModel::ReduceMp(int amount)
 {
     if (amount <= 0) return;
     _curMp = std::clamp(_curMp - amount, 0, _maxMp);
-    LogManager::GetInstance().PrintByChar(_name + "扣魔" + std::to_string(amount) + "，现在魔法值为：" + std::to_string(_curMp) + "\n");
+    LogManager::PrintByChar(_name + "扣魔" + std::to_string(amount) + "，现在魔法值为：" + std::to_string(_curMp) + "\n");
 }
 
 /// <summary>
@@ -122,7 +122,7 @@ void BasePokeModel::AddExp(int amount)
         levelUp++;
     }
     _curExp = tempExp;
-    LogManager::GetInstance().PrintByChar(_name + "经验值增加" + std::to_string(amount) + "，现在经验值为：" + std::to_string(_curExp) + "\n");
+    LogManager::PrintByChar(_name + "经验值增加" + std::to_string(amount) + "，现在经验值为：" + std::to_string(_curExp) + "\n");
     LevelUp(levelUp);
 }
 
@@ -134,7 +134,7 @@ void BasePokeModel::LevelUp(int levelCount)
 {
     if (levelCount <= 0) return;
     _curLevel = std::clamp(_curLevel + levelCount, 1, _maxLevel);
-    LogManager::GetInstance().PrintByChar(_name + "升级啦，现在等级为：" + std::to_string(_curLevel) + "\n");
+    LogManager::PrintByChar(_name + "升级啦，现在等级为：" + std::to_string(_curLevel) + "\n");
 }
 
 std::string BasePokeModel::GetName()
@@ -142,32 +142,32 @@ std::string BasePokeModel::GetName()
     return _name;
 }
 
-int BasePokeModel::GetCurHp()
+int BasePokeModel::GetCurHp() const
 {
     return _curHp;
 }
 
-int BasePokeModel::GetMaxHp()
+int BasePokeModel::GetMaxHp() const
 {
     return _maxHp;
 }
 
-int BasePokeModel::GetCurMp()
+int BasePokeModel::GetCurMp() const
 {
     return _curMp;
 }
 
-int BasePokeModel::GetMaxMp()
+int BasePokeModel::GetMaxMp() const
 {
     return _maxMp;
 }
 
-float BasePokeModel::GetFleeRate()
+float BasePokeModel::GetFleeRate() const
 {
     return _fleeRate;
 }
 
-float BasePokeModel::GetCritRate()
+float BasePokeModel::GetCritRate() const
 {
     return _critRate;
 }
@@ -176,7 +176,7 @@ float BasePokeModel::GetCritRate()
 /// 检验是否触发闪避
 /// </summary>
 /// <returns></returns>
-bool BasePokeModel::CheckFlee() {
+bool BasePokeModel::CheckFlee() const {
     // 生成0.0~1.0的随机浮点数
     static std::random_device _rd;
     static std::mt19937 gen(_rd());
@@ -186,21 +186,21 @@ bool BasePokeModel::CheckFlee() {
     return randValue < _fleeRate; // 若随机数小于闪避率，返回true
 }
 
-int BasePokeModel::GetCurExp()
+int BasePokeModel::GetCurExp() const
 {
     return _curExp;
 }
 
-int BasePokeModel::GetMaxExp()
+int BasePokeModel::GetMaxExp() const
 {
     return _maxExp;
 }
-int BasePokeModel::GetCurLevel()
+int BasePokeModel::GetCurLevel() const
 {
     return _curLevel;
 }
 
-int BasePokeModel::GetMaxLevel()
+int BasePokeModel::GetMaxLevel() const
 {
     return _maxLevel;
 }
@@ -213,7 +213,7 @@ CampType BasePokeModel::GetCamp()
 // 装备饰品
 void BasePokeModel::Equip(std::shared_ptr<Decoration> decoration)
 {
-    _decoration = decoration;
+    _decoration = std::move(decoration);
     _decoration->Owner = std::make_shared<BasePokeModel>(*this);
     _damage += _decoration->AttackBonus;
     _maxMp += _decoration->MaxMpBonus;
@@ -223,7 +223,7 @@ void BasePokeModel::Equip(std::shared_ptr<Decoration> decoration)
 // 装备防具
 void BasePokeModel::Equip(std::shared_ptr<Armor> armor)
 {
-    _armor = armor;
+    _armor = std::move(armor);
     _armor->Owner = std::make_shared<BasePokeModel>(*this);
     _maxHp += _armor->MaxHpBonus;
     _fleeRate += _armor->FleeRateBonus;
@@ -255,7 +255,7 @@ void BasePokeModel::Unequip(EquipType equipType)
     }
 }
 
-int BasePokeModel::GetDamage()
+int BasePokeModel::GetDamage() const
 {
     return _damage;
 }
@@ -263,12 +263,12 @@ int BasePokeModel::GetDamage()
 // 属性随机扰动
 void BasePokeModel::PerturbAttribute()
 {
-    _maxHp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
-    _maxMp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
-    _damage *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
-    _critRate *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
-    _fleeRate *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
-    _turnRecoverMp *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _maxHp *= Common::GetRandomFloat(0.9f, 1.1f);
+    _maxMp *= Common::GetRandomFloat(0.9f, 1.1f);
+    _damage *= Common::GetRandomFloat(0.9f, 1.1f);
+    _critRate *= Common::GetRandomFloat(0.9f, 1.1f);
+    _fleeRate *= Common::GetRandomFloat(0.9f, 1.1f);
+    _turnRecoverMp *= Common::GetRandomFloat(0.9f, 1.1f);
 }
 
 void BasePokeModel::ResetCur()
@@ -289,10 +289,16 @@ std::string BasePokeModel::GetStory()
 
 void BasePokeModel::SetStory(std::string story)
 {
-    _story = story;
+    _story = std::move(story);
 }
 
-bool BasePokeModel::IsAlive()
+bool BasePokeModel::IsAlive() const
 {
     return _curHp > 0;
+}
+
+void BasePokeModel::Init()
+{
+    PerturbAttribute();
+    ResetCur();
 }

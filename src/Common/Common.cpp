@@ -7,7 +7,7 @@
 
 Common::Common()
 {
-    _gen = std::mt19937(std::random_device()());
+    _gen = std::mt19937(_rd());
 }
 
 std::string Common::GetFormattedFloat(float num, int wei)

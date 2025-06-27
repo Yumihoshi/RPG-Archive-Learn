@@ -18,7 +18,7 @@ public:
     /// </summary>
     /// <param name="elementType">宝可梦元素类型</param>
     /// <param name="model">宝可梦模型指针</param>
-    void AddPoke(ElementType elementType, std::shared_ptr<BasePokeModel> model);
+    void AddPoke(ElementType elementType, const std::shared_ptr<BasePokeModel>& model);
 
     // ##########查找##########
 
@@ -40,7 +40,7 @@ public:
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    std::shared_ptr<BasePokeModel> GetPokeByName(std::string name);
+    std::shared_ptr<BasePokeModel> GetPokeByName(const std::string& name);
 
     /// <summary>
     /// 根据阵营获取宝可梦
@@ -63,7 +63,7 @@ public:
     /// </summary>
     /// <param name="model">要删除的宝可梦指针</param>
     /// <returns>是否找到并删除</returns>
-    bool RemoveSpecificPoke(std::shared_ptr<BasePokeModel> model);
+    bool RemoveSpecificPoke(const std::shared_ptr<BasePokeModel>& model);
 
     /// <summary>
     /// 清空所有宝可梦
@@ -79,8 +79,8 @@ public:
     /// <param name="updateFunction">自定义更新函数</param>
     /// <returns>是否成功找到并更新</returns>
     bool UpdatePokeAttributes(
-        std::shared_ptr<BasePokeModel> model,
-        std::function<void(std::shared_ptr<BasePokeModel>)> updateFunction
+        const std::shared_ptr<BasePokeModel>& model,
+        const std::function<void(std::shared_ptr<BasePokeModel>)>& updateFunction
     );
 
     /// <summary>
@@ -90,7 +90,7 @@ public:
     /// <param name="newElementType">新的元素类型</param>
     /// <returns>是否成功更新</returns>
     bool UpdatePokeElementType(
-        std::shared_ptr<BasePokeModel> model,
+        const std::shared_ptr<BasePokeModel>& model,
         ElementType newElementType
     );
 

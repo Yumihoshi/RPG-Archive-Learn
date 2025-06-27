@@ -26,6 +26,11 @@ int main()
     GrassPokeModel g(pm.GetPokeDefaultNameByElement(ElementType::Grass), CampType::Friend);
     FlyPokeModel f1(pm.GetPokeDefaultNameByElement(ElementType::Fly), CampType::Friend);
     GhostPokeModel g1(pm.GetPokeDefaultNameByElement(ElementType::Ghost), CampType::Friend);
+    f.Init();
+    i.Init();
+    g.Init();
+    f1.Init();
+    g1.Init();
     // 控制器
     FirePokeController fc(std::make_shared<FirePokeModel>(f));
     IcePokeController ic(std::make_shared<IcePokeModel>(i));
@@ -36,9 +41,10 @@ int main()
     // 测试
     fc.ViewPtr->ShowPokeInfo();
     ic.ViewPtr->ShowPokeInfo();
-    for (size_t i = 0; i < 50; i++)
+    for (size_t ii = 0; ii < 10; ii++)
     {
         ic.Attack(fc.ModelPtr);
+        fc.Attack(ic.ModelPtr);
     }
     
     fc.ViewPtr->ShowPokeInfo();

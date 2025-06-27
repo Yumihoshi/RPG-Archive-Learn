@@ -29,7 +29,8 @@ bool EquipManager::HasEquipment(EquipType type) const
 std::vector<EquipType> EquipManager::GetAllEquipTypes() const
 {
     std::vector<EquipType> types;
-    for (const auto& pair : _equipMap)
+    types.reserve(_equipMap.size());
+for (const auto& pair : _equipMap)
     {
         types.push_back(pair.first);
     }
@@ -42,7 +43,7 @@ void EquipManager::ClearAll()
 }
 
 // 根据名称获取装备
-std::shared_ptr<BaseEquipment> EquipManager::GetEquipmentByName(std::string name) const
+std::shared_ptr<BaseEquipment> EquipManager::GetEquipmentByName(const std::string& name) const
 {
     for (const auto& pair : _equipMap)
     {

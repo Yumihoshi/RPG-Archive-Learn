@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 #include "BasePokeController.h"
 #include "../Models/FlyPokeModel.h"
 #include "../Views/FlyPokeView.h"
@@ -7,7 +9,7 @@
 class FlyPokeController : public BasePokeController<FlyPokeModel, FlyPokeView>
 {
 public:
-    FlyPokeController(std::shared_ptr<FlyPokeModel> model) : BasePokeController(model)
+    explicit FlyPokeController(std::shared_ptr<FlyPokeModel> model) : BasePokeController(std::move(model))
     {
     }
 };

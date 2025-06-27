@@ -11,10 +11,10 @@ void IcePokeModel::TakeDamage(int amount)
 void IcePokeModel::PerturbAttribute()
 {
     BasePokeModel::PerturbAttribute();
-    _defendValue *= Common::GetInstance().GetRandomFloat(0.9f, 1.1f);
+    _defendValue *= Common::GetRandomFloat(0.9f, 1.1f);
 }
 
-int IcePokeModel::GetDefendValue()
+int IcePokeModel::GetDefendValue() const
 {
     return _defendValue;
 }

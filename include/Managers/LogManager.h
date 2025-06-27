@@ -32,21 +32,21 @@ public:
     /// </summary>
     static void PrintByChar(const std::string& text, int delayMs = 30);
 
-    void PrintByChar(const std::string& text, LogColor color);
+    static void PrintByChar(const std::string& text, LogColor color);
 
-    void PrintByCharWithFlash(const std::string& text);
+    static void PrintByCharWithFlash(const std::string& text);
 
 private:
     friend class Singleton<LogManager>;
     LogManager();
 
-    const std::string RED_CODE = "\033[31m";
-    const std::string GREEN_CODE = "\033[32m";
-    const std::string YELLOW_CODE = "\033[33m";
-    const std::string BLUE_CODE = "\033[36m";
-    const std::string PURPLE_CODE = "\033[35m";
-    const std::string END_CODE = "\033[0m";
+    static const std::string RED_CODE;
+    static const std::string GREEN_CODE;
+    static const std::string YELLOW_CODE;
+    static const std::string BLUE_CODE;
+    static const std::string PURPLE_CODE;
+    static const std::string END_CODE;
 
-    const std::string FLASH_CODE = "\033[5m";
+    static const std::string FLASH_CODE;
 };
 

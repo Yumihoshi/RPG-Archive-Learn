@@ -12,6 +12,7 @@ public:
     BasePokeModel();
     BasePokeModel(std::string name, ElementType ele, int maxHp, int maxMp, int turnRecoverMp,
         CampType camp, int maxExp, int maxLevel, float critRate, float fleeRate, int damage);
+    virtual void Init();
 
     /// <summary>
     /// 回血
@@ -60,22 +61,22 @@ public:
 
     // getter和setter
     std::string GetName();
-    int GetCurHp();
-    int GetMaxHp();
-    int GetCurMp();
-    int GetMaxMp();
-    int GetCurExp();
-    int GetMaxExp();
-    int GetCurLevel();
-    int GetMaxLevel();
+    int GetCurHp() const;
+    int GetMaxHp() const;
+    int GetCurMp() const;
+    int GetMaxMp() const;
+    int GetCurExp() const;
+    int GetMaxExp() const;
+    int GetCurLevel() const;
+    int GetMaxLevel() const;
     CampType GetCamp();
-    float GetFleeRate();
-    float GetCritRate();
-    int GetDamage();
+    float GetFleeRate() const;
+    float GetCritRate() const;
+    int GetDamage() const;
     ElementType GetElement();
     std::string GetStory();
     void SetStory(std::string story);
-    bool IsAlive();
+    bool IsAlive() const;
 
 protected:
     std::string _name;      // 宝可梦名
@@ -108,5 +109,5 @@ protected:
     // 数值随机扰动（0.9到1.1）
     virtual void PerturbAttribute();
 private:
-    bool CheckFlee();
+    bool CheckFlee() const;
 };

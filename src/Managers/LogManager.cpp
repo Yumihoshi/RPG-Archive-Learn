@@ -2,6 +2,14 @@
 #include "windows.h"
 #include "../../include/Managers/LogManager.h"
 
+const std::string LogManager::RED_CODE = "\033[31m";
+const std::string LogManager::GREEN_CODE = "\033[32m";
+const std::string LogManager::YELLOW_CODE = "\033[33m";
+const std::string LogManager::BLUE_CODE = "\033[36m";
+const std::string LogManager::PURPLE_CODE = "\033[35m";
+const std::string LogManager::END_CODE = "\033[0m";
+
+const std::string LogManager::FLASH_CODE = "\033[5m";
 
 /// <summary>
 /// 打印回合开始

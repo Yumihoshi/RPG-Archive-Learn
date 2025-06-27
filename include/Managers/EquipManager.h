@@ -16,16 +16,16 @@ public:
     bool RemoveEquipmentByType(EquipType type);
 
     // 根据类别获取装备
-    std::shared_ptr<BaseEquipment> GetEquipmentByType(EquipType type) const;
+    [[nodiscard]] std::shared_ptr<BaseEquipment> GetEquipmentByType(EquipType type) const;
 
     // 根据名称获取装备
-    std::shared_ptr<BaseEquipment> GetEquipmentByName(std::string name) const;
+    [[nodiscard]] std::shared_ptr<BaseEquipment> GetEquipmentByName(const std::string& name) const;
 
     // 检查装备是否存在
-    bool HasEquipment(EquipType type) const;
+    [[nodiscard]] bool HasEquipment(EquipType type) const;
 
     // 获取所有装备类型
-    std::vector<EquipType> GetAllEquipTypes() const;
+    [[nodiscard]] std::vector<EquipType> GetAllEquipTypes() const;
 
     // 清空所有装备
     void ClearAll();

@@ -13,7 +13,7 @@ public:
     std::shared_ptr<T> ModelPtr;
     std::shared_ptr<T2> ViewPtr;
 
-    BasePokeController(std::shared_ptr<T> model)
+    explicit BasePokeController(std::shared_ptr<T> model)
     {
         ModelPtr = model;
         ViewPtr = std::make_shared<T2>(model);
@@ -21,21 +21,20 @@ public:
     }
 
     // 攻击
-    void Attack(std::shared_ptr<BasePokeModel> other)
+    void Attack(const std::shared_ptr<BasePokeModel>& other)
     {
         if (!other->IsAlive()) return;
-        auto& logger = LogManager::GetInstance();
         // 计算攻击方伤害
         int damage = ModelPtr->GetDamage();
-        logger.PrintByChar(ModelPtr->GetName() + "向" + other->GetName() + "发动了攻击，");
+        LogManager::PrintByChar(ModelPtr->GetName() + "向" + other->GetName() + "发动了攻击，");
         if (CheckCrit())
         {
             damage *= 1.5f;
-            logger.PrintByChar("且发生了");
-            logger.PrintByChar("暴击", LogColor::Red);
-            logger.PrintByChar("！");
+            LogManager::PrintByChar("且发生了");
+            LogManager::PrintByChar("暴击", LogColor::Red);
+            LogManager::PrintByChar("！");
         }
-        logger.PrintByChar("伤害值为" + std::to_string(damage) + "\n");
+        LogManager::PrintByChar("伤害值为" + std::to_string(damage) + "\n");
         other->TakeDamage(damage);
     }
 
