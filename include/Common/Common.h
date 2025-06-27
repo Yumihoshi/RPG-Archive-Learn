@@ -16,7 +16,7 @@ private:
     friend class Singleton<Common>;
     Common();
 private:
-    std::random_device _rd;
-    std::mt19937 _gen;
+    static std::random_device _rd;
+    static std::mt19937 _gen;
 };
 

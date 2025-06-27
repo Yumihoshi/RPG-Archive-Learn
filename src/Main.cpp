@@ -38,21 +38,9 @@ int main()
     GhostPokeController gc1(std::make_shared<GhostPokeModel>(g1));
     FlyPokeController fc1(std::make_shared<FlyPokeModel>(f1));
 
-    // 测试
-    fc.ViewPtr->ShowPokeInfo();
-    ic.ViewPtr->ShowPokeInfo();
-    for (size_t ii = 0; ii < 10; ii++)
-    {
-        ic.Attack(fc.ModelPtr);
-        fc.Attack(ic.ModelPtr);
-    }
-    
-    fc.ViewPtr->ShowPokeInfo();
-    ic.ViewPtr->ShowPokeInfo();
-
-    /*gc.ViewPtr->ShowPokeInfo();
-    gc1.ViewPtr->ShowPokeInfo();
-    fc1.ViewPtr->ShowPokeInfo();*/
+    PokeManager::GetInstance().AddPoke(ElementType::Fire, std::make_shared<FirePokeModel>(f));
+    auto ss = PokeManager::GetInstance().GetPokeByName(f.GetName());
+    std::cout << ss->GetName() << std::endl;
     
     return 0;
 }

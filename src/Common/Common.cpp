@@ -5,10 +5,8 @@
 #include <random>
 #include "../../include/Common/Common.h"
 
-Common::Common()
-{
-    _gen = std::mt19937(_rd());
-}
+std::random_device Common::_rd = std::random_device();
+std::mt19937 Common::_gen = std::mt19937(Common::_rd());
 
 std::string Common::GetFormattedFloat(float num, int wei)
 {
