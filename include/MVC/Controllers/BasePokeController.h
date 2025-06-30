@@ -27,7 +27,7 @@ public:
     }
 
     // 攻击
-    void Attack(const std::shared_ptr<BasePokeModel> &other)
+    virtual void Attack(const std::shared_ptr<BasePokeModel> &other)
     {
         if (!other->IsAlive()) return;
         // 计算攻击方伤害

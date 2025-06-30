@@ -8,6 +8,9 @@
 class FirePokeModel : public BasePokeModel
 {
 public:
+    // 剩余必定暴击次数
+    int CritCount = 0;
+public:
     FirePokeModel(std::string name, CampType camp) : BasePokeModel(std::move(name), ElementType::Fire,
         120, 30, 5, camp, 100, 10l, 0.2f, 0.1f, 8)
     {
