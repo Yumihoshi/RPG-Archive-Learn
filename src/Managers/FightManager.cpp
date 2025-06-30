@@ -15,6 +15,7 @@
 #include "../../include/MVC/Controllers/GhostPokeController.h"
 #include "../../include/Fight/PlayerFightState.h"
 #include "../../include/Fight/EnemyFightState.h"
+#include "../../include/Fight/DefaultFightState.h"
 
 
 FightManager::FightManager() = default;
@@ -120,6 +121,8 @@ void FightManager::SetEnemyFightPoke(
 void FightManager::Init()
 {
     _fightStateMachine = std::make_unique<StateMachine<FightRoundType>>();
+    _fightStateMachine->AddState(FightRoundType::Default,
+                                 std::make_unique<DefaultFightState>());
     _fightStateMachine->AddState(FightRoundType::Player,
                                  std::make_unique<PlayerFightState>());
     _fightStateMachine->AddState(FightRoundType::Enemy,
@@ -139,17 +142,38 @@ void FightManager::EnterEnemyRound()
 // 开始战斗
 void FightManager::StartFight()
 {
-    ShowFightInfo();
-    EnterPlayerRound();
+    ShowFightStart();
+    while (_playerFightPoke->ModelPtr->IsAlive() &&
+           _enemyFightPoke->ModelPtr->IsAlive())
+    {
+        ShowFightInfo();
+        EnterPlayerRound();
+        if (_enemyFightPoke->ModelPtr->IsAlive()) EnterEnemyRound();
+        EnterBlankRound();
+    }
+    if (!_playerFightPoke->ModelPtr->IsAlive())
+        LogManager::PrintByChar("你输了！\n");
+    else
+        LogManager::PrintByChar("你赢了！\n");
 }
 
 // 显示战斗双方信息
 void FightManager::ShowFightInfo() const
 {
-    LogManager::PrintByChar("你遭遇了敌人！进入战斗！\n");
-    LogManager::PrintByChar("战斗双方信息如下：\n");
+    LogManager::PrintByChar("现在战斗双方信息如下：\n");
     LogManager::PrintByChar("你的宝可梦：\n");
     GetPlayerFightPoke()->ViewPtr->ShowPokeInfo();
     LogManager::PrintByChar("敌人的宝可梦：\n");
     GetEnemyFightPoke()->ViewPtr->ShowPokeInfo();
+}
+
+// 显示战斗开始信息
+void FightManager::ShowFightStart() const
+{
+    LogManager::PrintByChar("你遭遇了敌人！进入战斗！\n");
+}
+
+void FightManager::EnterBlankRound()
+{
+    _fightStateMachine->SwitchState(FightRoundType::Default);
 }

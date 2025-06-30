@@ -20,12 +20,11 @@ public:
     {
         if (_curState)
             _curState->OnExit();
-        _curState = std::move(_states[newState]);
-        if (_curState)
-        {
-            _curState->OnEnter();
-            _curState->Handle();
-        }
+        _curState = _states[newState];
+        if (_curState == nullptr)
+            std::cout << "StateMachine: State not found" << std::endl;
+        _curState->OnEnter();
+        _curState->Handle();
     }
 
     void AddState(StateEnum state, std::unique_ptr<BaseState> statePtr)
@@ -39,8 +38,8 @@ public:
     }
 private:
     // 当前状态
-    std::map<StateEnum, std::unique_ptr<BaseState>> _states;
-    std::unique_ptr<BaseState> _curState;
+    std::map<StateEnum, std::shared_ptr<BaseState>> _states;
+    std::shared_ptr<BaseState> _curState;
 };
 
 #endif //RPG_ARCHIVE_LEARN_STATEMACHINE_H

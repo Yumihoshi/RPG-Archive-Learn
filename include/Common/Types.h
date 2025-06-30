@@ -70,6 +70,7 @@ enum class Skills
 // 战斗回合状态枚举
 enum class FightRoundType
 {
+    Default,
     Player,
     Enemy
 };

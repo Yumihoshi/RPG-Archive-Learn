@@ -6,18 +6,30 @@
 * @description: 
 *******************************************************************************/
 #include "../../include/Fight/EnemyFightState.h"
+#include "../../include/Managers/LogManager.h"
+#include "../../include/Managers/FightManager.h"
 
 void EnemyFightState::OnEnter()
 {
-    // TODO: 完善敌人的战斗状态
+    LogManager::PrintByChar("============");
+    LogManager::PrintByChar("现在轮到敌人的回合了",
+                            LogColor::Red);
+    LogManager::PrintByChar("============\n");
 }
 
 void EnemyFightState::Handle()
 {
-    // TODO: 完善敌人的战斗状态
+    auto &fm = FightManager::GetInstance();
+
+    // 敌人自动进行普通攻击
+    fm.GetEnemyFightPoke()->Attack(fm.GetPlayerFightPoke()->ModelPtr);
 }
 
 void EnemyFightState::OnExit()
 {
-    // TODO: 完善敌人的战斗状态
+    // 攻击后切换回玩家回合
+    LogManager::PrintByChar("============");
+    LogManager::PrintByChar("敌人的回合结束了",
+                            LogColor::Red);
+    LogManager::PrintByChar("============\n");
 }

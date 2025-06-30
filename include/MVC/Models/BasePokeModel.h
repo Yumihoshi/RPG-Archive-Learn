@@ -45,7 +45,7 @@ public:
 
     void ResetCur();
 
-    // getter和setter
+    // Getters
     std::string GetName();
     [[nodiscard]] int GetCurHp() const;
     [[nodiscard]] int GetMaxHp() const;
@@ -61,8 +61,10 @@ public:
     [[nodiscard]] int GetDamage() const;
     ElementType GetElement();
     std::string GetStory();
-    void SetStory(std::string story);
     [[nodiscard]] unsigned int GetId() const;
+
+    // Setters
+    void SetStory(std::string story);
     void SetId(unsigned int id);
     void SetDamage(int damage);
     void SetMaxHp(int maxHp);

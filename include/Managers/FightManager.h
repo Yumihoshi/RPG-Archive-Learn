@@ -31,6 +31,9 @@ public:
     // 进入敌人战斗回合
     void EnterEnemyRound();
 
+    // 进入空白默认战斗回合
+    void EnterBlankRound();
+
     // 属性Getter
     [[nodiscard]] std::shared_ptr<BasePokeController>
     GetPlayerFightPoke() const;
@@ -49,6 +52,9 @@ private:
 private:
     // 显示战斗双方信息
     void ShowFightInfo() const;
+
+    // 显示进入战斗
+    void ShowFightStart() const;
 
     // 单例相关
     FightManager();
