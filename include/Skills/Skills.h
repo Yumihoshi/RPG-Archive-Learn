@@ -9,7 +9,7 @@
 
 class SkillHandler {
 public:
-    void useSkill(Skills skill, BasePokeModel& user);
+    void useSkill(Skills skill);
 };
 
 

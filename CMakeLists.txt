@@ -51,4 +51,6 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/Fight/PlayerFightState.h
         src/Fight/EnemyFightState.cpp
         include/Fight/EnemyFightState.h
+        include/Skills/Skills.cpp
+        include/Skills/Skills.h
 )
