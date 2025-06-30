@@ -19,6 +19,7 @@ void SkillHandler::useSkill(Skills skill)
             break;}
         case Skills::Ice: {
             LogManager::PrintByChar(trigger->ModelPtr->GetName() + " 使用了寒霜凝滞！\n");
+            // 冰冻3回合
             break;
         }
         case Skills::Grass: {
