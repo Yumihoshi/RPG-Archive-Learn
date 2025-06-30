@@ -53,6 +53,7 @@ bool UserController::LoginUser(const std::vector<UserModel> &users)
                            });
     if (it != users.end())
     {
+        _model = std::make_shared<UserModel>(*it);
         _view->ShowLoginSuccess(username);
         return true;
     }

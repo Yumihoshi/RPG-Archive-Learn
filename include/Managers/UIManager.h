@@ -16,5 +16,7 @@ public:
 private:
     friend class Singleton<UIManager>;
     UIManager();
+
+    void HandleUserInput();
 };
 

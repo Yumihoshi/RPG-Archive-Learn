@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "../../../Common/Types.h"
 
 class UserModel
@@ -55,11 +56,26 @@ public:
 
 private:
     unsigned int _id;           // id
-    static unsigned int s_nextId;  // ID自增计数器
     std::string _username;      // 用户名
     std::string _password;      // 密码
     UserType _userType;         // 用户类型
     // TODO: 三个存档槽，完善持久化存储
+    // 存档结构体
+    struct UserArchive {
+        std::string saveDate;
+        std::vector<unsigned int> pokeIds; // 通过ID关联宝可梦
+        std::map<unsigned int, std::string> pokeStates; // 宝可梦状态，包含装备等信息
+    };
+
+    private:
+        std::array<UserArchive, 3> _archives; // 3个存档槽位
+        static const std::string ARCHIVE_FILE_PREFIX;
+
+    public:
+        void SaveArchive(int slot);
+        void LoadArchive(int slot);
+        void DeleteArchive(int slot);
+        void ShowArchiveInfo() const;
 };
 
 

@@ -4,6 +4,8 @@
 #include "../../include/Managers/PokeManager.h"
 #include "../../include/Managers/LogManager.h"
 #include "../../include/Common/Common.h"
+#include "../../include/MVC/Models/User/UserModel.h"
+#include "../../include/Managers/UserManager.h"
 
 UIManager::UIManager() = default;
 
@@ -47,7 +49,8 @@ void UIManager::ShowAllPokesInfo()
     }
 }
 
-void UIManager::ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel>& model)
+void
+UIManager::ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel> &model)
 {
     // TODO: 完善下面的逻辑
     while (true)
@@ -83,7 +86,7 @@ void UIManager::ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel>& model
         {
             LogManager::PrintByChar("请输入新的防具id: ");
             // TODO: 替换/装备防具逻辑
-//            getline(std::cin, model->armor);
+            //            getline(std::cin, model->armor);
             LogManager::PrintByChar("防具已装备！\n");
         }
         else if (input == "a2")
@@ -104,6 +107,93 @@ void UIManager::ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel>& model
             LogManager::PrintByChar("饰品已卸下！\n");
         }
         else
-            LogManager::PrintByChar("无效指令，请重新输入！\n");
+        {
+            // TODO: 完善指令
+        }
     }
+}
+
+void UIManager::HandleUserInput()
+{
+    auto &userManager = UserManager::GetInstance();
+    std::shared_ptr<UserModel> user = userManager.GetCurrentUser();
+
+    while (true)
+    {
+        ShowPokeManagerMainMenu();
+        std::string input;
+        LogManager::PrintByChar("\n请输入指令:");
+        getline(std::cin, input);
+        input = Common::ToLower(input);
+
+        if (input == "exit")
+        {
+            break;
+        }
+        else if (input == "p")
+        {
+            ShowAllPokesInfo();
+        }
+        else if (input == "a")
+        {
+            // 进入战斗逻辑
+        }
+        else if (input == "s")
+        {
+            int slot;
+            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
+            std::cin >> slot;
+            std::cin.ignore();
+            if (slot >= 0 && slot < 3)
+            {
+                user->SaveArchive(slot);
+                LogManager::PrintByChar("存档保存成功！\n");
+            }
+            else
+            {
+                LogManager::PrintByChar("无效的存档槽位！\n");
+            }
+        }
+        else if (input == "l")
+        {
+            int slot;
+            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
+            std::cin >> slot;
+            std::cin.ignore();
+            if (slot >= 0 && slot < 3)
+            {
+                user->LoadArchive(slot);
+                LogManager::PrintByChar("存档加载成功！\n");
+            }
+            else
+            {
+                LogManager::PrintByChar("无效的存档槽位！\n");
+            }
+        }
+        else if (input == "d")
+        {
+            int slot;
+            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
+            std::cin >> slot;
+            std::cin.ignore();
+            if (slot >= 0 && slot < 3)
+            {
+                user->DeleteArchive(slot);
+                LogManager::PrintByChar("存档删除成功！\n");
+            }
+            else
+            {
+                LogManager::PrintByChar("无效的存档槽位！\n");
+            }
+        }
+        else if (input == "i")
+        {
+            user->ShowArchiveInfo();
+        }
+        else
+        {
+            LogManager::PrintByChar("无效指令，请重新输入！\n");
+        }
+    }
+    LogManager::PrintByChar("无效指令，请重新输入！\n");
 }

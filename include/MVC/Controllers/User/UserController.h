@@ -16,16 +16,23 @@
 class UserController
 {
 public:
+    // 添加获取模型的方法
+    [[nodiscard]] const std::shared_ptr<UserModel> &GetModel() const
+    { return _model; }
+
     explicit UserController(std::shared_ptr<UserModel> model,
-                          std::shared_ptr<UserView> view);
+                            std::shared_ptr<UserView> view);
+
     // 处理注册
-    bool RegisterUser(std::vector<UserModel>& users);
+    bool RegisterUser(std::vector<UserModel> &users);
+
     // 处理登录
-    bool LoginUser(const std::vector<UserModel>& users);
+    bool LoginUser(const std::vector<UserModel> &users);
 
 private:
     std::shared_ptr<UserModel> _model;
     std::shared_ptr<UserView> _view;
+
     static std::string GetPassword(const char *prompt);
 };
 

@@ -20,7 +20,7 @@
 
 
 #define TEST_POKE false
-#define TEST_USER true
+#define TEST_USER false
 #define TEST_FIGHT false
 
 
@@ -78,6 +78,7 @@ int main()
             if (userManager.LoginUser())
             {
                 // 登录后的操作
+                std::cout << userManager.GetCurUser().GetPassword() << std::endl;
                 break;
             }
         }

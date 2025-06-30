@@ -108,4 +108,10 @@ protected:
     virtual void PerturbAttribute();
 private:
     bool CheckFlee() const;
+
+    // 新增setter方法
+    void SetCurHp(int curHp) { _curHp = curHp; }
+    void SetCurMp(int curMp) { _curMp = curMp; }
+    void SetCurExp(int curExp) { _curExp = curExp; }
+    void SetCurLevel(int curLevel) { _curLevel = curLevel; }
 };

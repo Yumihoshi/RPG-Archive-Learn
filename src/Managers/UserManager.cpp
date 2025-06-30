@@ -6,6 +6,7 @@
 * @description: 
 *******************************************************************************/
 #include <memory>
+#include <algorithm>
 #include "../../include/Managers/UserManager.h"
 #include "../../include/MVC/Controllers/User/UserController.h"
 
@@ -27,5 +28,26 @@ bool UserManager::LoginUser()
     auto view = std::make_shared<UserView>();
     UserController controller(model, view);
     auto users = UserModel::LoadUsersFromFile(model->USER_FILE);
-    return controller.LoginUser(users);
+    bool isLoggedIn = controller.LoginUser(users);
+
+    if (isLoggedIn)
+    {
+        // 直接从控制器的模型获取已登录用户
+        for (const auto &user: users)
+        {
+            if (user.GetUsername() == controller.GetModel()->GetUsername())
+            {
+                _curUser = std::make_shared<UserModel>(user);
+                break;
+            }
+        }
+    }
+    return isLoggedIn;
 }
+
+// 获取当前登录用户
+const UserModel& UserManager::GetCurUser() const
+{
+    return *_curUser; // 保持原有接口兼容
+}
+
