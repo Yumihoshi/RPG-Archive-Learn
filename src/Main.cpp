@@ -14,16 +14,18 @@
 #include "../include/MVC/Controllers/GhostPokeController.h"
 #include "../include/Managers/UserManager.h"
 #include "../include/Managers/GameManager.h"
+#include "../include/Managers/FightManager.h"
 
 
 #define TEST_POKE false
 #define TEST_USER false
+#define TEST_FIGHT true
 
 
 int main()
 {
     GameManager::GetInstance().Init();
-#if TEST
+#if TEST_POKE
     auto &pm = PokeManager::GetInstance();
     // 模型
     FirePokeModel f(pm.GetPokeDefaultNameByElement(ElementType::Fire),
@@ -52,40 +54,57 @@ int main()
                                        std::make_shared<FirePokeModel>(f));
     auto ss = PokeManager::GetInstance().GetPokeByName(f.GetName());
     std::cout << ss->GetName() << std::endl;
-    //    while (true)
-    //    {
-    //        std::cout << "\n===== 用户系统 =====\n"
-    //             << "1. 注册\n"
-    //             << "2. 登录\n"
-    //             << "3. 退出\n"
-    //             << "请选择: ";
-    //
-    //        std::string choice;
-    //        getline(std::cin, choice);
-    //
-    //        if (choice == "1")
-    //        {
-    //            UserManager::GetInstance().RegisterUser();
-    //        }
-    //        else if (choice == "2")
-    //        {
-    //            if (UserManager::GetInstance().LoginUser())
-    //            {
-    //                // 登录后的操作
-    //                std::cout << "\n欢迎进入系统！\n";
-    //                break;
-    //            }
-    //        }
-    //        else if (choice == "3")
-    //        {
-    //            std::cout << "系统已退出！\n";
-    //            break;
-    //        }
-    //        else
-    //        {
-    //            std::cout << "无效选择，请重新输入！\n";
-    //        }
-    //    }
+#endif
+
+#if TEST_USER
+    while (true)
+    {
+        std::cout << "\n===== 用户系统 =====\n"
+             << "1. 注册\n"
+             << "2. 登录\n"
+             << "3. 退出\n"
+             << "请选择: ";
+
+        std::string choice;
+        getline(std::cin, choice);
+
+        if (choice == "1")
+        {
+            UserManager::GetInstance().RegisterUser();
+        }
+        else if (choice == "2")
+        {
+            if (UserManager::GetInstance().LoginUser())
+            {
+                // 登录后的操作
+                std::cout << "\n欢迎进入系统！\n";
+                break;
+            }
+        }
+        else if (choice == "3")
+        {
+            std::cout << "系统已退出！\n";
+            break;
+        }
+        else
+        {
+            std::cout << "无效选择，请重新输入！\n";
+        }
+    }
+#endif
+
+#if TEST_FIGHT
+    auto &pm = PokeManager::GetInstance();
+    auto &fm = FightManager::GetInstance();
+    fm.SetPlayerFightPoke(std::make_shared<FlyPokeModel>(
+                    pm.GetPokeDefaultNameByElement(ElementType::Fly),
+                    CampType::Friend));
+    fm.SetEnemyFightPoke(std::make_shared<GhostPokeModel>(
+                    pm.GetPokeDefaultNameByElement(ElementType::Ghost),
+                    CampType::Enemy));
+    fm.Init();
+    fm.StartFight();
+#endif
 
     return 0;
 }

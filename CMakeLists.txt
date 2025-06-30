@@ -47,4 +47,8 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/Fsm/BaseState.h
         include/Fsm/BaseState.h
         include/Fsm/StateMachine.h
+        src/Fight/PlayerFightState.cpp
+        include/Fight/PlayerFightState.h
+        src/Fight/EnemyFightState.cpp
+        include/Fight/EnemyFightState.h
 )

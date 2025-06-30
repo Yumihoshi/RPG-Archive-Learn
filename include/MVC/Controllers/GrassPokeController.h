@@ -6,7 +6,7 @@
 #include "../Models/GrassPokeModel.h"
 #include "../Views/GrassPokeView.h"
 
-class GrassPokeController : public BasePokeController<GrassPokeModel, GrassPokeView>
+class GrassPokeController : public BasePokeController
 {
 public:
     explicit GrassPokeController(std::shared_ptr<GrassPokeModel> model) : BasePokeController(std::move(model))

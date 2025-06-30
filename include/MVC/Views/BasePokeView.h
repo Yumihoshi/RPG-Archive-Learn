@@ -2,16 +2,18 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include "../../Managers/LogManager.h"
 #include "../../Common/Common.h"
+#include "../Models/BasePokeModel.h"
 
-template<typename T>
 class BasePokeView
 {
 public:
-    std::shared_ptr<T> ModelPtr;
+    std::shared_ptr<BasePokeModel> ModelPtr;
 
-    explicit BasePokeView(std::shared_ptr<T> model) : ModelPtr(model)
+    explicit BasePokeView(std::shared_ptr<BasePokeModel> model) : ModelPtr(
+            std::move(model))
     {
     }
 
@@ -24,6 +26,7 @@ public:
         ShowPokeInfoBasicAttr();
         ShowPokeInfoOther();
     }
+
 protected:
     virtual void ShowPokeInfoTitle()
     {
@@ -38,21 +41,27 @@ protected:
         // 输出信息
         LogManager::PrintByChar("名称：" + ModelPtr->GetName() + "\n");
 
-        LogManager::PrintByChar("属性：" + Common::GetElementName(ModelPtr->GetElement()) + "\n");
+        LogManager::PrintByChar(
+                "属性：" + Common::GetElementName(ModelPtr->GetElement()) +
+                "\n");
         LogManager::PrintByChar("血量：", LogColor::Red);
         LogManager::PrintByChar(std::to_string(ModelPtr->GetCurHp()) +
-            "/" + std::to_string(ModelPtr->GetMaxHp()) + "\n");
+                                "/" + std::to_string(ModelPtr->GetMaxHp()) +
+                                "\n");
         LogManager::PrintByChar("魔法值：", LogColor::Blue);
         LogManager::PrintByChar(std::to_string(ModelPtr->GetCurMp()) + "/" +
-            std::to_string(ModelPtr->GetMaxMp()) + "\n");
-        LogManager::PrintByChar("伤害：" + std::to_string(ModelPtr->GetDamage()) + "\n");
+                                std::to_string(ModelPtr->GetMaxMp()) + "\n");
+        LogManager::PrintByChar(
+                "伤害：" + std::to_string(ModelPtr->GetDamage()) + "\n");
     }
 
     virtual void ShowPokeInfoOther()
     {
         // 格式化百分号
-        LogManager::PrintByChar("闪避率：" + Common::GetFormattedFloat(ModelPtr->GetFleeRate() * 100) + "%\n");
-        LogManager::PrintByChar("暴击率：" + Common::GetFormattedFloat(ModelPtr->GetCritRate() * 100) + "%\n");
+        LogManager::PrintByChar("闪避率：" + Common::GetFormattedFloat(
+                ModelPtr->GetFleeRate() * 100) + "%\n");
+        LogManager::PrintByChar("暴击率：" + Common::GetFormattedFloat(
+                ModelPtr->GetCritRate() * 100) + "%\n");
         LogManager::PrintByChar("特性&背景：" + ModelPtr->GetStory() + "\n\n");
     }
 };

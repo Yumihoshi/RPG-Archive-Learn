@@ -54,3 +54,9 @@ enum class EquipType
     Armor
 };
 
+// 战斗回合状态枚举
+enum class FightRoundType
+{
+    Player,
+    Enemy
+};
