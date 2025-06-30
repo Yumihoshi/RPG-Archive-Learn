@@ -40,4 +40,11 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         src/MVC/Views/IcePokeView.cpp
         src/Managers/UserManager.cpp
         include/Managers/UserManager.h
+        src/User/UserModel.cpp
+        include/User/UserModel.h
+        src/Managers/FightManager.cpp
+        include/Managers/FightManager.h
+        include/Fsm/BaseState.h
+        include/Fsm/BaseState.h
+        include/Fsm/StateMachine.h
 )

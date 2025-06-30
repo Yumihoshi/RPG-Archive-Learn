@@ -9,6 +9,7 @@
 #define RPG_ARCHIVE_LEARN_USERMANAGER_H
 
 #include "../Base/Singleton.h"
+#include "../User/UserModel.h"
 
 class UserManager : public Singleton<UserManager>
 {
@@ -29,6 +30,9 @@ private:
     // 获取密码输入（显示*号）
     std::string GetPassword(const char* prompt);
 
+
+
+    // 单例相关
     friend class Singleton<UserManager>;
     UserManager();
 };

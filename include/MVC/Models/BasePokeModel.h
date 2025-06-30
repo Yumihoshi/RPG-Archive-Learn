@@ -64,6 +64,11 @@ public:
     void SetStory(std::string story);
     [[nodiscard]] unsigned int GetId() const;
     void SetId(unsigned int id);
+    void SetDamage(int damage);
+    void SetMaxHp(int maxHp);
+    void SetCritRate(float critRate);
+    void SetMaxMp(int maxMp);
+    void SetFleeRate(float fleeRate);
 
     // 检查是否存活
     [[nodiscard]] bool IsAlive() const;

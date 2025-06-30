@@ -15,5 +15,7 @@ public:
     }
 
     void ShowInfo() override;
+    void ApplyEffect() override;
+    void RemoveEffect() override;
 };
 

@@ -215,9 +215,7 @@ void BasePokeModel::Equip(std::shared_ptr<Decoration> decoration)
 {
     _decoration = std::move(decoration);
     _decoration->Owner = std::make_shared<BasePokeModel>(*this);
-    _damage += _decoration->AttackBonus;
-    _maxMp += _decoration->MaxMpBonus;
-    _critRate += _decoration->CritRateBonus;
+    _decoration->ApplyEffect();
 }
 
 // 装备防具
@@ -225,8 +223,7 @@ void BasePokeModel::Equip(std::shared_ptr<Armor> armor)
 {
     _armor = std::move(armor);
     _armor->Owner = std::make_shared<BasePokeModel>(*this);
-    _maxHp += _armor->MaxHpBonus;
-    _fleeRate += _armor->FleeRateBonus;
+    _armor->ApplyEffect();
 }
 
 // 卸下饰品
@@ -235,17 +232,14 @@ void BasePokeModel::Unequip(EquipType equipType)
     if (equipType == EquipType::Decoration)
     {
         if (_decoration == nullptr) return;
-        _damage -= _decoration->AttackBonus;
-        _maxMp -= _decoration->MaxMpBonus;
-        _critRate -= _decoration->CritRateBonus;
+        _decoration->RemoveEffect();
         _decoration->Owner = nullptr;
         _decoration = nullptr;
     }
     else if (equipType == EquipType::Armor)
     {
         if (_armor == nullptr) return;
-        _maxHp -= _armor->MaxHpBonus;
-        _fleeRate -= _armor->FleeRateBonus;
+        _decoration->RemoveEffect();
         _armor->Owner = nullptr;
         _armor = nullptr;
     }
@@ -321,4 +315,29 @@ std::shared_ptr<Decoration> BasePokeModel::GetDecoration() const
 std::shared_ptr<Armor> BasePokeModel::GetArmor() const
 {
     return _armor;
+}
+
+void BasePokeModel::SetDamage(int damage)
+{
+    _damage = damage;
+}
+
+void BasePokeModel::SetMaxHp(int maxHp)
+{
+    _maxHp = maxHp;
+}
+
+void BasePokeModel::SetCritRate(float critRate)
+{
+    _critRate = critRate;
+}
+
+void BasePokeModel::SetMaxMp(int maxMp)
+{
+    _maxMp = maxMp;
+}
+
+void BasePokeModel::SetFleeRate(float fleeRate)
+{
+    _fleeRate = fleeRate;
 }
