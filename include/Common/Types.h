@@ -67,3 +67,9 @@ enum class Skills
     // 鬼雾蚀力让对方下降10%
 };
 
+// 战斗回合状态枚举
+enum class FightRoundType
+{
+    Player,
+    Enemy
+};

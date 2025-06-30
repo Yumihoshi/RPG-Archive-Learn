@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <random>
+#include <variant>
+#include <memory>
 #include "../Base/Singleton.h"
 #include "Types.h"
 

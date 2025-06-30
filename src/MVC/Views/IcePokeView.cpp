@@ -5,8 +5,10 @@
 
 void IcePokeView::ShowPokeInfo()
 {
+    auto m = std::dynamic_pointer_cast<IcePokeModel>(ModelPtr);
     ShowPokeInfoTitle();
     ShowPokeInfoBasicAttr();
-    LogManager::PrintByChar("防御力：" + std::to_string(ModelPtr->GetDefendValue()) + "\n");
+    LogManager::PrintByChar(
+            "防御力：" + std::to_string(m->GetDefendValue()) + "\n");
     ShowPokeInfoOther();
 }
