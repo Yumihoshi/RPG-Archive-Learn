@@ -5,7 +5,7 @@
 #ifndef SKILLS_H
 #define SKILLS_H
 #include "../Common/Types.h"
-#include "../MVC/Models/BasePokeModel.h"
+#include "../MVC/Models/Poke/BasePokeModel.h"
 
 class SkillHandler {
 public:

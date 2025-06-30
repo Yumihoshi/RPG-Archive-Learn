@@ -10,7 +10,7 @@
 
 #include <memory>
 #include <variant>
-#include "../MVC/Controllers/BasePokeController.h"
+#include "../MVC/Controllers/Poke/BasePokeController.h"
 #include "../Base/Singleton.h"
 #include "../Fsm/StateMachine.h"
 #include "../Common/Types.h"

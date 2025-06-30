@@ -1,5 +1,5 @@
 #include "../../include/Equipment/Decoration.h"
-#include "../../include/MVC/Models/BasePokeModel.h"
+#include "../../include/MVC/Models/Poke/BasePokeModel.h"
 
 void Decoration::ShowInfo()
 { 

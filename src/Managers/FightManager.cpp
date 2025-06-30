@@ -8,11 +8,11 @@
 #include <utility>
 
 #include "../../include/Managers/FightManager.h"
-#include "../../include/MVC/Controllers/FirePokeController.h"
-#include "../../include/MVC/Controllers/IcePokeController.h"
-#include "../../include/MVC/Controllers/GrassPokeController.h"
-#include "../../include/MVC/Controllers/FlyPokeController.h"
-#include "../../include/MVC/Controllers/GhostPokeController.h"
+#include "../../include/MVC/Controllers/Poke/FirePokeController.h"
+#include "../../include/MVC/Controllers/Poke/IcePokeController.h"
+#include "../../include/MVC/Controllers/Poke/GrassPokeController.h"
+#include "../../include/MVC/Controllers/Poke/FlyPokeController.h"
+#include "../../include/MVC/Controllers/Poke/GhostPokeController.h"
 #include "../../include/Fight/PlayerFightState.h"
 #include "../../include/Fight/EnemyFightState.h"
 #include "../../include/Fight/DefaultFightState.h"

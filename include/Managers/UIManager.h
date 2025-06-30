@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Base/Singleton.h"
-#include "../MVC/Models/BasePokeModel.h"
+#include "../MVC/Models/Poke/BasePokeModel.h"
 
 
 class UIManager : public Singleton<UIManager>

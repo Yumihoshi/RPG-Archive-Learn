@@ -5,7 +5,7 @@
 #include <random>
 #include "../Base/Singleton.h"
 #include "../Common/Types.h"
-#include "../MVC/Models/BasePokeModel.h"
+#include "../MVC/Models/Poke/BasePokeModel.h"
 
 
 class PokeManager :public Singleton<PokeManager>

@@ -1,25 +1,27 @@
 #include <iostream>
 #include <Windows.h>
-#include "../include/MVC/Models/FirePokeModel.h"
-#include "../include/MVC/Models/IcePokeModel.h"
-#include "../include/MVC/Models/GrassPokeModel.h"
-#include "../include/MVC/Models/FlyPokeModel.h"
-#include "../include/MVC/Models/GhostPokeModel.h"
+#include "../include/MVC/Models/Poke/FirePokeModel.h"
+#include "../include/MVC/Models/Poke/IcePokeModel.h"
+#include "../include/MVC/Models/Poke/GrassPokeModel.h"
+#include "../include/MVC/Models/Poke/FlyPokeModel.h"
+#include "../include/MVC/Models/Poke/GhostPokeModel.h"
 #include "../include/Common/Common.h"
 #include "../include/Managers/PokeManager.h"
-#include "../include/MVC/Controllers/FirePokeController.h"
-#include "../include/MVC/Controllers/IcePokeController.h"
-#include "../include/MVC/Controllers/GrassPokeController.h"
-#include "../include/MVC/Controllers/FlyPokeController.h"
-#include "../include/MVC/Controllers/GhostPokeController.h"
-#include "../include/Managers/UserManager.h"
+#include "../include/MVC/Controllers/Poke/FirePokeController.h"
+#include "../include/MVC/Controllers/Poke/IcePokeController.h"
+#include "../include/MVC/Controllers/Poke/GrassPokeController.h"
+#include "../include/MVC/Controllers/Poke/FlyPokeController.h"
+#include "../include/MVC/Controllers/Poke/GhostPokeController.h"
 #include "../include/Managers/GameManager.h"
 #include "../include/Managers/FightManager.h"
+#include "../include/Base/Singleton.h"
+#include "../include/MVC/Views/User/UserView.h"
+#include "../include/Managers/UserManager.h"
 
 
 #define TEST_POKE false
-#define TEST_USER false
-#define TEST_FIGHT true
+#define TEST_USER true
+#define TEST_FIGHT false
 
 
 int main()
@@ -59,25 +61,23 @@ int main()
 #if TEST_USER
     while (true)
     {
-        std::cout << "\n===== 用户系统 =====\n"
-             << "1. 注册\n"
-             << "2. 登录\n"
-             << "3. 退出\n"
-             << "请选择: ";
+        std::cout << "\n===== 用户系统 =====\n";
 
+        auto &userManager = UserManager::GetInstance();
+        auto view = std::make_shared<UserView>();
+        view->ShowLoginMenu();
         std::string choice;
-        getline(std::cin, choice);
+        std::cin >> choice;
 
         if (choice == "1")
         {
-            UserManager::GetInstance().RegisterUser();
+            userManager.RegisterUser();
         }
         else if (choice == "2")
         {
-            if (UserManager::GetInstance().LoginUser())
+            if (userManager.LoginUser())
             {
                 // 登录后的操作
-                std::cout << "\n欢迎进入系统！\n";
                 break;
             }
         }
@@ -105,6 +105,7 @@ int main()
     fm.Init();
     fm.StartFight();
 #endif
+
 
     return 0;
 }

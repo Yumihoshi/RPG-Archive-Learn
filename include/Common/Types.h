@@ -74,3 +74,10 @@ enum class FightRoundType
     Player,
     Enemy
 };
+
+// 用户类型枚举
+enum class UserType
+{
+    NormalPlayer,
+    Admin
+};

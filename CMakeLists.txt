@@ -20,28 +20,26 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         src/Managers/LogManager.cpp
         src/Managers/PokeManager.cpp
         src/Managers/UIManager.cpp
-        src/MVC/Controllers/BasePokeController.cpp
-        src/MVC/Controllers/FirePokeController.cpp
-        src/MVC/Controllers/FlyPokeController.cpp
-        src/MVC/Controllers/GhostPokeController.cpp
-        src/MVC/Controllers/GrassPokeController.cpp
-        src/MVC/Controllers/IcePokeController.cpp
-        src/MVC/Models/BasePokeModel.cpp
-        src/MVC/Models/FirePokeModel.cpp
-        src/MVC/Models/FlyPokeModel.cpp
-        src/MVC/Models/GhostPokeModel.cpp
-        src/MVC/Models/GrassPokeModel.cpp
-        src/MVC/Models/IcePokeModel.cpp
-        src/MVC/Views/BasePokeView.cpp
-        src/MVC/Views/FirePokeView.cpp
-        src/MVC/Views/FlyPokeView.cpp
-        src/MVC/Views/GhostPokeView.cpp
-        src/MVC/Views/GrassPokeView.cpp
-        src/MVC/Views/IcePokeView.cpp
-        src/Managers/UserManager.cpp
-        include/Managers/UserManager.h
-        src/User/UserModel.cpp
-        include/User/UserModel.h
+        src/MVC/Controllers/Poke/BasePokeController.cpp
+        src/MVC/Controllers/Poke/FirePokeController.cpp
+        src/MVC/Controllers/Poke/FlyPokeController.cpp
+        src/MVC/Controllers/Poke/GhostPokeController.cpp
+        src/MVC/Controllers/Poke/GrassPokeController.cpp
+        src/MVC/Controllers/Poke/IcePokeController.cpp
+        src/MVC/Models/Poke/BasePokeModel.cpp
+        src/MVC/Models/Poke/FirePokeModel.cpp
+        src/MVC/Models/Poke/FlyPokeModel.cpp
+        src/MVC/Models/Poke/GhostPokeModel.cpp
+        src/MVC/Models/Poke/GrassPokeModel.cpp
+        src/MVC/Models/Poke/IcePokeModel.cpp
+        src/MVC/Views/Poke/BasePokeView.cpp
+        src/MVC/Views/Poke/FirePokeView.cpp
+        src/MVC/Views/Poke/FlyPokeView.cpp
+        src/MVC/Views/Poke/GhostPokeView.cpp
+        src/MVC/Views/Poke/GrassPokeView.cpp
+        src/MVC/Views/Poke/IcePokeView.cpp
+        src/MVC/Models/User/UserModel.cpp
+        include/MVC/Models/User/UserModel.h
         src/Managers/FightManager.cpp
         include/Managers/FightManager.h
         include/Fsm/BaseState.h
@@ -55,4 +53,10 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/Skills/Skills.h
         src/Fight/DefaultFightState.cpp
         include/Fight/DefaultFightState.h
+        src/MVC/Controllers/User/UserController.cpp
+        include/MVC/Controllers/User/UserController.h
+        src/MVC/Views/User/UserView.cpp
+        include/MVC/Views/User/UserView.h
+        src/Managers/UserManager.cpp
+        include/Managers/UserManager.h
 )
