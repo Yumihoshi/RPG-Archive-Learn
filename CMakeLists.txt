@@ -47,4 +47,8 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/Fsm/BaseState.h
         include/Fsm/BaseState.h
         include/Fsm/StateMachine.h
+        src/MVC/Controllers/Skills/skill.cpp
+        include/Skills/skill.h
+        include/Skills/Skills.cpp
+        include/Skills/Skills.h
 )

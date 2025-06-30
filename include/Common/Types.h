@@ -53,4 +53,17 @@ enum class EquipType
     Decoration,
     Armor
 };
+enum class Skills
+{
+    Fire,
+    //烈火连爆,伤害*1.5
+    Ice ,
+    //寒霜凝滞让对方无法行动3回合
+    Grass,
+    //青藤焕生回血20
+    Fly,
+    //空影迷踪增加闪避率0.1
+    Ghost
+    // 鬼雾蚀力让对方下降10%
+};
 
