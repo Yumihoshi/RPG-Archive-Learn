@@ -33,9 +33,10 @@ bool UserController::RegisterUser(std::vector<UserModel> &users)
         return false;
     }
     std::string password = _view->GetPasswordInput();
+    password = UserModel::Encrypt(password);
     UserModel newUser(username, password);
     users.push_back(newUser);
-    UserModel::SaveUsersToFile(users, newUser.USER_FILE);
+    UserModel::SaveUsersToFile(users, UserModel::USER_FILE);
     _view->ShowRegistrationSuccess();
     return true;
 }
@@ -48,8 +49,8 @@ bool UserController::LoginUser(const std::vector<UserModel> &users)
     auto it = std::find_if(users.begin(), users.end(),
                            [&username, &password](const UserModel &user) {
                                return user.GetUsername() == username &&
-                                      user.GetEncryptedPassword() ==
-                                      UserModel::Encrypt(password);
+                                       user.GetEncryptPassword() ==
+                                       UserModel::Encrypt(password);
                            });
     if (it != users.end())
     {

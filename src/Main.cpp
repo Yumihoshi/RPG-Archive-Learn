@@ -1,22 +1,10 @@
 #include <iostream>
-#include <Windows.h>
 #include "../include/MVC/Models/Poke/FirePokeModel.h"
-#include "../include/MVC/Models/Poke/IcePokeModel.h"
-#include "../include/MVC/Models/Poke/GrassPokeModel.h"
-#include "../include/MVC/Models/Poke/FlyPokeModel.h"
-#include "../include/MVC/Models/Poke/GhostPokeModel.h"
 #include "../include/Common/Common.h"
 #include "../include/Managers/PokeManager.h"
-#include "../include/MVC/Controllers/Poke/FirePokeController.h"
-#include "../include/MVC/Controllers/Poke/IcePokeController.h"
-#include "../include/MVC/Controllers/Poke/GrassPokeController.h"
-#include "../include/MVC/Controllers/Poke/FlyPokeController.h"
-#include "../include/MVC/Controllers/Poke/GhostPokeController.h"
 #include "../include/Managers/GameManager.h"
-#include "../include/Managers/FightManager.h"
-#include "../include/Base/Singleton.h"
-#include "../include/MVC/Views/User/UserView.h"
 #include "../include/Managers/UserManager.h"
+#include "../include/Managers/UIManager.h"
 
 
 #define TEST_POKE false
@@ -27,6 +15,9 @@
 int main()
 {
     GameManager::GetInstance().Init();
+    UserManager::GetInstance().StartLoop();
+    UIManager::GetInstance().ShowCurUserSpecificMenu();
+
 #if TEST_POKE
     auto &pm = PokeManager::GetInstance();
     // 模型
@@ -106,7 +97,6 @@ int main()
     fm.Init();
     fm.StartFight();
 #endif
-
 
     return 0;
 }

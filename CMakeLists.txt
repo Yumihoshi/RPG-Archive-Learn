@@ -59,4 +59,6 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/MVC/Views/User/UserView.h
         src/Managers/UserManager.cpp
         include/Managers/UserManager.h
+        src/Archive/Archive.cpp
+        include/Archive/Archive.h
 )

@@ -18,10 +18,12 @@ class UserManager : public Singleton<UserManager>
 public:
     // 注册用户
     void RegisterUser();
+
     // 用户登录
     bool LoginUser();
-    // 获取当前登录用户
-    [[nodiscard]] const UserModel& GetCurUser() const;
+
+    // 用户登录循环
+    void StartLoop();
 
     // 新增访问方法
     void SetCurrentUser(const std::shared_ptr<UserModel>& user) { _curUser = user; }

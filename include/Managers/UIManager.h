@@ -13,10 +13,16 @@ public:
     void ShowAllPokesInfo();
     // 显示装备管理菜单
     void ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel>& model);
+    // 根据当前用户权限类型，显示不同的菜单
+    void ShowCurUserSpecificMenu();
 private:
+    // 显示所有用户信息
+    void ShowAllUsersInfo();
+    void ShowAdminMenu();
+    void ShowPlayerMenu();
+
+    // 单例相关
     friend class Singleton<UIManager>;
     UIManager();
-
-    void HandleUserInput();
 };
 

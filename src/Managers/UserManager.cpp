@@ -7,8 +7,10 @@
 *******************************************************************************/
 #include <memory>
 #include <algorithm>
+#include <cstdlib>
 #include "../../include/Managers/UserManager.h"
 #include "../../include/MVC/Controllers/User/UserController.h"
+#include "../../include/Managers/LogManager.h"
 
 
 // 注册用户
@@ -45,9 +47,36 @@ bool UserManager::LoginUser()
     return isLoggedIn;
 }
 
-// 获取当前登录用户
-const UserModel& UserManager::GetCurUser() const
+// 用户登录循环
+void UserManager::StartLoop()
 {
-    return *_curUser; // 保持原有接口兼容
+    while (true)
+    {
+        LogManager::PrintByChar("\n========");
+        LogManager::PrintByChar("用户系统", LogColor::Yellow);
+        LogManager::PrintByChar("========\n");
+        auto view = std::make_shared<UserView>();
+        view->ShowLoginMenu();
+        std::string choice;
+        std::cin >> choice;
+
+        if (choice == "1")
+            RegisterUser();
+        else if (choice == "2")
+        {
+            if (LoginUser())
+            {
+                // TODO: 登录后的操作
+                break;
+            }
+        }
+        else if (choice == "3")
+        {
+            LogManager::PrintByChar("系统已退出！\n");
+            std::exit(0);
+        }
+        else
+            LogManager::PrintByChar("无效选择，请重新输入！\n", LogColor::Red);
+    }
 }
 

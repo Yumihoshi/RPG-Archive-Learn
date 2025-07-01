@@ -6,6 +6,7 @@
 #include "../../include/Common/Common.h"
 #include "../../include/MVC/Models/User/UserModel.h"
 #include "../../include/Managers/UserManager.h"
+#include "../../include/Managers/GameManager.h"
 
 UIManager::UIManager() = default;
 
@@ -113,87 +114,79 @@ UIManager::ShowEquipManagerMenu(const std::shared_ptr<BasePokeModel> &model)
     }
 }
 
-void UIManager::HandleUserInput()
+// 根据当前用户权限类型，显示不同的菜单
+void UIManager::ShowCurUserSpecificMenu()
 {
-    auto &userManager = UserManager::GetInstance();
-    std::shared_ptr<UserModel> user = userManager.GetCurrentUser();
+    switch (UserManager::GetInstance().GetCurrentUser()->GetUserType())
+    {
+        case UserType::NormalPlayer:
+            ShowPlayerMenu();
+            break;
+        case UserType::Admin:
+            ShowAdminMenu();
+            // TODO: 显示用户宝可梦及操作
+            break;
+    }
+}
 
+// 新增玩家菜单
+void UIManager::ShowPlayerMenu()
+{
+    //TODO: 完善下面的逻辑
+}
+
+// 新增管理员菜单
+void UIManager::ShowAdminMenu()
+{
     while (true)
     {
-        ShowPokeManagerMainMenu();
+        ShowAllUsersInfo();
         std::string input;
-        LogManager::PrintByChar("\n请输入指令:");
+        LogManager::PrintByChar("\n请输入用户ID或指令:\n");
+        std::cin.ignore();
         getline(std::cin, input);
-        input = Common::ToLower(input);
+        std::shared_ptr<UserModel> user = nullptr;
 
-        if (input == "exit")
+        try
         {
+            unsigned int id = std::stoul(input);
+            user = UserModel::FindUserById(id);
+        }
+        catch (...)
+        {
+            LogManager::PrintByChar("无效输入！请输入数字ID或exit\n",
+                                    LogColor::Red);
             break;
         }
-        else if (input == "p")
+
+        if (user != nullptr)
         {
-            ShowAllPokesInfo();
-        }
-        else if (input == "a")
-        {
-            // 进入战斗逻辑
-        }
-        else if (input == "s")
-        {
-            int slot;
-            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
-            std::cin >> slot;
-            std::cin.ignore();
-            if (slot >= 0 && slot < 3)
-            {
-                user->SaveArchive(slot);
-                LogManager::PrintByChar("存档保存成功！\n");
-            }
-            else
-            {
-                LogManager::PrintByChar("无效的存档槽位！\n");
-            }
-        }
-        else if (input == "l")
-        {
-            int slot;
-            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
-            std::cin >> slot;
-            std::cin.ignore();
-            if (slot >= 0 && slot < 3)
-            {
-                user->LoadArchive(slot);
-                LogManager::PrintByChar("存档加载成功！\n");
-            }
-            else
-            {
-                LogManager::PrintByChar("无效的存档槽位！\n");
-            }
-        }
-        else if (input == "d")
-        {
-            int slot;
-            LogManager::PrintByChar("请输入存档槽位 (0 - 2): ");
-            std::cin >> slot;
-            std::cin.ignore();
-            if (slot >= 0 && slot < 3)
-            {
-                user->DeleteArchive(slot);
-                LogManager::PrintByChar("存档删除成功！\n");
-            }
-            else
-            {
-                LogManager::PrintByChar("无效的存档槽位！\n");
-            }
-        }
-        else if (input == "i")
-        {
-            user->ShowArchiveInfo();
+            LogManager::PrintByChar("选中用户: " + user->GetUsername() + "\n");
+            GameManager::GetInstance().AdminSelectedUser = user;
+            return;
         }
         else
         {
-            LogManager::PrintByChar("无效指令，请重新输入！\n");
+            LogManager::PrintByChar("未找到用户！\n", LogColor::Red);
         }
     }
-    LogManager::PrintByChar("无效指令，请重新输入！\n");
+}
+
+// 显示所有用户信息
+void UIManager::ShowAllUsersInfo()
+{
+    auto users = UserModel::LoadUsersFromFile(UserModel::USER_FILE);
+    LogManager::PrintByChar("======所有用户信息======\n");
+    for (const auto &user: users)
+    {
+        LogManager::PrintByChar("ID: " + std::to_string(user.GetId()) + "\n");
+        LogManager::PrintByChar("用户名: " + user.GetUsername() + "\n");
+        LogManager::PrintByChar(
+                "密码: " + user.GetOriginPassword() + "\n");
+        LogManager::PrintByChar("用户类型: ");
+        LogManager::PrintByChar(user.GetUserType() == UserType::NormalPlayer
+                                ? "普通玩家" : "管理员");
+        LogManager::PrintByChar("\n\n");
+    }
+    LogManager::PrintByChar("请输入要操作的用户ID：\n");
 }
