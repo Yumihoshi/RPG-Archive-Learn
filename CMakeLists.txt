@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.28)
+
 project(RPG_Archive_Learn)
+
+# 添加vcpkg路径（根据实际安装位置调整）
+list(APPEND CMAKE_PREFIX_PATH "vcpkg/installed/x64-mingw-dynamic/share")
+
+# 查找xlnt（全小写+CONFIG模式）
+find_package(xlnt CONFIG REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -61,4 +68,9 @@ add_executable(RPG_Archive_Learn src/Main.cpp
         include/Managers/UserManager.h
         src/Archive/Archive.cpp
         include/Archive/Archive.h
+        include/Interfaces/PreservableObj.h
 )
+
+
+# 使用官方导入目标名
+target_link_libraries(RPG_Archive_Learn PRIVATE xlnt::xlnt)

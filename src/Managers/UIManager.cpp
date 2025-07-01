@@ -133,6 +133,34 @@ void UIManager::ShowCurUserSpecificMenu()
 void UIManager::ShowPlayerMenu()
 {
     //TODO: 完善下面的逻辑
+    while (true)
+    {
+        LogManager::PrintByChar("输入p查看所有宝可梦，输入f进入战斗”,输入s存档，输入exit退出游戏\n");
+        std::cin.ignore();
+        std::string input;
+        getline(std::cin, input);
+        if (input == "p")
+        {
+
+        }
+        else if (input == "f")
+        {
+
+        }
+        else if (input == "s")
+        {
+
+        }
+        else if (input == "exit")
+        {
+            std::exit(0);
+        }
+        else
+        {
+            LogManager::PrintByChar("无效输入！\n");
+            continue;
+        }
+    }
 }
 
 // 新增管理员菜单

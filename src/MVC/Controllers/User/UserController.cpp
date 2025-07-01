@@ -10,6 +10,7 @@
 #include <algorithm>
 #include "../../../../include/MVC/Controllers/User/UserController.h"
 #include "../../../../include/Managers/LogManager.h"
+#include "../../../../include/Archive/Archive.h"
 
 
 UserController::UserController(std::shared_ptr<UserModel> model,
@@ -37,6 +38,8 @@ bool UserController::RegisterUser(std::vector<UserModel> &users)
     UserModel newUser(username, password);
     users.push_back(newUser);
     UserModel::SaveUsersToFile(users, UserModel::USER_FILE);
+    // 初始化存档
+    Archive::InitNewUserArchive(std::make_shared<UserModel>(newUser));
     _view->ShowRegistrationSuccess();
     return true;
 }

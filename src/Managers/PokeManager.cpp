@@ -222,3 +222,15 @@ std::shared_ptr<BasePokeModel> PokeManager::GetPokeById(unsigned int id)
     }
     return nullptr;
 }
+
+// 保存
+void PokeManager::Save()
+{
+
+}
+
+// 加载
+void PokeManager::Load()
+{
+
+}
