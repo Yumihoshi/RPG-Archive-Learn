@@ -19,7 +19,15 @@ private:
     // 显示所有用户信息
     void ShowAllUsersInfo();
     void ShowAdminMenu();
+    void ShowAdminUserPokeManagerMenu(const std::shared_ptr<UserModel>& user);
+    void ShowModifyPokeMenu(const std::shared_ptr<UserModel>& user);
     void ShowPlayerMenu();
+
+    // 显示关卡选择
+    void ShowLevelSelection();
+    void ShowArchiveMenu();
+    // 选择出战宝可梦
+    void ShowSelectFightingPokeMenu();
 
     // 单例相关
     friend class Singleton<UIManager>;

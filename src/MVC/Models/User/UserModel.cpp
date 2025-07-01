@@ -13,7 +13,7 @@
 #include "../../../../include/Managers/PokeManager.h"
 #include "../../../../include/MVC/Models/User/UserModel.h"
 
-const std::string UserModel::USER_FILE = "../data/users.dat";
+const std::string UserModel::USER_FILE = "../data/users.txt";
 
 UserModel::UserModel() : _userType(UserType::NormalPlayer)
 {
@@ -126,7 +126,7 @@ void UserModel::SaveUsersToFile(const std::vector<UserModel> &users,
         for (const auto &user: users)
         {
             file << user._id << " " << user._username << " " << user._password
-                 << " " << static_cast<int>(user._userType) << "\n";
+                 << " " << static_cast<int>(user._userType) << " " << user._isFirstTime << "\n";
         }
         file.close();
     }

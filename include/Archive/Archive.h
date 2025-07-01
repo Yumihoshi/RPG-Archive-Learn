@@ -10,10 +10,13 @@
 
 
 #include <memory>
-#include <xlnt/xlnt.hpp>
+#include <fstream>
+#include <filesystem>
 #include "../Interfaces/PreservableObj.h"
 #include "../MVC/Models/User/UserModel.h"
 #include "../MVC/Models/Poke/BasePokeModel.h"
+
+namespace fs = std::filesystem;
 
 class Archive : public PreservableObj
 {
@@ -38,6 +41,9 @@ public:
     [[nodiscard]] std::shared_ptr<UserModel> GetUser() const
     { return _user; }
 
+    [[nodiscard]] std::string GetSaveTime() const
+    { return _saveTime; }
+
     // Setter
     void SetId(unsigned int id)
     {
@@ -49,9 +55,16 @@ public:
     void SetUser(const std::shared_ptr<UserModel> &user)
     { _user = user; }
 
+    void SetSaveTime(const std::string &saveTime)
+    { _saveTime = saveTime; }
+
+    // 设置存档时间为当前时间
+    void SetSaveTimeNow();
+
 private:
     unsigned int _id;       // 存档id
     std::shared_ptr<UserModel> _user;       // 存档用户
+    std::string _saveTime;      // 存档时间
 
 private:
     // 检查id是否有效
@@ -60,6 +73,11 @@ private:
     // 初始化新用户存档文件夹
     static void
     InitNewUserArchiveFolder(const std::shared_ptr<UserModel> &user);
+
+    // 获取存档文件夹
+    [[nodiscard]] fs::path GetArchiveFolder() const;
+    [[nodiscard]] fs::path GetPokeArchivePath() const;
+    [[nodiscard]] fs::path GetEquipArchivePath() const;
 };
 
 

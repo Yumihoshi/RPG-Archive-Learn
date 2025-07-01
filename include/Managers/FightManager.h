@@ -25,6 +25,9 @@ public:
     // 开始战斗
     void StartFight();
 
+    // 开始某个关卡的战斗
+    void StartFightForLevel(int levelNumber);
+
     // 进入玩家战斗回合
     void EnterPlayerRound();
 

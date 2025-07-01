@@ -47,6 +47,11 @@ bool UserManager::LoginUser()
     return isLoggedIn;
 }
 
+#include "../../include/Managers/PokeManager.h"
+#include "../../include/MVC/Models/Poke/FirePokeModel.h"
+#include "../../include/MVC/Models/Poke/GrassPokeModel.h"
+#include "../../include/MVC/Models/Poke/IcePokeModel.h"
+
 // 用户登录循环
 void UserManager::StartLoop()
 {
@@ -66,7 +71,32 @@ void UserManager::StartLoop()
         {
             if (LoginUser())
             {
-                // TODO: 登录后的操作
+                if (GetCurrentUser()->IsFirstTime())
+                {
+                    DialogueManager::GetInstance().ShowStory({"game_intro_1", "game_intro_2", "game_intro_3"});
+                    LogManager::PrintByChar("欢迎新玩家！请选择你的初始宝可梦：\n");
+                    LogManager::PrintByChar("1. 火属性\n");
+                    LogManager::PrintByChar("2. 草属性\n");
+                    LogManager::PrintByChar("3. 冰属性\n");
+                    std::string pokeChoice;
+                    std::cin >> pokeChoice;
+                    if (pokeChoice == "1")
+                    {
+                        auto poke = std::make_shared<FirePokeModel>(PokeManager::GetInstance().GetPokeDefaultNameByElement(ElementType::Fire), CampType::Friend);
+                        PokeManager::GetInstance().AddPoke(ElementType::Fire, poke);
+                    }
+                    else if (pokeChoice == "2")
+                    {
+                        auto poke = std::make_shared<GrassPokeModel>(PokeManager::GetInstance().GetPokeDefaultNameByElement(ElementType::Grass), CampType::Friend);
+                        PokeManager::GetInstance().AddPoke(ElementType::Grass, poke);
+                    }
+                    else if (pokeChoice == "3")
+                    {
+                        auto poke = std::make_shared<IcePokeModel>(PokeManager::GetInstance().GetPokeDefaultNameByElement(ElementType::Ice), CampType::Friend);
+                        PokeManager::GetInstance().AddPoke(ElementType::Ice, poke);
+                    }
+                    GetCurrentUser()->SetFirstTime(false);
+                UIManager::GetInstance().ShowArchiveMenu();
                 break;
             }
         }

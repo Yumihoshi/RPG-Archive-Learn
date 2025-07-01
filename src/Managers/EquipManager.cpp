@@ -1,56 +1,57 @@
 #include "../../include/Managers/EquipManager.h"
-#include "../../include/Equipment/BaseEquipment.h" // 确保包含基类定义
+#include "../../include/Managers/LogManager.h"
+#include "../../include/Equipment/Armor.h"
+#include "../../include/Equipment/Decoration.h"
 
-bool EquipManager::AddEquipment(EquipType type, std::shared_ptr<BaseEquipment> equipment)
+void EquipManager::Init()
 {
-    if (!equipment) return false; // 空指针检查
+    // Add some dummy equipment for testing
+    auto armor1 = std::make_shared<Armor>("铁甲", 10, 0.05f);
+    auto decoration1 = std::make_shared<Decoration>("力量之戒", 5, 0, 0.02f, 0.0f);
 
-    // 插入或替换现有装备
-    _equipMap[type] = std::move(equipment);
-    return true;
+    _allEquipment[armor1->Id] = armor1;
+    _allEquipment[decoration1->Id] = decoration1;
 }
 
-bool EquipManager::RemoveEquipmentByType(EquipType type)
+void EquipManager::Equip(const std::shared_ptr<BasePokeModel>& poke, unsigned int equipId, EquipType type)
 {
-    return _equipMap.erase(type) > 0;
-}
-
-std::shared_ptr<BaseEquipment> EquipManager::GetEquipmentByType(EquipType type) const
-{
-    auto it = _equipMap.find(type);
-    return (it != _equipMap.end()) ? it->second : nullptr;
-}
-
-bool EquipManager::HasEquipment(EquipType type) const
-{
-    return _equipMap.find(type) != _equipMap.end();
-}
-
-std::vector<EquipType> EquipManager::GetAllEquipTypes() const
-{
-    std::vector<EquipType> types;
-    types.reserve(_equipMap.size());
-for (const auto& pair : _equipMap)
+    auto it = _allEquipment.find(equipId);
+    if (it == _allEquipment.end())
     {
-        types.push_back(pair.first);
+        LogManager::PrintByChar("Equipment with ID " + std::to_string(equipId) + " not found.\n", LogColor::Red);
+        return;
     }
-    return types;
-}
 
-void EquipManager::ClearAll()
-{
-    _equipMap.clear();
-}
+    auto equipment = it->second;
 
-// 根据名称获取装备
-std::shared_ptr<BaseEquipment> EquipManager::GetEquipmentByName(const std::string& name) const
-{
-    for (const auto& pair : _equipMap)
+    if (equipment->EqType != type)
     {
-        if (pair.second->Name == name)
+        LogManager::PrintByChar("Equipment type mismatch.\n", LogColor::Red);
+        return;
+    }
+
+    if (type == EquipType::Armor)
+    {
+        auto armor = std::dynamic_pointer_cast<Armor>(equipment);
+        if (armor)
         {
-            return pair.second;
+            poke->Equip(armor);
+            LogManager::PrintByChar("Equipped " + armor->Name + " to " + poke->GetName() + "\n");
         }
     }
-    return nullptr;
+    else if (type == EquipType::Decoration)
+    {
+        auto decoration = std::dynamic_pointer_cast<Decoration>(equipment);
+        if (decoration)
+        {
+            poke->Equip(decoration);
+            LogManager::PrintByChar("Equipped " + decoration->Name + " to " + poke->GetName() + "\n");
+        }
+    }
+}
+
+void EquipManager::Unequip(const std::shared_ptr<BasePokeModel>& poke, EquipType type)
+{
+    poke->Unequip(type);
+    LogManager::PrintByChar("Unequipped item from " + poke->GetName() + "\n");
 }

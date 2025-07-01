@@ -139,9 +139,14 @@ void FightManager::EnterEnemyRound()
     _fightStateMachine->SwitchState(FightRoundType::Enemy);
 }
 
+#include "../../include/Managers/LevelManager.h"
+#include "../../include/Managers/PokeManager.h"
+#include "../../include/Managers/DialogueManager.h"
+
 // 开始战斗
 void FightManager::StartFight()
 {
+    DialogueManager::GetInstance().ShowDialogue("battle_start");
     ShowFightStart();
     while (_playerFightPoke->ModelPtr->IsAlive() &&
            _enemyFightPoke->ModelPtr->IsAlive())
@@ -152,9 +157,42 @@ void FightManager::StartFight()
         EnterBlankRound();
     }
     if (!_playerFightPoke->ModelPtr->IsAlive())
+    {
+        DialogueManager::GetInstance().ShowDialogue("battle_lose");
         LogManager::PrintByChar("你输了！\n");
+    }
     else
+    {
+        DialogueManager::GetInstance().ShowDialogue("battle_win");
         LogManager::PrintByChar("你赢了！\n");
+        LogManager::PrintByChar("你获得了敌方的宝可梦！\n");
+        auto enemyPoke = _enemyFightPoke->ModelPtr;
+        enemyPoke->SetCamp(CampType::Friend);
+        PokeManager::GetInstance().AddPoke(enemyPoke->GetElement(), enemyPoke);
+    }
+}
+
+void FightManager::StartFightForLevel(int levelNumber)
+{
+    auto level = LevelManager::GetInstance().GetLevel(levelNumber);
+    if (level)
+    {
+        // Show level intro dialogue
+        if (levelNumber == 1) DialogueManager::GetInstance().ShowDialogue("level_1_intro");
+        else if (levelNumber == 2) DialogueManager::GetInstance().ShowDialogue("level_2_intro");
+        else if (levelNumber == 3) DialogueManager::GetInstance().ShowDialogue("level_3_intro");
+        else if (levelNumber == 4) DialogueManager::GetInstance().ShowDialogue("level_4_intro");
+        else if (levelNumber == 5) DialogueManager::GetInstance().ShowDialogue("level_5_intro");
+        else if (levelNumber == 6) DialogueManager::GetInstance().ShowDialogue("boss_intro");
+
+        auto enemyPoke = PokeManager::GetInstance().CreatePoke(level->enemyType, CampType::Enemy);
+        SetEnemyFightPoke(enemyPoke);
+        StartFight();
+    }
+    else
+    {
+        LogManager::PrintByChar("无效的关卡！\n", LogColor::Red);
+    }
 }
 
 // 显示战斗双方信息

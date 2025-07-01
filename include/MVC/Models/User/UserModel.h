@@ -45,6 +45,10 @@ public:
 
     void SetUserType(UserType type);
 
+    // 是否是第一次游玩
+    [[nodiscard]] bool IsFirstTime() const { return _isFirstTime; }
+    void SetFirstTime(bool isFirstTime) { _isFirstTime = isFirstTime; }
+
     // 简单移位加密
     static std::string Encrypt(const std::string &password);
 
@@ -67,8 +71,30 @@ private:
     std::string _username;      // 用户名
     std::string _password;      // 密码
     UserType _userType;         // 用户类型
+    bool _isFirstTime;          // 是否是第一次游玩
     // TODO: 三个存档槽，完善持久化存储
+
+    friend void to_json(json& j, const UserModel& p);
+    friend void from_json(const json& j, UserModel& p);
 };
+
+inline void to_json(json& j, const UserModel& u) {
+    j = json{
+        {"_id", u._id},
+        {"_username", u._username},
+        {"_password", u._password},
+        {"_userType", u._userType},
+        {"_isFirstTime", u._isFirstTime}
+    };
+}
+
+inline void from_json(const json& j, UserModel& u) {
+    j.at("_id").get_to(u._id);
+    j.at("_username").get_to(u._username);
+    j.at("_password").get_to(u._password);
+    j.at("_userType").get_to(u._userType);
+    j.at("_isFirstTime").get_to(u._isFirstTime);
+}
 
 
 #endif //RPG_ARCHIVE_LEARN_USERMODEL_H

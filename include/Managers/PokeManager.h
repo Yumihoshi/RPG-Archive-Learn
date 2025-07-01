@@ -10,7 +10,7 @@
 #include "../Interfaces/PreservableObj.h"
 
 
-class PokeManager : public Singleton<PokeManager>, public PreservableObj
+class PokeManager : public Singleton<PokeManager>
 {
 public:
     // ##########增加##########
@@ -67,14 +67,16 @@ public:
     // 随机获取宝可梦名字
     std::string GetPokeDefaultNameByElement(ElementType elementType);
 
-    // ##########存档##########
-    void Save() override;
-    void Load() override;
-
     // Getter
     unsigned int GetPokeMaxId() const;
     // Setter
     void SetPokeMaxId(unsigned int id);
+
+    // 初始化
+    void Init();
+
+    // 创建宝可梦
+    std::shared_ptr<BasePokeModel> CreatePoke(ElementType elementType, CampType campType);
 
 private:
     friend class Singleton<PokeManager>;

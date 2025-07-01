@@ -2,75 +2,14 @@ cmake_minimum_required(VERSION 3.28)
 
 project(RPG_Archive_Learn)
 
-# 添加vcpkg路径（根据实际安装位置调整）
-list(APPEND CMAKE_PREFIX_PATH "vcpkg/installed/x64-mingw-dynamic/share")
-
-# 查找xlnt（全小写+CONFIG模式）
-find_package(xlnt CONFIG REQUIRED)
-
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(RPG_Archive_Learn src/Main.cpp
-        include/Base/Signal.h
-        include/Managers/DialogueManager.h
-        include/Managers/EquipManager.h
-        include/Managers/GameManager.h
-        include/Managers/UIManager.h
-        src/Common/Common.cpp
-        src/Common/Signal.cpp
-        src/Equipment/Armor.cpp
-        src/Equipment/BaseEquipment.cpp
-        src/Equipment/Decoration.cpp
-        src/Managers/DialogueManager.cpp
-        src/Managers/EquipManager.cpp
-        src/Managers/GameManager.cpp
-        src/Managers/LogManager.cpp
-        src/Managers/PokeManager.cpp
-        src/Managers/UIManager.cpp
-        src/MVC/Controllers/Poke/BasePokeController.cpp
-        src/MVC/Controllers/Poke/FirePokeController.cpp
-        src/MVC/Controllers/Poke/FlyPokeController.cpp
-        src/MVC/Controllers/Poke/GhostPokeController.cpp
-        src/MVC/Controllers/Poke/GrassPokeController.cpp
-        src/MVC/Controllers/Poke/IcePokeController.cpp
-        src/MVC/Models/Poke/BasePokeModel.cpp
-        src/MVC/Models/Poke/FirePokeModel.cpp
-        src/MVC/Models/Poke/FlyPokeModel.cpp
-        src/MVC/Models/Poke/GhostPokeModel.cpp
-        src/MVC/Models/Poke/GrassPokeModel.cpp
-        src/MVC/Models/Poke/IcePokeModel.cpp
-        src/MVC/Views/Poke/BasePokeView.cpp
-        src/MVC/Views/Poke/FirePokeView.cpp
-        src/MVC/Views/Poke/FlyPokeView.cpp
-        src/MVC/Views/Poke/GhostPokeView.cpp
-        src/MVC/Views/Poke/GrassPokeView.cpp
-        src/MVC/Views/Poke/IcePokeView.cpp
-        src/MVC/Models/User/UserModel.cpp
-        include/MVC/Models/User/UserModel.h
-        src/Managers/FightManager.cpp
-        include/Managers/FightManager.h
-        include/Fsm/BaseState.h
-        include/Fsm/BaseState.h
-        include/Fsm/StateMachine.h
-        src/Fight/PlayerFightState.cpp
-        include/Fight/PlayerFightState.h
-        src/Fight/EnemyFightState.cpp
-        include/Fight/EnemyFightState.h
-        src/Skills/Skills.cpp
-        include/Skills/Skills.h
-        src/Fight/DefaultFightState.cpp
-        include/Fight/DefaultFightState.h
-        src/MVC/Controllers/User/UserController.cpp
-        include/MVC/Controllers/User/UserController.h
-        src/MVC/Views/User/UserView.cpp
-        include/MVC/Views/User/UserView.h
-        src/Managers/UserManager.cpp
-        include/Managers/UserManager.h
-        src/Archive/Archive.cpp
-        include/Archive/Archive.h
-        include/Interfaces/PreservableObj.h
-)
+# Integrate vcpkg
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 
+find_package(nlohmann_json CONFIG REQUIRED)
 
-# 使用官方导入目标名
-target_link_libraries(RPG_Archive_Learn PRIVATE xlnt::xlnt)
+file(GLOB_RECURSE SOURCRES src/*.cpp)
+file(GLOB_RECURSE HEADERS include/*.h)
+
+add_subdirectory(src)

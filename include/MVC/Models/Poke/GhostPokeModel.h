@@ -9,6 +9,7 @@ public:
         80, 50, 5, camp, 100, 10, 0.15f, 0.3f, 10)
     {
         SetStory("高闪避率。");
+        AddSkill(std::make_shared<NormalAttackSkill>());
     }
 
 };

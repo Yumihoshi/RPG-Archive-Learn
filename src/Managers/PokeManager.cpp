@@ -209,6 +209,47 @@ void PokeManager::SetPokeMaxId(unsigned int id)
     _pokeMaxId = id;
 }
 
+#include "../../include/MVC/Models/Poke/FirePokeModel.h"
+#include "../../include/MVC/Models/Poke/GrassPokeModel.h"
+#include "../../include/MVC/Models/Poke/IcePokeModel.h"
+#include "../../include/MVC/Models/Poke/FlyPokeModel.h"
+#include "../../include/MVC/Models/Poke/GhostPokeModel.h"
+#include "../../include/MVC/Models/Poke/BossPokeModel.h"
+
+void PokeManager::Init()
+{
+    // Do nothing
+}
+
+std::shared_ptr<BasePokeModel> PokeManager::CreatePoke(ElementType elementType, CampType campType)
+{
+    std::shared_ptr<BasePokeModel> poke = nullptr;
+    switch (elementType)
+    {
+        case ElementType::Fire:
+            poke = std::make_shared<FirePokeModel>(GetPokeDefaultNameByElement(elementType), campType);
+            break;
+        case ElementType::Grass:
+            poke = std::make_shared<GrassPokeModel>(GetPokeDefaultNameByElement(elementType), campType);
+            break;
+        case ElementType::Ice:
+            poke = std::make_shared<IcePokeModel>(GetPokeDefaultNameByElement(elementType), campType);
+            break;
+        case ElementType::Fly:
+            poke = std::make_shared<FlyPokeModel>(GetPokeDefaultNameByElement(elementType), campType);
+            break;
+        case ElementType::Ghost:
+            poke = std::make_shared<GhostPokeModel>(GetPokeDefaultNameByElement(elementType), campType);
+            break;
+        case ElementType::None:
+            poke = std::make_shared<BossPokeModel>("仙后", campType);
+            break;
+        default:
+            break;
+    }
+    return poke;
+}
+
 // 根据ID获取宝可梦
 std::shared_ptr<BasePokeModel> PokeManager::GetPokeById(unsigned int id)
 {
@@ -221,16 +262,4 @@ std::shared_ptr<BasePokeModel> PokeManager::GetPokeById(unsigned int id)
         }
     }
     return nullptr;
-}
-
-// 保存
-void PokeManager::Save()
-{
-
-}
-
-// 加载
-void PokeManager::Load()
-{
-
 }
