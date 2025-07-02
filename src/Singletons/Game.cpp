@@ -378,7 +378,8 @@ void Game::playerMainMenu()
             if (currentUser && !currentUser->saveSlots[0].empty())
             {
                 UI::GetInstance().displayAllPokemon(currentUser->saveSlots[0]);
-                std::cout << "输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, exit: 返回主菜单): ";
+                std::cout << "当前出战宝可梦: " << (playerActivePokemon ? playerActivePokemon->name : "无") << std::endl;
+                std::cout << "输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, S: 选择出战宝可梦, exit: 返回主菜单): ";
                 std::string pokemonChoice;
                 std::getline(std::cin, pokemonChoice);
 
@@ -386,17 +387,22 @@ void Game::playerMainMenu()
                 {
                     continue;
                 }
-
-                try
+                else if (pokemonChoice == "S" || pokemonChoice == "s")
                 {
-                    int pokemonId = std::stoi(pokemonChoice);
-                    if (pokemonId > 0 && pokemonId <= currentUser->saveSlots[0].size())
+                    selectActivePokemon(currentUser->saveSlots[0]);
+                }
+                else
+                {
+                    try
                     {
-                        std::shared_ptr<Pokemon> selectedPokemon = currentUser->saveSlots[0][pokemonId - 1];
-                        std::cout << "已选择宝可梦: " << selectedPokemon->name << std::endl;
-                        std::cout << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
-                        std::string equipChoice;
-                        std::getline(std::cin, equipChoice);
+                        int pokemonId = std::stoi(pokemonChoice);
+                        if (pokemonId > 0 && pokemonId <= currentUser->saveSlots[0].size())
+                        {
+                            std::shared_ptr<Pokemon> selectedPokemon = currentUser->saveSlots[0][pokemonId - 1];
+                            std::cout << "已选择宝可梦: " << selectedPokemon->name << std::endl;
+                            std::cout << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
+                            std::string equipChoice;
+                            std::getline(std::cin, equipChoice);
 
                         if (equipChoice == "A1")
                         {
@@ -432,6 +438,7 @@ void Game::playerMainMenu()
                 catch (const std::invalid_argument& e)
                 {
                     std::cout << "无效输入。" << std::endl;
+                }
                 }
             }
             else
