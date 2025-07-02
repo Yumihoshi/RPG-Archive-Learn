@@ -9,6 +9,7 @@
 #include "../../include/Singletons/UI.h"
 #include "../../include/Singletons/UserManager.h"
 #include "../../include/Singletons/EquipManager.h"
+#include "../../include/Singletons/PokemonFactory.h"
 #include "../../include/Common/Types.h"
 
 // Helper function to clear input buffer
@@ -243,7 +244,7 @@ void Game::adminManageUserPokemon()
                 clearInputBuffer();
                 if (typeChoice >= 0 && typeChoice <= 4)
                 {
-                    user->saveSlots[0].push_back(std::make_shared<Pokemon>(static_cast<Pokemon::PokeType>(typeChoice)));
+                    user->saveSlots[0].push_back(PokemonFactory::createPokemon(static_cast<Pokemon::PokeType>(typeChoice)));
                     UserManager::GetInstance().saveUsers();
                     std::cout << "宝可梦添加成功！" << std::endl;
                 }
@@ -547,7 +548,7 @@ void Game::chooseInitialPokemon(std::shared_ptr<User> player)
             continue;
         }
 
-        std::shared_ptr<Pokemon> initialPokemon = std::make_shared<Pokemon>(chosenType);
+        std::shared_ptr<Pokemon> initialPokemon = PokemonFactory::createPokemon(chosenType);
         player->saveSlots[0].push_back(initialPokemon);
         playerActivePokemon = initialPokemon;
         UserManager::GetInstance().saveUsers();
@@ -643,7 +644,7 @@ void Game::startBattle()
                   << std::endl;
         std::cout << "\n--- 战斗开始！---" << std::endl;
 
-        enemyActivePokemon = std::make_shared<Pokemon>(enemyStages[i].second);
+        enemyActivePokemon = PokemonFactory::createPokemon(enemyStages[i].second);
         std::cout << "敌方派出了 " << enemyActivePokemon->name << "！"
                   << std::endl;
 
@@ -664,11 +665,8 @@ void Game::startBattle()
             else if (action == "K" || action == "k")
             {
                 if (playerActivePokemon->currentMagic >= 10)
-                { // Example skill cost
-                    playerActivePokemon->currentMagic -= 10;
-                    std::cout << playerActivePokemon->name << " 释放了技能！"
-                              << std::endl;
-                    battleTurn(playerActivePokemon, enemyActivePokemon, true);
+                {
+                    playerActivePokemon->useSkill(enemyActivePokemon);
                 }
                 else
                 {
@@ -722,8 +720,7 @@ void Game::startBattle()
         std::cout << "\n--- 剧情 ---" << std::endl;
         std::cout << "你来到了天星队的老巢，仙后正在等着你！" << std::endl;
         std::cout << "\n--- Boss 战开始！---" << std::endl;
-        enemyActivePokemon = std::make_shared<Pokemon>(
-                Pokemon::GHOST); // Example Boss type
+        enemyActivePokemon = PokemonFactory::createPokemon(Pokemon::GHOST);
         enemyActivePokemon->name = "仙后";
         enemyActivePokemon->level = 10; // Make boss stronger
         enemyActivePokemon->maxHealth *= 2;
@@ -873,6 +870,12 @@ bool Game::checkEvasion(std::shared_ptr<Pokemon> defender)
 
 bool Game::checkCritical(std::shared_ptr<Pokemon> attacker)
 {
+    std::shared_ptr<FirePokemon> fireAttacker = std::dynamic_pointer_cast<FirePokemon>(attacker);
+    if (fireAttacker && fireAttacker->criticalTurns > 0)
+    {
+        fireAttacker->criticalTurns--;
+        return true;
+    }
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> distrib(0.0, 1.0);

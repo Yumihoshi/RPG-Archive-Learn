@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include "../../include/Singletons/UserManager.h"
+#include "../../include/Singletons/PokemonFactory.h"
 
 
 // UserManager class implementation
@@ -107,8 +108,7 @@ void UserManager::loadUsers()
                         std::vector<std::shared_ptr<Pokemon>> pokemonList;
                         for (const auto &pokemonJson: slotJson)
                         {
-                            pokemonList.push_back(
-                                    std::make_shared<Pokemon>(Pokemon::fromJson(pokemonJson)));
+                            pokemonList.push_back(PokemonFactory::createPokemon(pokemonJson));
                         }
                         user->saveSlots.push_back(pokemonList);
                     }

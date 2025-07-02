@@ -21,5 +21,12 @@ add_executable(RPG src/main.cpp src/Poke/Pokemon.cpp src/Equip/Equipment.cpp src
         include/Singletons/UserManager.h
         src/Singletons/EquipManager.cpp
         include/Singletons/EquipManager.h
+        src/Singletons/PokemonFactory.cpp
+        include/Singletons/PokemonFactory.h
+        src/Poke/FirePokemon.cpp
+        src/Poke/GrassPokemon.cpp
+        src/Poke/IcePokemon.cpp
+        src/Poke/FlyingPokemon.cpp
+        src/Poke/GhostPokemon.cpp
         include/Common/Types.h)
 target_link_libraries(RPG PRIVATE nlohmann_json::nlohmann_json)

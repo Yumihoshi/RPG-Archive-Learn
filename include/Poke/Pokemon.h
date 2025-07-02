@@ -18,9 +18,7 @@ public:
     // JSON serialization/deserialization
     nlohmann::json toJson() const;
 
-    static Pokemon fromJson(const nlohmann::json &j);
-
-public:
+    public:
     enum PokeType
     {
         FIRE, GRASS, ICE, FLYING, GHOST
@@ -63,6 +61,8 @@ public:
     Pokemon(const Pokemon &other);
 
     Pokemon &operator=(const Pokemon &other);
+
+    virtual void useSkill(std::shared_ptr<Pokemon> target) = 0;
 
 private:
     void initializeStats(PokeType type);

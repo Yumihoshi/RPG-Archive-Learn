@@ -26,7 +26,7 @@ Pokemon::Pokemon(PokeType type, int level) :
 }
 
 // Constructor for loading from JSON
-Pokemon::Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
+    Pokemon::Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
         name(name),
         type(type),
         level(level),
@@ -136,32 +136,7 @@ nlohmann::json Pokemon::toJson() const
     return j;
 }
 
-Pokemon Pokemon::fromJson(const nlohmann::json &j)
-{
-    Pokemon p(j["name"].get<std::string>(),
-              static_cast<Pokemon::PokeType>(j["type"]),
-              j["level"].get<int>(),
-              j["experience"].get<int>(),
-              j["maxHealth"].get<int>(),
-              j["currentHealth"].get<int>(),
-              j["maxMagic"].get<int>(),
-              j["currentMagic"].get<int>(),
-              j["baseAttack"].get<int>(),
-              j["magicRegen"].get<int>(),
-              j["defense"].get<int>(),
-              j["evasionRate"].get<double>(),
-              j["criticalRate"].get<double>());
 
-    if (j.contains("accessory"))
-    {
-        p.accessory = Accessory::fromJson(j["accessory"]);
-    }
-    if (j.contains("armor"))
-    {
-        p.armor = Armor::fromJson(j["armor"]);
-    }
-    return p;
-}
 
 // Initialize base stats based on Pokemon type
 void Pokemon::initializeStats(PokeType type)
