@@ -1,6 +1,6 @@
-#include "Game.h"
-#include "Pokemon.h"
-#include "Equipment.h"
+#include "../include/Game.h"
+#include "../include/Pokemon.h"
+#include "../include/Equipment.h"
 #include <iostream>
 #include <limits>
 #include <random>

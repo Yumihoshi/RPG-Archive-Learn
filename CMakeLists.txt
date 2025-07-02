@@ -8,5 +8,5 @@ set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/installed/x64-windows;$
 find_package(nlohmann_json REQUIRED)
 
 find_package(nlohmann_json CONFIG REQUIRED)
-add_executable(RPG main.cpp Pokemon.cpp Equipment.cpp User.cpp Game.cpp)
+add_executable(RPG main.cpp src/Pokemon.cpp src/Equipment.cpp src/User.cpp src/Game.cpp)
 target_link_libraries(RPG PRIVATE nlohmann_json::nlohmann_json)

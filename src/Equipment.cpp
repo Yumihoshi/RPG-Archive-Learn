@@ -1,5 +1,5 @@
-#include "Equipment.h"
-#include "Pokemon.h"
+#include "../include/Equipment.h"
+#include "../include/Pokemon.h"
 #include <iostream>
 #include <nlohmann/json.hpp>
 

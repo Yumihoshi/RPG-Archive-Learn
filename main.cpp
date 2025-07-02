@@ -1,6 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include "Game.h"
+#include "include/Game.h"
 
 int main() {
     SetConsoleOutputCP(65001);

@@ -1,5 +1,5 @@
-#include "Pokemon.h"
-#include "Equipment.h"
+#include "../include/Pokemon.h"
+#include "../include/Equipment.h"
 #include <iostream>
 #include <random>
 #include <vector>
