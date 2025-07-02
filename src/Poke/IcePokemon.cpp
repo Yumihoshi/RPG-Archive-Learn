@@ -21,8 +21,8 @@ void IcePokemon::useSkill(std::shared_ptr<Pokemon> target)
         int damage = baseAttack * 1.5; // 150% of base attack
         target->takeDamage(damage);
         std::cout << name << " 对 " << target->name << " 造成了 " << damage << " 点伤害！" << std::endl;
-        // Reduce target's attack for a few turns (this would require a status effect system)
-        std::cout << target->name << " 的攻击力降低了！" << std::endl;
+        target->applyStatusEffect("Frozen", 3);
+        std::cout << target->name << " 被冻结了3回合！" << std::endl;
     }
     else
     {

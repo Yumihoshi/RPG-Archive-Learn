@@ -696,7 +696,14 @@ void Game::startBattle()
             // Enemy turn
             std::cout << enemyActivePokemon->name << " 发动了攻击！"
                       << std::endl;
-            battleTurn(enemyActivePokemon, playerActivePokemon);
+            if (enemyActivePokemon->hasStatusEffect("Frozen"))
+            {
+                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！" << std::endl;
+            }
+            else
+            {
+                battleTurn(enemyActivePokemon, playerActivePokemon);
+            }
 
             if (playerActivePokemon->isFainted())
             {
@@ -707,6 +714,8 @@ void Game::startBattle()
             // Regenerate magic for both Pokemon at the end of turn
             playerActivePokemon->restoreMagic(playerActivePokemon->magicRegen);
             enemyActivePokemon->restoreMagic(enemyActivePokemon->magicRegen);
+            playerActivePokemon->decrementStatusEffects();
+            enemyActivePokemon->decrementStatusEffects();
         }
         if (playerActivePokemon->isFainted() || enemyActivePokemon)
         { // If enemyActivePokemon is not null, it means player ran away or battle ended prematurely
@@ -780,7 +789,14 @@ void Game::startBattle()
             // Enemy turn
             std::cout << enemyActivePokemon->name << " 发动了攻击！"
                       << std::endl;
-            battleTurn(enemyActivePokemon, playerActivePokemon);
+            if (enemyActivePokemon->hasStatusEffect("Frozen"))
+            {
+                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！" << std::endl;
+            }
+            else
+            {
+                battleTurn(enemyActivePokemon, playerActivePokemon);
+            }
 
             if (playerActivePokemon->isFainted())
             {
@@ -790,6 +806,8 @@ void Game::startBattle()
             }
             playerActivePokemon->restoreMagic(playerActivePokemon->magicRegen);
             enemyActivePokemon->restoreMagic(enemyActivePokemon->magicRegen);
+            playerActivePokemon->decrementStatusEffects();
+            enemyActivePokemon->decrementStatusEffects();
         }
     }
     if (enemyActivePokemon)

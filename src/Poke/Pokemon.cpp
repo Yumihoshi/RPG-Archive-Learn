@@ -59,6 +59,7 @@ Pokemon::Pokemon(const Pokemon &other) :
         defense(other.defense),
         evasionRate(other.evasionRate),
         criticalRate(other.criticalRate),
+        statusEffects(other.statusEffects),
         accessory(nullptr),
         armor(nullptr)
 {
@@ -72,7 +73,7 @@ Pokemon::Pokemon(const Pokemon &other) :
     }
 }
 
-Pokemon &Pokemon::operator=(const Pokemon &other)
+    Pokemon &Pokemon::operator=(const Pokemon &other)
 {
     if (this == &other)
     {
@@ -93,6 +94,7 @@ Pokemon &Pokemon::operator=(const Pokemon &other)
     defense = other.defense;
     evasionRate = other.evasionRate;
     criticalRate = other.criticalRate;
+    statusEffects = other.statusEffects;
 
     // Deep copy equipment
     accessory = nullptr;
@@ -107,6 +109,38 @@ Pokemon &Pokemon::operator=(const Pokemon &other)
     }
 
     return *this;
+}
+
+void Pokemon::applyStatusEffect(const std::string& effectName, int duration)
+{
+    statusEffects[effectName] = duration;
+}
+
+void Pokemon::removeStatusEffect(const std::string& effectName)
+{
+    statusEffects.erase(effectName);
+}
+
+bool Pokemon::hasStatusEffect(const std::string& effectName) const
+{
+    return statusEffects.count(effectName) > 0;
+}
+
+void Pokemon::decrementStatusEffects()
+{
+    std::vector<std::string> effectsToRemove;
+    for (auto& pair : statusEffects)
+    {
+        pair.second--;
+        if (pair.second <= 0)
+        {
+            effectsToRemove.push_back(pair.first);
+        }
+    }
+    for (const auto& effect : effectsToRemove)
+    {
+        removeStatusEffect(effect);
+    }
 }
 
 nlohmann::json Pokemon::toJson() const
@@ -125,6 +159,7 @@ nlohmann::json Pokemon::toJson() const
     j["defense"] = defense;
     j["evasionRate"] = evasionRate;
     j["criticalRate"] = criticalRate;
+    j["statusEffects"] = statusEffects;
     if (accessory)
     {
         j["accessory"] = accessory->toJson();
