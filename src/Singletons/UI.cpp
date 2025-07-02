@@ -67,9 +67,9 @@ void UI::showLoginScreen()
                     {
                         std::cout << "欢迎新玩家！请选择你的初始宝可梦："
                                   << std::endl;
-                        std::cout << "1. 火属性 (小火龙)" << std::endl;
-                        std::cout << "2. 草属性 (草苗龟)" << std::endl;
-                        std::cout << "3. 冰属性 (迷你冰)" << std::endl;
+                        std::cout << "1. 火属性" << std::endl;
+                        std::cout << "2. 草属性" << std::endl;
+                        std::cout << "3. 冰属性" << std::endl;
                         int pokemonChoice;
                         while (true)
                         {
