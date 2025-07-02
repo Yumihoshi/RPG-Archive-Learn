@@ -16,12 +16,8 @@ void GrassPokemon::useSkill(std::shared_ptr<Pokemon> target)
     if (currentMagic >= 10)
     {
         currentMagic -= 10;
-        std::cout << name << " 释放了藤蔓鞭打！" << std::endl;
-        // Example skill effect: deals damage and heals self
-        int damage = baseAttack * 1.2; // 120% of base attack
-        target->takeDamage(damage);
-        std::cout << name << " 对 " << target->name << " 造成了 " << damage << " 点伤害！" << std::endl;
-        int healAmount = maxHealth * 0.1; // Heals 10% of max health
+        std::cout << name << " 释放了光合作用！" << std::endl;
+        int healAmount = 10;
         heal(healAmount);
         std::cout << name << " 恢复了 " << healAmount << " 点生命值！" << std::endl;
     }
