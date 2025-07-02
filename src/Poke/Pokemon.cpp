@@ -1,20 +1,23 @@
-#include "../include/Pokemon.h"
-#include "../include/Equipment.h"
 #include <iostream>
 #include <random>
 #include <vector>
 #include <algorithm>
 #include <nlohmann/json.hpp>
+#include "../../include/Poke/Pokemon.h"
+#include "../../include/Equip/Equipment.h"
+#include "../../include/Equip/Accessory.h"
+#include "../../include/Equip/Armor.h"
 
 // Constructor
 Pokemon::Pokemon(Type type, int level) :
-    type(type),
-    level(level),
-    experience(0),
-    currentHealth(0),
-    currentMagic(0),
-    accessory(nullptr),
-    armor(nullptr) {
+        type(type),
+        level(level),
+        experience(0),
+        currentHealth(0),
+        currentMagic(0),
+        accessory(nullptr),
+        armor(nullptr)
+{
     initializeStats(type);
     applyRandomFluctuation();
     name = getRandomName(type);
@@ -22,44 +25,39 @@ Pokemon::Pokemon(Type type, int level) :
     currentMagic = maxMagic;
 }
 
-Pokemon::~Pokemon() {
-    delete accessory;
-    delete armor;
-}
-
-Pokemon::Pokemon(const Pokemon& other) :
-    name(other.name),
-    type(other.type),
-    level(other.level),
-    experience(other.experience),
-    maxHealth(other.maxHealth),
-    currentHealth(other.currentHealth),
-    maxMagic(other.maxMagic),
-    currentMagic(other.currentMagic),
-    baseAttack(other.baseAttack),
-    magicRegen(other.magicRegen),
-    defense(other.defense),
-    evasionRate(other.evasionRate),
-    criticalRate(other.criticalRate),
-    accessory(nullptr),
-    armor(nullptr)
+Pokemon::Pokemon(const Pokemon &other) :
+        name(other.name),
+        type(other.type),
+        level(other.level),
+        experience(other.experience),
+        maxHealth(other.maxHealth),
+        currentHealth(other.currentHealth),
+        maxMagic(other.maxMagic),
+        currentMagic(other.currentMagic),
+        baseAttack(other.baseAttack),
+        magicRegen(other.magicRegen),
+        defense(other.defense),
+        evasionRate(other.evasionRate),
+        criticalRate(other.criticalRate),
+        accessory(nullptr),
+        armor(nullptr)
 {
-    if (other.accessory) {
-        accessory = new Accessory(*other.accessory);
+    if (other.accessory)
+    {
+        accessory = std::make_shared<Accessory>(*other.accessory);
     }
-    if (other.armor) {
-        armor = new Armor(*other.armor);
+    if (other.armor)
+    {
+        armor = std::make_shared<Armor>(*other.armor);
     }
 }
 
-Pokemon& Pokemon::operator=(const Pokemon& other) {
-    if (this == &other) {
+Pokemon &Pokemon::operator=(const Pokemon &other)
+{
+    if (this == &other)
+    {
         return *this;
     }
-
-    // Clean up existing resources
-    delete accessory;
-    delete armor;
 
     // Copy data members
     name = other.name;
@@ -79,17 +77,20 @@ Pokemon& Pokemon::operator=(const Pokemon& other) {
     // Deep copy equipment
     accessory = nullptr;
     armor = nullptr;
-    if (other.accessory) {
-        accessory = new Accessory(*other.accessory);
+    if (other.accessory)
+    {
+        accessory = std::make_shared<Accessory>(*other.accessory);
     }
-    if (other.armor) {
-        armor = new Armor(*other.armor);
+    if (other.armor)
+    {
+        armor = std::make_shared<Armor>(*other.armor);
     }
 
     return *this;
 }
 
-nlohmann::json Pokemon::toJson() const {
+nlohmann::json Pokemon::toJson() const
+{
     nlohmann::json j;
     j["name"] = name;
     j["type"] = type;
@@ -104,16 +105,19 @@ nlohmann::json Pokemon::toJson() const {
     j["defense"] = defense;
     j["evasionRate"] = evasionRate;
     j["criticalRate"] = criticalRate;
-    if (accessory) {
+    if (accessory)
+    {
         j["accessory"] = accessory->toJson();
     }
-    if (armor) {
+    if (armor)
+    {
         j["armor"] = armor->toJson();
     }
     return j;
 }
 
-Pokemon Pokemon::fromJson(const nlohmann::json& j) {
+Pokemon Pokemon::fromJson(const nlohmann::json &j)
+{
     Pokemon p(static_cast<Pokemon::Type>(j["type"]), j["level"]);
     p.name = j["name"];
     p.experience = j["experience"];
@@ -122,21 +126,26 @@ Pokemon Pokemon::fromJson(const nlohmann::json& j) {
     p.maxMagic = j["maxMagic"];
     p.currentMagic = j["currentMagic"];
     p.baseAttack = j["baseAttack"];
-    p.magicRegen = j["magicRegen"];    p.defense = j["defense"];
+    p.magicRegen = j["magicRegen"];
+    p.defense = j["defense"];
     p.evasionRate = j["evasionRate"];
     p.criticalRate = j["criticalRate"];
-    if (j.contains("accessory")) {
+    if (j.contains("accessory"))
+    {
         p.accessory = Accessory::fromJson(j["accessory"]);
     }
-    if (j.contains("armor")) {
+    if (j.contains("armor"))
+    {
         p.armor = Armor::fromJson(j["armor"]);
     }
     return p;
 }
 
 // Initialize base stats based on Pokemon type
-void Pokemon::initializeStats(Type type) {
-    switch (type) {
+void Pokemon::initializeStats(Type type)
+{
+    switch (type)
+    {
         case FIRE:
             maxHealth = 120;
             maxMagic = 30;
@@ -186,7 +195,8 @@ void Pokemon::initializeStats(Type type) {
 }
 
 // Apply random fluctuation to stats
-void Pokemon::applyRandomFluctuation() {
+void Pokemon::applyRandomFluctuation()
+{
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> distrib(0.9, 1.1);
@@ -201,12 +211,14 @@ void Pokemon::applyRandomFluctuation() {
 }
 
 // Get a random name based on Pokemon type
-std::string Pokemon::getRandomName(Type type) {
+std::string Pokemon::getRandomName(Type type)
+{
     std::random_device rd;
     std::mt19937 gen(rd());
     std::vector<std::string> names;
 
-    switch (type) {
+    switch (type)
+    {
         case FIRE:
             names = {"小火龙", "烈焰马", "暖暖猪", "火狐狸"};
             break;
@@ -228,9 +240,11 @@ std::string Pokemon::getRandomName(Type type) {
 }
 
 // Handle experience gain and leveling up
-void Pokemon::gainExperience(int exp) {
+void Pokemon::gainExperience(int exp)
+{
     experience += exp;
-    while (experience >= 100 && level < 10) {
+    while (experience >= 100 && level < 10)
+    {
         experience -= 100;
         level++;
         std::cout << name << "升级了！现在是等级 " << level << "！" << std::endl;
@@ -245,45 +259,64 @@ void Pokemon::gainExperience(int exp) {
 }
 
 // Handle taking damage
-void Pokemon::takeDamage(int damage) {
+void Pokemon::takeDamage(int damage)
+{
     currentHealth -= damage;
-    if (currentHealth < 0) {
+    if (currentHealth < 0)
+    {
         currentHealth = 0;
     }
 }
 
 // Handle healing
-void Pokemon::heal(int amount) {
+void Pokemon::heal(int amount)
+{
     currentHealth += amount;
-    if (currentHealth > maxHealth) {
+    if (currentHealth > maxHealth)
+    {
         currentHealth = maxHealth;
     }
 }
 
 // Handle magic restoration
-void Pokemon::restoreMagic(int amount) {
+void Pokemon::restoreMagic(int amount)
+{
     currentMagic += amount;
-    if (currentMagic > maxMagic) {
+    if (currentMagic > maxMagic)
+    {
         currentMagic = maxMagic;
     }
 }
 
 // Check if the Pokemon is fainted
-bool Pokemon::isFainted() const {
+bool Pokemon::isFainted() const
+{
     return currentHealth <= 0;
 }
 
 // Display Pokemon stats
-void Pokemon::displayStats() const {
+void Pokemon::displayStats() const
+{
     std::cout << "--------------------" << std::endl;
     std::cout << "名字: " << name << std::endl;
     std::cout << "类型: ";
-    switch (type) {
-        case FIRE: std::cout << "火"; break;
-        case GRASS: std::cout << "草"; break;
-        case ICE: std::cout << "冰"; break;
-        case FLYING: std::cout << "飞行"; break;
-        case GHOST: std::cout << "幽灵"; break;
+    switch (type)
+    {
+        case FIRE:
+            std::cout << "火";
+            break;
+        case GRASS:
+            std::cout << "草";
+            break;
+        case ICE:
+            std::cout << "冰";
+            break;
+        case FLYING:
+            std::cout << "飞行";
+            break;
+        case GHOST:
+            std::cout << "幽灵";
+            break;
     }
     std::cout << std::endl;
     std::cout << "等级: " << level << std::endl;
