@@ -22,7 +22,7 @@ UserManager::login(const std::string &username, const std::string &password)
     auto it = users.find(username);
     if (it != users.end() && it->second->getPassword() == password)
     {
-        return std::make_shared<User>(*(it->second));
+        return it->second;
     }
     return nullptr;
 }
@@ -32,7 +32,7 @@ void UserManager::registerUser(const std::string &username,
 {
     if (users.find(username) == users.end())
     {
-        users[username] = new User(username, password, type);
+        users[username] = std::make_shared<User>(username, password, type);
         saveUsers();
         std::cout << "用户 " << username << " 注册成功！" << std::endl;
     }
@@ -60,7 +60,7 @@ void UserManager::saveUsers()
                 nlohmann::json pokemonListJson = nlohmann::json::array();
                 for (const auto &pokemon: slot)
                 {
-                    pokemonListJson.push_back(pokemon.toJson());
+                    pokemonListJson.push_back(pokemon->toJson());
                 }
                 saveSlotsJson.push_back(pokemonListJson);
             }
@@ -96,7 +96,7 @@ void UserManager::loadUsers()
             std::string username = it.key();
             std::string password = it.value()["password"];
             User::UserType type = it.value()["type"];
-            User *user = new User(username, password, type);
+            std::shared_ptr<User> user = std::make_shared<User>(username, password, type);
 
             if (type == User::PLAYER)
             {
@@ -104,11 +104,11 @@ void UserManager::loadUsers()
                 {
                     for (const auto &slotJson: it.value()["saveSlots"])
                     {
-                        std::vector<Pokemon> pokemonList;
+                        std::vector<std::shared_ptr<Pokemon>> pokemonList;
                         for (const auto &pokemonJson: slotJson)
                         {
                             pokemonList.push_back(
-                                    Pokemon::fromJson(pokemonJson));
+                                    std::make_shared<Pokemon>(Pokemon::fromJson(pokemonJson)));
                         }
                         user->saveSlots.push_back(pokemonList);
                     }
@@ -134,7 +134,6 @@ void UserManager::deleteUser(const std::string &username)
     auto it = users.find(username);
     if (it != users.end())
     {
-        delete it->second; // Free memory
         users.erase(it);
         saveUsers();
         std::cout << "用户 " << username << " 已删除。" << std::endl;
@@ -174,7 +173,7 @@ void UserManager::listAllUsers() const
     }
 }
 
-User *UserManager::getUserByUsername(const std::string &username) const
+std::shared_ptr<User> UserManager::getUserByUsername(const std::string &username) const
 {
     auto it = users.find(username);
     if (it != users.end())

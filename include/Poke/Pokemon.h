@@ -21,17 +21,17 @@ public:
     static Pokemon fromJson(const nlohmann::json &j);
 
 public:
-    enum Type
+    enum PokeType
     {
         FIRE, GRASS, ICE, FLYING, GHOST
     };
 
-    Pokemon(Pokemon& other);
-    Pokemon(Type type, int level = 1);
+    Pokemon(PokeType type, int level = 1);
+    Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate);
 
     // Basic attributes
     std::string name;
-    Type type;
+    PokeType type;
     int level;
     int experience;
     int maxHealth;
@@ -65,11 +65,11 @@ public:
     Pokemon &operator=(const Pokemon &other);
 
 private:
-    void initializeStats(Type type);
+    void initializeStats(PokeType type);
 
     void applyRandomFluctuation();
 
-    std::string getRandomName(Type type);
+    std::string getRandomName(PokeType type);
 };
 
 #endif // POKEMON_H

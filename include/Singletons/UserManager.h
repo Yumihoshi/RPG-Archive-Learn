@@ -34,10 +34,10 @@ public:
 
     void listAllUsers() const;
 
-    User *getUserByUsername(const std::string &username) const;
+    std::shared_ptr<User> getUserByUsername(const std::string &username) const;
 
 private:
-    std::map<std::string, User *> users; // Map username to User object
+    std::map<std::string, std::shared_ptr<User>> users; // Map username to User object
 
     // Helper to get file path for user data
     std::string getUserDataFilePath() const;

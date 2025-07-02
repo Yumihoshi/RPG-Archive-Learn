@@ -49,7 +49,7 @@ nlohmann::json Armor::toJson() const
 
 std::shared_ptr<Armor> Armor::fromJson(const nlohmann::json &j)
 {
-    return std::make_shared<Armor>(Armor(j["name"], j["healthBonus"], j["evasionRateBonus"]));
+    return std::make_shared<Armor>(j["name"].get<std::string>(), j["healthBonus"].get<int>(), j["evasionRateBonus"].get<double>());
 }
 
 Armor::Armor(const Armor &other)

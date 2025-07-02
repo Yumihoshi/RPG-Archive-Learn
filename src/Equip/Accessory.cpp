@@ -55,9 +55,7 @@ nlohmann::json Accessory::toJson() const
 
 std::shared_ptr<Accessory> Accessory::fromJson(const nlohmann::json &j)
 {
-    return std::make_shared<Accessory>(
-            Accessory(j["name"], j["attackBonus"], j["magicBonus"],
-                      j["criticalRateBonus"]));
+    return std::make_shared<Accessory>(j["name"].get<std::string>(), j["attackBonus"].get<int>(), j["magicBonus"].get<int>(), j["criticalRateBonus"].get<double>());
 }
 
 Accessory::Accessory(const Accessory &other)

@@ -8,10 +8,8 @@
 #include "../../include/Equip/Accessory.h"
 #include "../../include/Equip/Armor.h"
 
-// Constructor
-Pokemon::Pokemon(Pokemon& other) : Pokemon(const_cast<const Pokemon&>(other)) {}
-
-Pokemon::Pokemon(Type type, int level) :
+// Constructor for new Pokemon
+Pokemon::Pokemon(PokeType type, int level) :
         type(type),
         level(level),
         experience(0),
@@ -25,6 +23,26 @@ Pokemon::Pokemon(Type type, int level) :
     name = getRandomName(type);
     currentHealth = maxHealth;
     currentMagic = maxMagic;
+}
+
+// Constructor for loading from JSON
+Pokemon::Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
+        name(name),
+        type(type),
+        level(level),
+        experience(experience),
+        maxHealth(maxHealth),
+        currentHealth(currentHealth),
+        maxMagic(maxMagic),
+        currentMagic(currentMagic),
+        baseAttack(baseAttack),
+        magicRegen(magicRegen),
+        defense(defense),
+        evasionRate(evasionRate),
+        criticalRate(criticalRate),
+        accessory(nullptr),
+        armor(nullptr)
+{
 }
 
 Pokemon::Pokemon(const Pokemon &other) :
@@ -120,18 +138,20 @@ nlohmann::json Pokemon::toJson() const
 
 Pokemon Pokemon::fromJson(const nlohmann::json &j)
 {
-    Pokemon p(static_cast<Pokemon::Type>(j["type"]), j["level"]);
-    p.name = j["name"];
-    p.experience = j["experience"];
-    p.maxHealth = j["maxHealth"];
-    p.currentHealth = j["currentHealth"];
-    p.maxMagic = j["maxMagic"];
-    p.currentMagic = j["currentMagic"];
-    p.baseAttack = j["baseAttack"];
-    p.magicRegen = j["magicRegen"];
-    p.defense = j["defense"];
-    p.evasionRate = j["evasionRate"];
-    p.criticalRate = j["criticalRate"];
+    Pokemon p(j["name"].get<std::string>(),
+              static_cast<Pokemon::PokeType>(j["type"]),
+              j["level"].get<int>(),
+              j["experience"].get<int>(),
+              j["maxHealth"].get<int>(),
+              j["currentHealth"].get<int>(),
+              j["maxMagic"].get<int>(),
+              j["currentMagic"].get<int>(),
+              j["baseAttack"].get<int>(),
+              j["magicRegen"].get<int>(),
+              j["defense"].get<int>(),
+              j["evasionRate"].get<double>(),
+              j["criticalRate"].get<double>());
+
     if (j.contains("accessory"))
     {
         p.accessory = Accessory::fromJson(j["accessory"]);
@@ -144,7 +164,7 @@ Pokemon Pokemon::fromJson(const nlohmann::json &j)
 }
 
 // Initialize base stats based on Pokemon type
-void Pokemon::initializeStats(Type type)
+void Pokemon::initializeStats(PokeType type)
 {
     switch (type)
     {
@@ -213,7 +233,7 @@ void Pokemon::applyRandomFluctuation()
 }
 
 // Get a random name based on Pokemon type
-std::string Pokemon::getRandomName(Type type)
+std::string Pokemon::getRandomName(PokeType type)
 {
     std::random_device rd;
     std::mt19937 gen(rd());

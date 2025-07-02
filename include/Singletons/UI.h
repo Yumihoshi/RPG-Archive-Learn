@@ -15,16 +15,6 @@
 class UI : public Singleton<UI>
 {
 public:
-    void showLoginScreen();
-
-    void showAdminMenu();
-
-    void showPlayerMainMenu();
-
-    void showSaveLoadMenu();
-
-    void showPokemonManagementMenu();
-
     void displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const;
 
     void displayBattleStatus() const;

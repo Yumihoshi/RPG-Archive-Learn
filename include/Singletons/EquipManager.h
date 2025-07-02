@@ -11,11 +11,12 @@
 #include "../Base/Singleton.h"
 #include "../Common/Types.h"
 #include "../Poke/Pokemon.h"
+#include "../Equip/Equipment.h"
 
 class EquipManager : public Singleton<EquipManager>
 {
 public:
-    void equipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon);
+    void equipPokemon(const std::shared_ptr<Equipment>& equipment, const std::shared_ptr<Pokemon>& pokemon);
     void unequipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon);
 private:
     EquipManager() = default;

@@ -9,92 +9,58 @@
 #include "../../include/Equip/Armor.h"
 #include "../../include/Equip/Accessory.h"
 
-void EquipManager::equipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon)
+void EquipManager::equipPokemon(const std::shared_ptr<Equipment>& equipment, const std::shared_ptr<Pokemon>& pokemon)
 {
-    switch (eType)
+    if (equipment->type == Equipment::ACCESSORY)
     {
-        case EquipType::Accessory:
+        std::shared_ptr<Accessory> newAccessory = std::dynamic_pointer_cast<Accessory>(equipment);
+        if (pokemon->accessory)
         {
-            // For simplicity, create a new Armor. In a real game, this would come from inventory.
-            std::shared_ptr<Armor> newArmor = std::make_shared<Armor>(
-                    "铁壁护甲",
-                    20, 0.02);
-            if (pokemon->armor)
-            {
-                std::cout << pokemon->name << " 已经装备了 "
-                          << pokemon->armor->name
-                          << "。是否替换？(y/n): ";
-                std::string confirm;
-                std::getline(std::cin, confirm);
-                if (confirm == "y")
-                {
-                    pokemon->armor->removeEffect(pokemon);
-                    pokemon->armor = nullptr;
-                }
-            }
-            pokemon->armor = newArmor;
-            pokemon->armor->applyEffect(pokemon);
-            std::cout << pokemon->name << " 装备了 " << pokemon->armor->name
-                      << "。"
-                      << std::endl;
-            break;
+            pokemon->accessory->removeEffect(pokemon);
         }
-        case EquipType::Armor:
+        pokemon->accessory = newAccessory;
+        pokemon->accessory->applyEffect(pokemon);
+        std::cout << pokemon->name << " 装备了 " << pokemon->accessory->name << "。" << std::endl;
+    }
+    else if (equipment->type == Equipment::ARMOR)
+    {
+        std::shared_ptr<Armor> newArmor = std::dynamic_pointer_cast<Armor>(equipment);
+        if (pokemon->armor)
         {
-            // For simplicity, create a new Accessory. In a real game, this would come from inventory.
-            std::shared_ptr<Accessory> newAccessory = std::make_shared<Accessory>(
-                    "力量手环", 5, 0, 0.05);
-            if (pokemon->accessory)
-            {
-                std::cout << pokemon->name << " 已经装备了 "
-                          << pokemon->accessory->name << "。是否替换？(y/n): ";
-                std::string confirm;
-                std::getline(std::cin, confirm);
-                if (confirm == "y")
-                {
-                    pokemon->accessory->removeEffect(pokemon);
-                    pokemon->accessory = nullptr;
-                }
-            }
-            pokemon->accessory = newAccessory;
-            pokemon->accessory->applyEffect(pokemon);
-            std::cout << pokemon->name << " 装备了 " << pokemon->accessory->name
-                      << "。" << std::endl;
-            break;
+            pokemon->armor->removeEffect(pokemon);
         }
+        pokemon->armor = newArmor;
+        pokemon->armor->applyEffect(pokemon);
+        std::cout << pokemon->name << " 装备了 " << pokemon->armor->name << "。" << std::endl;
     }
 }
 
 void EquipManager::unequipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon)
 {
-    switch (eType)
+    if (eType == EquipType::Accessory)
     {
-        case EquipType::Accessory:
-            if (pokemon->armor)
-            {
-                pokemon->armor->removeEffect(pokemon);
-                std::cout << pokemon->name << " 卸下了 " << pokemon->armor->name
-                          << "。" << std::endl;
-                pokemon->armor = nullptr;
-            }
-            else
-            {
-                std::cout << pokemon->name << " 没有装备防具。" << std::endl;
-            }
-            break;
-        case EquipType::Armor:
-            if (pokemon->accessory)
-            {
-                pokemon->accessory->removeEffect(pokemon);
-                std::cout << pokemon->name << " 卸下了 "
-                          << pokemon->accessory->name
-                          << "。" << std::endl;
-                pokemon->accessory = nullptr;
-            }
-            else
-            {
-                std::cout << pokemon->name << " 没有装备饰品。" << std::endl;
-            }
-            break;
+        if (pokemon->accessory)
+        {
+            pokemon->accessory->removeEffect(pokemon);
+            std::cout << pokemon->name << " 卸下了 " << pokemon->accessory->name << "。" << std::endl;
+            pokemon->accessory = nullptr;
+        }
+        else
+        {
+            std::cout << pokemon->name << " 没有装备饰品。" << std::endl;
+        }
+    }
+    else if (eType == EquipType::Armor)
+    {
+        if (pokemon->armor)
+        {
+            pokemon->armor->removeEffect(pokemon);
+            std::cout << pokemon->name << " 卸下了 " << pokemon->armor->name << "。" << std::endl;
+            pokemon->armor = nullptr;
+        }
+        else
+        {
+            std::cout << pokemon->name << " 没有装备防具。" << std::endl;
+        }
     }
 }

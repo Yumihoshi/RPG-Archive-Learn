@@ -17,6 +17,11 @@ public:
 public:
     void run();
     void clearInputBuffer();
+    void loginMenu();
+    void adminMenu();
+    void playerMainMenu();
+    void saveLoadMenu();
+    void chooseInitialPokemon(std::shared_ptr<User> player);
     void startBattle();
     void loadPlayerSave(std::shared_ptr<User> player, int slotIndex);
     void savePlayerSave(std::shared_ptr<User> player, int slotIndex);
