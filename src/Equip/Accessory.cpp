@@ -18,21 +18,21 @@ Accessory::Accessory(std::string name, int attackBonus, int magicBonus,
         criticalRateBonus(criticalRateBonus)
 {}
 
-void Accessory::applyEffect(std::shared_ptr<Pokemon> pokemon)
+void Accessory::applyEffect(Pokemon& pokemon)
 {
-    pokemon->baseAttack += attackBonus;
-    pokemon->maxMagic += magicBonus;
-    pokemon->currentMagic += magicBonus; // Also increase current magic when max magic increases
-    pokemon->criticalRate += criticalRateBonus;
+    pokemon.baseAttack += attackBonus;
+    pokemon.maxMagic += magicBonus;
+    pokemon.currentMagic += magicBonus; // Also increase current magic when max magic increases
+    pokemon.criticalRate += criticalRateBonus;
 }
 
-void Accessory::removeEffect(std::shared_ptr<Pokemon> pokemon)
+void Accessory::removeEffect(Pokemon& pokemon)
 {
-    pokemon->baseAttack -= attackBonus;
-    pokemon->maxMagic -= magicBonus;
-    pokemon->currentMagic = std::min(pokemon->currentMagic,
-                                     pokemon->maxMagic); // Adjust current magic if it exceeds new max
-    pokemon->criticalRate -= criticalRateBonus;
+    pokemon.baseAttack -= attackBonus;
+    pokemon.maxMagic -= magicBonus;
+    pokemon.currentMagic = std::min(pokemon.currentMagic,
+                                     pokemon.maxMagic); // Adjust current magic if it exceeds new max
+    pokemon.criticalRate -= criticalRateBonus;
 }
 
 void Accessory::displayStats() const

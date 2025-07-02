@@ -349,8 +349,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().equipPokemon(EquipType::Armor, std::make_shared<Pokemon>(
-                        Game::GetInstance().currentUser->saveSlots[0][pokemonId]));
+                auto& pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                Game::GetInstance().equipPokemon(EquipType::Armor, pokemon);
             }
             else
             {
@@ -362,8 +362,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().unequipPokemon(EquipType::Armor, std::make_shared<Pokemon>(
-                        Game::GetInstance().currentUser->saveSlots[0][pokemonId]));
+                auto& pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                Game::GetInstance().unequipPokemon(EquipType::Armor, pokemon);
             }
             else
             {
@@ -375,9 +375,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().equipPokemon(EquipType::Accessory,
-                        std::make_shared<Pokemon>(
-                                Game::GetInstance().currentUser->saveSlots[0][pokemonId])); // Re-using equip for accessory
+                auto& pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                Game::GetInstance().equipPokemon(EquipType::Accessory, pokemon); // Re-using equip for accessory
             }
             else
             {
@@ -389,9 +388,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().unequipPokemon(EquipType::Accessory,
-                        std::make_shared<Pokemon>(
-                                Game::GetInstance().currentUser->saveSlots[0][pokemonId])); // Re-using unequip for accessory
+                auto &pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                Game::GetInstance().unequipPokemon(EquipType::Accessory, pokemon); // Re-using unequip for accessory
             }
             else
             {

@@ -21,9 +21,9 @@ public:
     std::string name;
     Type type;
 
-    virtual void applyEffect(std::shared_ptr<Pokemon> pokemon) = 0;
+    virtual void applyEffect(Pokemon& pokemon) = 0;
 
-    virtual void removeEffect(std::shared_ptr<Pokemon> pokemon) = 0;
+    virtual void removeEffect(Pokemon& pokemon) = 0;
 
     virtual void displayStats() const = 0;
 };

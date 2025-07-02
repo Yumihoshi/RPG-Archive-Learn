@@ -328,7 +328,7 @@ void Pokemon::displayStats() const
     std::cout << "防御力: " << defense << std::endl;
     std::cout << "闪避率: " << evasionRate << std::endl;
     std::cout << "暴击率: " << criticalRate << std::endl;
-    std::cout << "饰品: " << (accessory ? "已装备" : "无") << std::endl;
-    std::cout << "防具: " << (armor ? "已装备" : "无") << std::endl;
+    std::cout << "饰品: " << (accessory ? accessory->name : "无") << std::endl;
+    std::cout << "防具: " << (armor ? armor->name : "无") << std::endl;
     std::cout << "--------------------" << std::endl;
 }

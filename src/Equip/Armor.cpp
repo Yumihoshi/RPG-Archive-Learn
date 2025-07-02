@@ -16,19 +16,19 @@ Armor::Armor(std::string name, int healthBonus, double evasionRateBonus) :
         evasionRateBonus(evasionRateBonus)
 {}
 
-void Armor::applyEffect(std::shared_ptr<Pokemon> pokemon)
+void Armor::applyEffect(Pokemon& pokemon)
 {
-    pokemon->maxHealth += healthBonus;
-    pokemon->currentHealth += healthBonus; // Also increase current health when max health increases
-    pokemon->evasionRate += evasionRateBonus;
+    pokemon.maxHealth += healthBonus;
+    pokemon.currentHealth += healthBonus; // Also increase current health when max health increases
+    pokemon.evasionRate += evasionRateBonus;
 }
 
-void Armor::removeEffect(std::shared_ptr<Pokemon> pokemon)
+void Armor::removeEffect(Pokemon& pokemon)
 {
-    pokemon->maxHealth -= healthBonus;
-    pokemon->currentHealth = std::min(pokemon->currentHealth,
-                                      pokemon->maxHealth); // Adjust current health if it exceeds new max
-    pokemon->evasionRate -= evasionRateBonus;
+    pokemon.maxHealth -= healthBonus;
+    pokemon.currentHealth = std::min(pokemon.currentHealth,
+                                      pokemon.maxHealth); // Adjust current health if it exceeds new max
+    pokemon.evasionRate -= evasionRateBonus;
 }
 
 void Armor::displayStats() const

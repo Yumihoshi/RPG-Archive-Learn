@@ -19,9 +19,9 @@ public:
     int healthBonus;
     double evasionRateBonus;
 
-    void applyEffect(std::shared_ptr<Pokemon> pokemon) override;
+    void applyEffect(Pokemon& pokemon) override;
 
-    void removeEffect(std::shared_ptr<Pokemon> pokemon) override;
+    void removeEffect(Pokemon& pokemon) override;
 
     void displayStats() const override;
 
