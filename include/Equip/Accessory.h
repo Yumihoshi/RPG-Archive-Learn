@@ -31,7 +31,7 @@ public:
 
     static std::shared_ptr<Accessory> fromJson(const nlohmann::json &j);
 
-    // Copy constructor and assignment operator
+    // 复制构造函数和赋值运算符
     Accessory(const Accessory &other);
 
     Accessory &operator=(const Accessory &other);

@@ -12,7 +12,8 @@
 #include "../../include/Singletons/UserManager.h"
 #include "../../include/Singletons/EquipManager.h"
 
-void UI::displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const
+void UI::displayAllPokemon(
+        const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const
 {
     if (pokemonList.empty())
     {
@@ -30,14 +31,18 @@ void UI::displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonL
 void UI::displayBattleStatus() const
 {
     std::cout << "\n--- 战斗状态 ---" << std::endl;
-    std::cout << "你的宝可梦: " << Game::GetInstance().playerActivePokemon->name << " (HP: "
+    std::cout << "你的宝可梦: " << Game::GetInstance().playerActivePokemon->name
+              << " (HP: "
               << Game::GetInstance().playerActivePokemon->currentHealth << "/"
               << Game::GetInstance().playerActivePokemon->maxHealth << ", MP: "
               << Game::GetInstance().playerActivePokemon->currentMagic << "/"
-              << Game::GetInstance().playerActivePokemon->maxMagic << ")" << std::endl;
-    std::cout << "敌方宝可梦: " << Game::GetInstance().enemyActivePokemon->name << " (HP: "
+              << Game::GetInstance().playerActivePokemon->maxMagic << ")"
+              << std::endl;
+    std::cout << "敌方宝可梦: " << Game::GetInstance().enemyActivePokemon->name
+              << " (HP: "
               << Game::GetInstance().enemyActivePokemon->currentHealth << "/"
-              << Game::GetInstance().enemyActivePokemon->maxHealth << ")" << std::endl;
+              << Game::GetInstance().enemyActivePokemon->maxHealth << ")"
+              << std::endl;
     std::cout << "--------------------" << std::endl;
 }
 

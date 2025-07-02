@@ -5,9 +5,9 @@
 #include <map>
 #include <random>
 #include <ctime>
-#include <nlohmann/json.hpp> // For JSON serialization/deserialization
+#include <nlohmann/json.hpp>
 
-// Forward declarations for Equipment classes
+// 前向声明
 class Accessory;
 
 class Armor;
@@ -15,20 +15,24 @@ class Armor;
 class Pokemon
 {
 public:
-    // JSON serialization/deserialization
+    // JSON序列化和反序列化
     nlohmann::json toJson() const;
 
-    public:
+public:
     enum PokeType
     {
         FIRE, GRASS, ICE, FLYING, GHOST
     };
 
-    protected:
+protected:
     Pokemon(PokeType type, int level = 1);
-    Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate);
 
-    public:
+    Pokemon(std::string name, PokeType type, int level, int experience,
+            int maxHealth, int currentHealth, int maxMagic, int currentMagic,
+            int baseAttack, int magicRegen, int defense, double evasionRate,
+            double criticalRate);
+
+public:
     std::string name;
     PokeType type;
     int level;
@@ -43,10 +47,10 @@ public:
     double evasionRate;
     double criticalRate;
 
-    // Status effects
+    // 状态效果
     std::map<std::string, int> statusEffects;
 
-    // Equipment slots
+    // 装备槽
     std::shared_ptr<Accessory> accessory;
     std::shared_ptr<Armor> armor;
 
@@ -66,9 +70,12 @@ public:
 
     Pokemon &operator=(const Pokemon &other);
 
-    void applyStatusEffect(const std::string& effectName, int duration);
-    void removeStatusEffect(const std::string& effectName);
-    bool hasStatusEffect(const std::string& effectName) const;
+    void applyStatusEffect(const std::string &effectName, int duration);
+
+    void removeStatusEffect(const std::string &effectName);
+
+    bool hasStatusEffect(const std::string &effectName) const;
+
     void decrementStatusEffects();
 
     virtual void useSkill(std::shared_ptr<Pokemon> target) = 0;

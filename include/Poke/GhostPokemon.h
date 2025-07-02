@@ -10,8 +10,11 @@ public:
 
     void useSkill(std::shared_ptr<Pokemon> target) override;
 
-    // For serialization
-    GhostPokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate);
+    // 序列化用
+    GhostPokemon(std::string name, PokeType type, int level, int experience,
+                 int maxHealth, int currentHealth, int maxMagic,
+                 int currentMagic, int baseAttack, int magicRegen, int defense,
+                 double evasionRate, double criticalRate);
 
     static std::shared_ptr<GhostPokemon> fromJson(const nlohmann::json &j);
 };

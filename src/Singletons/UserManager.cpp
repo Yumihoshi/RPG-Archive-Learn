@@ -97,7 +97,8 @@ void UserManager::loadUsers()
             std::string username = it.key();
             std::string password = it.value()["password"];
             User::UserType type = it.value()["type"];
-            std::shared_ptr<User> user = std::make_shared<User>(username, password, type);
+            std::shared_ptr<User> user = std::make_shared<User>(username,
+                                                                password, type);
 
             if (type == User::PLAYER)
             {
@@ -108,7 +109,8 @@ void UserManager::loadUsers()
                         std::vector<std::shared_ptr<Pokemon>> pokemonList;
                         for (const auto &pokemonJson: slotJson)
                         {
-                            pokemonList.push_back(PokemonFactory::createPokemon(pokemonJson));
+                            pokemonList.push_back(
+                                    PokemonFactory::createPokemon(pokemonJson));
                         }
                         user->saveSlots.push_back(pokemonList);
                     }
@@ -173,7 +175,8 @@ void UserManager::listAllUsers() const
     }
 }
 
-std::shared_ptr<User> UserManager::getUserByUsername(const std::string &username) const
+std::shared_ptr<User>
+UserManager::getUserByUsername(const std::string &username) const
 {
     auto it = users.find(username);
     if (it != users.end())

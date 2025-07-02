@@ -16,10 +16,15 @@
 class EquipManager : public Singleton<EquipManager>
 {
 public:
-    void equipPokemon(const std::shared_ptr<Equipment>& equipment, const std::shared_ptr<Pokemon>& pokemon);
-    void unequipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon);
+    void equipPokemon(const std::shared_ptr<Equipment> &equipment,
+                      const std::shared_ptr<Pokemon> &pokemon);
+
+    void
+    unequipPokemon(EquipType eType, const std::shared_ptr<Pokemon> &pokemon);
+
 private:
     EquipManager() = default;
+
     friend class Singleton<EquipManager>;
 };
 

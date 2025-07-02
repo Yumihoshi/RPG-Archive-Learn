@@ -16,27 +16,42 @@ public:
     std::shared_ptr<Pokemon> enemyActivePokemon;
 public:
     void run();
+
     void clearInputBuffer();
+
     void loginMenu();
+
     void adminMenu();
+
     void playerMainMenu();
+
     void saveLoadMenu();
+
     void chooseInitialPokemon(std::shared_ptr<User> player);
+
     void startBattle();
+
     void loadPlayerSave(std::shared_ptr<User> player, int slotIndex);
+
     void savePlayerSave(std::shared_ptr<User> player, int slotIndex);
-    void selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList);
+
+    void
+    selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList);
+
     void adminViewUserSave();
+
     void adminManageUserPokemon();
+
     void adminManageUserPokemonEquipment();
 
 private:
     Game();
+
     friend class Singleton<Game>;
 
     void createNewPlayerSave(std::shared_ptr<User> player);
 
-    // Battle related
+    // 战斗
 
     void battleTurn(std::shared_ptr<Pokemon> attacker,
                     std::shared_ptr<Pokemon> defender, bool isSkill = false);

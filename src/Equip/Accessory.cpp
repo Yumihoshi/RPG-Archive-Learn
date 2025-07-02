@@ -9,7 +9,7 @@
 #include "../../include/Equip/Accessory.h"
 #include "../../include/Poke/Pokemon.h"
 
-// Accessory class implementation
+// 饰品构造函数
 Accessory::Accessory(std::string name, int attackBonus, int magicBonus,
                      double criticalRateBonus) :
         Equipment(name, ACCESSORY),
@@ -22,7 +22,7 @@ void Accessory::applyEffect(std::shared_ptr<Pokemon> pokemon)
 {
     pokemon->baseAttack += attackBonus;
     pokemon->maxMagic += magicBonus;
-    pokemon->currentMagic += magicBonus; // Also increase current magic when max magic increases
+    pokemon->currentMagic += magicBonus;
     pokemon->criticalRate += criticalRateBonus;
 }
 
@@ -31,7 +31,7 @@ void Accessory::removeEffect(std::shared_ptr<Pokemon> pokemon)
     pokemon->baseAttack -= attackBonus;
     pokemon->maxMagic -= magicBonus;
     pokemon->currentMagic = std::min(pokemon->currentMagic,
-                                     pokemon->maxMagic); // Adjust current magic if it exceeds new max
+                                     pokemon->maxMagic);
     pokemon->criticalRate -= criticalRateBonus;
 }
 
@@ -43,6 +43,7 @@ void Accessory::displayStats() const
     std::cout << "暴击率加成: " << criticalRateBonus << std::endl;
 }
 
+// 将饰品信息转换为 JSON 格式
 nlohmann::json Accessory::toJson() const
 {
     nlohmann::json j;
@@ -53,9 +54,13 @@ nlohmann::json Accessory::toJson() const
     return j;
 }
 
+// 从 JSON 格式加载饰品信息
 std::shared_ptr<Accessory> Accessory::fromJson(const nlohmann::json &j)
 {
-    return std::make_shared<Accessory>(j["name"].get<std::string>(), j["attackBonus"].get<int>(), j["magicBonus"].get<int>(), j["criticalRateBonus"].get<double>());
+    return std::make_shared<Accessory>(j["name"].get<std::string>(),
+                                       j["attackBonus"].get<int>(),
+                                       j["magicBonus"].get<int>(),
+                                       j["criticalRateBonus"].get<double>());
 }
 
 Accessory::Accessory(const Accessory &other)

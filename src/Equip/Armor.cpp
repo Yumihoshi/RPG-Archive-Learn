@@ -9,7 +9,7 @@
 #include "../../include/Equip/Armor.h"
 #include "../../include/Poke/Pokemon.h"
 
-// Armor class implementation
+// 防具构造函数
 Armor::Armor(std::string name, int healthBonus, double evasionRateBonus) :
         Equipment(name, ARMOR),
         healthBonus(healthBonus),
@@ -19,7 +19,7 @@ Armor::Armor(std::string name, int healthBonus, double evasionRateBonus) :
 void Armor::applyEffect(std::shared_ptr<Pokemon> pokemon)
 {
     pokemon->maxHealth += healthBonus;
-    pokemon->currentHealth += healthBonus; // Also increase current health when max health increases
+    pokemon->currentHealth += healthBonus;
     pokemon->evasionRate += evasionRateBonus;
 }
 
@@ -27,7 +27,7 @@ void Armor::removeEffect(std::shared_ptr<Pokemon> pokemon)
 {
     pokemon->maxHealth -= healthBonus;
     pokemon->currentHealth = std::min(pokemon->currentHealth,
-                                      pokemon->maxHealth); // Adjust current health if it exceeds new max
+                                      pokemon->maxHealth);
     pokemon->evasionRate -= evasionRateBonus;
 }
 
@@ -49,7 +49,9 @@ nlohmann::json Armor::toJson() const
 
 std::shared_ptr<Armor> Armor::fromJson(const nlohmann::json &j)
 {
-    return std::make_shared<Armor>(j["name"].get<std::string>(), j["healthBonus"].get<int>(), j["evasionRateBonus"].get<double>());
+    return std::make_shared<Armor>(j["name"].get<std::string>(),
+                                   j["healthBonus"].get<int>(),
+                                   j["evasionRateBonus"].get<double>());
 }
 
 Armor::Armor(const Armor &other)

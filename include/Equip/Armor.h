@@ -29,7 +29,7 @@ public:
 
     static std::shared_ptr<Armor> fromJson(const nlohmann::json &j);
 
-    // Copy constructor and assignment operator
+    // 复制构造函数和赋值运算符
     Armor(const Armor &other);
 
     Armor &operator=(const Armor &other);

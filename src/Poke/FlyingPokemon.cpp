@@ -2,12 +2,18 @@
 #include <iostream>
 
 FlyingPokemon::FlyingPokemon(int level) :
-    Pokemon(FLYING, level)
+        Pokemon(FLYING, level)
 {
 }
 
-FlyingPokemon::FlyingPokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
-    Pokemon(name, type, level, experience, maxHealth, currentHealth, maxMagic, currentMagic, baseAttack, magicRegen, defense, evasionRate, criticalRate)
+FlyingPokemon::FlyingPokemon(std::string name, PokeType type, int level,
+                             int experience, int maxHealth, int currentHealth,
+                             int maxMagic, int currentMagic, int baseAttack,
+                             int magicRegen, int defense, double evasionRate,
+                             double criticalRate) :
+        Pokemon(name, type, level, experience, maxHealth, currentHealth,
+                maxMagic, currentMagic, baseAttack, magicRegen, defense,
+                evasionRate, criticalRate)
 {
 }
 

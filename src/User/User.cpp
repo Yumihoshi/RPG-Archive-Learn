@@ -3,7 +3,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp> // For JSON serialization/deserialization
 
-// User class implementation
+// 用户
 User::User(std::string username, std::string password, UserType type) :
         username(username),
         password(password),
@@ -11,7 +11,7 @@ User::User(std::string username, std::string password, UserType type) :
 {
     if (type == PLAYER)
     {
-        saveSlots.resize(3); // Initialize three empty save slots for players
+        saveSlots.resize(3); // 初始化3存档
     }
 }
 

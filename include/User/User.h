@@ -25,7 +25,7 @@ public:
     void setPassword(const std::string &newPassword);
 
     // Player specific data
-    std::vector<std::vector<std::shared_ptr<Pokemon>>> saveSlots; // Three save slots, each containing a vector of Pokemon
+    std::vector<std::vector<std::shared_ptr<Pokemon>>> saveSlots; // 存档槽
 
 private:
     std::string username;

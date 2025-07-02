@@ -3,7 +3,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-// Base Equipment class implementation
+// 装备构造函数
 Equipment::Equipment(std::string name, Type type) :
         name(name),
         type(type)

@@ -12,7 +12,7 @@
 #include "../../include/Singletons/PokemonFactory.h"
 #include "../../include/Common/Types.h"
 
-// Helper function to clear input buffer
+// 清除输入缓冲区
 void Game::clearInputBuffer()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -21,7 +21,7 @@ void Game::clearInputBuffer()
 Game::Game() : currentUser(nullptr), playerActivePokemon(nullptr),
                enemyActivePokemon(nullptr)
 {
-    // Constructor, userManager is already initialized
+    // 初始化用户管理器
 }
 
 void Game::run()
@@ -52,7 +52,8 @@ void Game::loginMenu()
             currentUser = UserManager::GetInstance().login(username, password);
             if (currentUser)
             {
-                std::cout << "登录成功！欢迎，" << currentUser->getUsername() << "！"
+                std::cout << "登录成功！欢迎，" << currentUser->getUsername()
+                          << "！"
                           << std::endl;
                 if (currentUser->getUserType() == User::ADMIN)
                 {
@@ -60,7 +61,7 @@ void Game::loginMenu()
                 }
                 else
                 {
-                    // Check if it's a new player (no Pokemon in any save slot)
+                    // 检查是否是新玩家
                     bool isNewPlayer = true;
                     for (const auto &slot: currentUser->saveSlots)
                     {
@@ -93,7 +94,7 @@ void Game::loginMenu()
             std::cout << "请输入新密码: ";
             std::getline(std::cin, password);
             UserManager::GetInstance().registerUser(username, password,
-                                                     User::PLAYER);
+                                                    User::PLAYER);
         }
         else if (choice == "3")
         {
@@ -187,7 +188,8 @@ void Game::adminViewUserSave()
     std::cout << "请输入要查看存档的用户名: ";
     std::getline(std::cin, username);
 
-    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(
+            username);
     if (user && user->getUserType() == User::PLAYER)
     {
         std::cout << "\n--- 用户 " << username << " 的存档 ---" << std::endl;
@@ -200,7 +202,8 @@ void Game::adminViewUserSave()
             }
             else
             {
-                std::cout << user->saveSlots[i].size() << " 只宝可梦" << std::endl;
+                std::cout << user->saveSlots[i].size() << " 只宝可梦"
+                          << std::endl;
                 UI::GetInstance().displayAllPokemon(user->saveSlots[i]);
             }
         }
@@ -217,13 +220,15 @@ void Game::adminManageUserPokemon()
     std::cout << "请输入要管理宝可梦的用户名: ";
     std::getline(std::cin, username);
 
-    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(
+            username);
     if (user && user->getUserType() == User::PLAYER)
     {
         std::string choice;
         while (true)
         {
-            std::cout << "\n--- 管理用户 " << username << " 的宝可梦 ---" << std::endl;
+            std::cout << "\n--- 管理用户 " << username << " 的宝可梦 ---"
+                      << std::endl;
             std::cout << "1. 查看所有宝可梦" << std::endl;
             std::cout << "2. 添加宝可梦" << std::endl;
             std::cout << "3. 删除宝可梦" << std::endl;
@@ -234,17 +239,20 @@ void Game::adminManageUserPokemon()
 
             if (choice == "1")
             {
-                UI::GetInstance().displayAllPokemon(user->saveSlots[0]); // Assuming managing slot 0
+                UI::GetInstance().displayAllPokemon(
+                        user->saveSlots[0]); // Assuming managing slot 0
             }
             else if (choice == "2")
             {
-                std::cout << "请输入要添加的宝可梦类型 (0: 火, 1: 草, 2: 冰, 3: 飞行, 4: 幽灵): ";
+                std::cout
+                        << "请输入要添加的宝可梦类型 (0: 火, 1: 草, 2: 冰, 3: 飞行, 4: 幽灵): ";
                 int typeChoice;
                 std::cin >> typeChoice;
                 clearInputBuffer();
                 if (typeChoice >= 0 && typeChoice <= 4)
                 {
-                    user->saveSlots[0].push_back(PokemonFactory::createPokemon(static_cast<Pokemon::PokeType>(typeChoice)));
+                    user->saveSlots[0].push_back(PokemonFactory::createPokemon(
+                            static_cast<Pokemon::PokeType>(typeChoice)));
                     UserManager::GetInstance().saveUsers();
                     std::cout << "宝可梦添加成功！" << std::endl;
                 }
@@ -261,7 +269,8 @@ void Game::adminManageUserPokemon()
                 clearInputBuffer();
                 if (pokemonId > 0 && pokemonId <= user->saveSlots[0].size())
                 {
-                    user->saveSlots[0].erase(user->saveSlots[0].begin() + pokemonId - 1);
+                    user->saveSlots[0].erase(
+                            user->saveSlots[0].begin() + pokemonId - 1);
                     UserManager::GetInstance().saveUsers();
                     std::cout << "宝可梦删除成功！" << std::endl;
                 }
@@ -292,15 +301,18 @@ void Game::adminManageUserPokemonEquipment()
     std::cout << "请输入要管理宝可梦装备的用户名: ";
     std::getline(std::cin, username);
 
-    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(
+            username);
     if (user && user->getUserType() == User::PLAYER)
     {
         std::string choice;
         while (true)
         {
-            std::cout << "\n--- 管理用户 " << username << " 的宝可梦装备 ---" << std::endl;
+            std::cout << "\n--- 管理用户 " << username << " 的宝可梦装备 ---"
+                      << std::endl;
             UI::GetInstance().displayAllPokemon(user->saveSlots[0]);
-            std::cout << "请输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, exit: 返回): ";
+            std::cout
+                    << "请输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, exit: 返回): ";
             std::string pokemonChoice;
             std::getline(std::cin, pokemonChoice);
 
@@ -314,27 +326,37 @@ void Game::adminManageUserPokemonEquipment()
                 int pokemonId = std::stoi(pokemonChoice);
                 if (pokemonId > 0 && pokemonId <= user->saveSlots[0].size())
                 {
-                    std::shared_ptr<Pokemon> selectedPokemon = user->saveSlots[0][pokemonId - 1];
-                    std::cout << "已选择宝可梦: " << selectedPokemon->name << std::endl;
-                    std::cout << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
+                    std::shared_ptr<Pokemon> selectedPokemon = user->saveSlots[0][
+                            pokemonId - 1];
+                    std::cout << "已选择宝可梦: " << selectedPokemon->name
+                              << std::endl;
+                    std::cout
+                            << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
                     std::string equipChoice;
                     std::getline(std::cin, equipChoice);
 
                     if (equipChoice == "A1")
                     {
-                        EquipManager::GetInstance().equipPokemon(std::make_shared<Armor>("管理员防具", 50, 0.1), selectedPokemon);
+                        EquipManager::GetInstance().equipPokemon(
+                                std::make_shared<Armor>("管理员防具", 50, 0.1),
+                                selectedPokemon);
                     }
                     else if (equipChoice == "A2")
                     {
-                        EquipManager::GetInstance().unequipPokemon(EquipType::Armor, selectedPokemon);
+                        EquipManager::GetInstance().unequipPokemon(
+                                EquipType::Armor, selectedPokemon);
                     }
                     else if (equipChoice == "D1")
                     {
-                        EquipManager::GetInstance().equipPokemon(std::make_shared<Accessory>("管理员饰品", 20, 20, 0.1), selectedPokemon);
+                        EquipManager::GetInstance().equipPokemon(
+                                std::make_shared<Accessory>("管理员饰品", 20,
+                                                            20, 0.1),
+                                selectedPokemon);
                     }
                     else if (equipChoice == "D2")
                     {
-                        EquipManager::GetInstance().unequipPokemon(EquipType::Accessory, selectedPokemon);
+                        EquipManager::GetInstance().unequipPokemon(
+                                EquipType::Accessory, selectedPokemon);
                     }
                     else
                     {
@@ -347,7 +369,7 @@ void Game::adminManageUserPokemonEquipment()
                     std::cout << "无效宝可梦ID。" << std::endl;
                 }
             }
-            catch (const std::invalid_argument& e)
+            catch (const std::invalid_argument &e)
             {
                 std::cout << "无效输入。" << std::endl;
             }
@@ -378,8 +400,11 @@ void Game::playerMainMenu()
             if (currentUser && !currentUser->saveSlots[0].empty())
             {
                 UI::GetInstance().displayAllPokemon(currentUser->saveSlots[0]);
-                std::cout << "当前出战宝可梦: " << (playerActivePokemon ? playerActivePokemon->name : "无") << std::endl;
-                std::cout << "输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, S: 选择出战宝可梦, exit: 返回主菜单): ";
+                std::cout << "当前出战宝可梦: "
+                          << (playerActivePokemon ? playerActivePokemon->name
+                                                  : "无") << std::endl;
+                std::cout
+                        << "输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, S: 选择出战宝可梦, exit: 返回主菜单): ";
                 std::string pokemonChoice;
                 std::getline(std::cin, pokemonChoice);
 
@@ -396,49 +421,65 @@ void Game::playerMainMenu()
                     try
                     {
                         int pokemonId = std::stoi(pokemonChoice);
-                        if (pokemonId > 0 && pokemonId <= currentUser->saveSlots[0].size())
+                        if (pokemonId > 0 &&
+                            pokemonId <= currentUser->saveSlots[0].size())
                         {
-                            std::shared_ptr<Pokemon> selectedPokemon = currentUser->saveSlots[0][pokemonId - 1];
-                            std::cout << "已选择宝可梦: " << selectedPokemon->name << std::endl;
-                            std::cout << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
+                            std::shared_ptr<Pokemon> selectedPokemon = currentUser->saveSlots[0][
+                                    pokemonId - 1];
+                            std::cout << "已选择宝可梦: "
+                                      << selectedPokemon->name << std::endl;
+                            std::cout
+                                    << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
                             std::string equipChoice;
                             std::getline(std::cin, equipChoice);
 
-                        if (equipChoice == "A1")
-                        {
-                            if (selectedPokemon->armor)
+                            if (equipChoice == "A1")
                             {
-                                selectedPokemon->armor->removeEffect(selectedPokemon);
-                                std::cout << selectedPokemon->name << " 卸下了 " << selectedPokemon->armor->name << "。" << std::endl;
+                                if (selectedPokemon->armor)
+                                {
+                                    selectedPokemon->armor->removeEffect(
+                                            selectedPokemon);
+                                    std::cout << selectedPokemon->name
+                                              << " 卸下了 "
+                                              << selectedPokemon->armor->name
+                                              << "。" << std::endl;
+                                }
+                                EquipManager::GetInstance().equipPokemon(
+                                        std::make_shared<Armor>("铁壁护甲", 20,
+                                                                0.02),
+                                        selectedPokemon);
                             }
-                            EquipManager::GetInstance().equipPokemon(std::make_shared<Armor>("铁壁护甲", 20, 0.02), selectedPokemon);
-                        }
-                        else if (equipChoice == "A2")
-                        {
-                            EquipManager::GetInstance().unequipPokemon(EquipType::Armor, selectedPokemon);
-                        }
-                        else if (equipChoice == "D1")
-                        {
-                            EquipManager::GetInstance().equipPokemon(std::make_shared<Accessory>("力量手环", 5, 0, 0.05), selectedPokemon);
-                        }
-                        else if (equipChoice == "D2")
-                        {
-                            EquipManager::GetInstance().unequipPokemon(EquipType::Accessory, selectedPokemon);
+                            else if (equipChoice == "A2")
+                            {
+                                EquipManager::GetInstance().unequipPokemon(
+                                        EquipType::Armor, selectedPokemon);
+                            }
+                            else if (equipChoice == "D1")
+                            {
+                                EquipManager::GetInstance().equipPokemon(
+                                        std::make_shared<Accessory>("力量手环",
+                                                                    5, 0, 0.05),
+                                        selectedPokemon);
+                            }
+                            else if (equipChoice == "D2")
+                            {
+                                EquipManager::GetInstance().unequipPokemon(
+                                        EquipType::Accessory, selectedPokemon);
+                            }
+                            else
+                            {
+                                std::cout << "无效操作。" << std::endl;
+                            }
                         }
                         else
                         {
-                            std::cout << "无效操作。" << std::endl;
+                            std::cout << "无效宝可梦ID。" << std::endl;
                         }
                     }
-                    else
+                    catch (const std::invalid_argument &e)
                     {
-                        std::cout << "无效宝可梦ID。" << std::endl;
+                        std::cout << "无效输入。" << std::endl;
                     }
-                }
-                catch (const std::invalid_argument& e)
-                {
-                    std::cout << "无效输入。" << std::endl;
-                }
                 }
             }
             else
@@ -555,7 +596,8 @@ void Game::chooseInitialPokemon(std::shared_ptr<User> player)
             continue;
         }
 
-        std::shared_ptr<Pokemon> initialPokemon = PokemonFactory::createPokemon(chosenType);
+        std::shared_ptr<Pokemon> initialPokemon = PokemonFactory::createPokemon(
+                chosenType);
         player->saveSlots[0].push_back(initialPokemon);
         playerActivePokemon = initialPokemon;
         UserManager::GetInstance().saveUsers();
@@ -596,7 +638,8 @@ void Game::savePlayerSave(std::shared_ptr<User> player, int slotIndex)
               << std::endl;
 }
 
-void Game::selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList)
+void
+Game::selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList)
 {
     if (pokemonList.empty())
     {
@@ -644,6 +687,7 @@ void Game::startBattle()
             {"天星队（幽灵）", Pokemon::GHOST}
     };
 
+    bool playerRanAway = false;
     for (size_t i = 0; i < enemyStages.size(); ++i)
     {
         std::cout << "\n--- 剧情 ---" << std::endl;
@@ -651,7 +695,8 @@ void Game::startBattle()
                   << std::endl;
         std::cout << "\n--- 战斗开始！---" << std::endl;
 
-        enemyActivePokemon = PokemonFactory::createPokemon(enemyStages[i].second);
+        enemyActivePokemon = PokemonFactory::createPokemon(
+                enemyStages[i].second);
         std::cout << "敌方派出了 " << enemyActivePokemon->name << "！"
                   << std::endl;
 
@@ -685,6 +730,7 @@ void Game::startBattle()
             else if (action == "exit")
             {
                 std::cout << "你逃跑了！" << std::endl;
+                playerRanAway = true;
                 break;
             }
             else
@@ -705,7 +751,8 @@ void Game::startBattle()
                       << std::endl;
             if (enemyActivePokemon->hasStatusEffect("Frozen"))
             {
-                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！" << std::endl;
+                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！"
+                          << std::endl;
             }
             else
             {
@@ -716,7 +763,8 @@ void Game::startBattle()
             {
                 battleOutcome(false);
                 enemyActivePokemon = nullptr;
-                return; // Game over or return to main menu
+                playerRanAway = true; // Player fainted, effectively ran away from this stage
+                break;
             }
             // Regenerate magic for both Pokemon at the end of turn
             playerActivePokemon->restoreMagic(playerActivePokemon->magicRegen);
@@ -724,13 +772,13 @@ void Game::startBattle()
             playerActivePokemon->decrementStatusEffects();
             enemyActivePokemon->decrementStatusEffects();
         }
-        if (playerActivePokemon->isFainted() || enemyActivePokemon)
-        { // If enemyActivePokemon is not null, it means player ran away or battle ended prematurely
+        if (playerRanAway || playerActivePokemon->isFainted())
+        {
             break;
         }
     }
 
-    if (!playerActivePokemon->isFainted())
+    if (!playerRanAway && !playerActivePokemon->isFainted())
     {
         // Boss Battle
         std::cout << "\n--- 剧情 ---" << std::endl;
@@ -778,6 +826,7 @@ void Game::startBattle()
             else if (action == "exit")
             {
                 std::cout << "你逃跑了！" << std::endl;
+                playerRanAway = true;
                 break;
             }
             else
@@ -798,7 +847,8 @@ void Game::startBattle()
                       << std::endl;
             if (enemyActivePokemon->hasStatusEffect("Frozen"))
             {
-                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！" << std::endl;
+                std::cout << enemyActivePokemon->name << " 被冻结了，无法行动！"
+                          << std::endl;
             }
             else
             {
@@ -895,7 +945,8 @@ bool Game::checkEvasion(std::shared_ptr<Pokemon> defender)
 
 bool Game::checkCritical(std::shared_ptr<Pokemon> attacker)
 {
-    std::shared_ptr<FirePokemon> fireAttacker = std::dynamic_pointer_cast<FirePokemon>(attacker);
+    std::shared_ptr<FirePokemon> fireAttacker = std::dynamic_pointer_cast<FirePokemon>(
+            attacker);
     if (fireAttacker && fireAttacker->criticalTurns > 0)
     {
         fireAttacker->criticalTurns--;
@@ -932,13 +983,13 @@ void Game::battleOutcome(bool playerWon)
     playerActivePokemon->currentMagic = playerActivePokemon->maxMagic;
 }
 
-// Helper function to create a sample accessory
+// 创建一个示例武器
 std::shared_ptr<Accessory> createSampleAccessory()
 {
     return std::make_shared<Accessory>("力量手环", 5, 0, 0.05);
 }
 
-// Helper function to create a sample armor
+// 创建一个示例护甲
 std::shared_ptr<Armor> createSampleArmor()
 {
     return std::make_shared<Armor>("铁壁护甲", 20, 0.02);

@@ -2,14 +2,20 @@
 #include <iostream>
 
 FirePokemon::FirePokemon(int level) :
-    Pokemon(FIRE, level),
-    criticalTurns(0)
+        Pokemon(FIRE, level),
+        criticalTurns(0)
 {
 }
 
-FirePokemon::FirePokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate, int criticalTurns) :
-    Pokemon(name, type, level, experience, maxHealth, currentHealth, maxMagic, currentMagic, baseAttack, magicRegen, defense, evasionRate, criticalRate),
-    criticalTurns(criticalTurns)
+FirePokemon::FirePokemon(std::string name, PokeType type, int level,
+                         int experience, int maxHealth, int currentHealth,
+                         int maxMagic, int currentMagic, int baseAttack,
+                         int magicRegen, int defense, double evasionRate,
+                         double criticalRate, int criticalTurns) :
+        Pokemon(name, type, level, experience, maxHealth, currentHealth,
+                maxMagic, currentMagic, baseAttack, magicRegen, defense,
+                evasionRate, criticalRate),
+        criticalTurns(criticalTurns)
 {
 }
 
@@ -20,7 +26,8 @@ void FirePokemon::useSkill(std::shared_ptr<Pokemon> target)
         currentMagic -= 10;
         std::cout << name << " 释放了火焰技能！" << std::endl;
         criticalTurns = 3; // Guaranteed critical for 3 turns
-        std::cout << name << " 的攻击在接下来的 " << criticalTurns << " 回合内必定暴击！" << std::endl;
+        std::cout << name << " 的攻击在接下来的 " << criticalTurns
+                  << " 回合内必定暴击！" << std::endl;
     }
     else
     {

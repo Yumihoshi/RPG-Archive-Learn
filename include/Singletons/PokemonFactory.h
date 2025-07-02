@@ -12,7 +12,9 @@
 class PokemonFactory
 {
 public:
-    static std::shared_ptr<Pokemon> createPokemon(Pokemon::PokeType type, int level = 1);
+    static std::shared_ptr<Pokemon>
+    createPokemon(Pokemon::PokeType type, int level = 1);
+
     static std::shared_ptr<Pokemon> createPokemon(const nlohmann::json &j);
 };
 

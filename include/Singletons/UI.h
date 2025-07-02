@@ -15,11 +15,14 @@
 class UI : public Singleton<UI>
 {
 public:
-    void displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const;
+    void displayAllPokemon(
+            const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const;
 
     void displayBattleStatus() const;
+
 private:
     UI() = default;
+
     friend class Singleton<UI>;
 };
 

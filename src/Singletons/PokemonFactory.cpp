@@ -6,7 +6,8 @@
 #include "../../include/Poke/FlyingPokemon.h"
 #include "../../include/Poke/GhostPokemon.h"
 
-std::shared_ptr<Pokemon> PokemonFactory::createPokemon(Pokemon::PokeType type, int level)
+std::shared_ptr<Pokemon>
+PokemonFactory::createPokemon(Pokemon::PokeType type, int level)
 {
     switch (type)
     {
@@ -21,7 +22,8 @@ std::shared_ptr<Pokemon> PokemonFactory::createPokemon(Pokemon::PokeType type, i
         case Pokemon::GHOST:
             return std::make_shared<GhostPokemon>(level);
         default:
-            throw std::runtime_error("Attempted to create an unimplemented Pokemon type.");
+            throw std::runtime_error(
+                    "尝试创建一个未实现的 Pokemon 类型。");
     }
 }
 
@@ -41,6 +43,7 @@ std::shared_ptr<Pokemon> PokemonFactory::createPokemon(const nlohmann::json &j)
         case Pokemon::GHOST:
             return GhostPokemon::fromJson(j);
         default:
-            throw std::runtime_error("Attempted to deserialize an unimplemented Pokemon type.");
+            throw std::runtime_error(
+                    "尝试创建一个未实现的 Pokemon 类型。");
     }
 }

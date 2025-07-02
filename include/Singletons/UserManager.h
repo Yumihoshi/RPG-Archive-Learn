@@ -14,7 +14,8 @@
 class UserManager : public Singleton<UserManager>
 {
 public:
-    std::shared_ptr<User> login(const std::string &username, const std::string &password);
+    std::shared_ptr<User>
+    login(const std::string &username, const std::string &password);
 
     void registerUser(const std::string &username, const std::string &password,
                       User::UserType type);
@@ -23,7 +24,7 @@ public:
 
     void loadUsers();
 
-    // Admin functionalities
+    // 管理员
     void createUser(const std::string &username, const std::string &password,
                     User::UserType type);
 
@@ -43,9 +44,9 @@ private:
     std::string getUserDataFilePath() const;
 
     UserManager();
+
     friend class Singleton<UserManager>;
 };
-
 
 
 #endif //RPG_USERMANAGER_H

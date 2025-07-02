@@ -2,12 +2,18 @@
 #include <iostream>
 
 GhostPokemon::GhostPokemon(int level) :
-    Pokemon(GHOST, level)
+        Pokemon(GHOST, level)
 {
 }
 
-GhostPokemon::GhostPokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
-    Pokemon(name, type, level, experience, maxHealth, currentHealth, maxMagic, currentMagic, baseAttack, magicRegen, defense, evasionRate, criticalRate)
+GhostPokemon::GhostPokemon(std::string name, PokeType type, int level,
+                           int experience, int maxHealth, int currentHealth,
+                           int maxMagic, int currentMagic, int baseAttack,
+                           int magicRegen, int defense, double evasionRate,
+                           double criticalRate) :
+        Pokemon(name, type, level, experience, maxHealth, currentHealth,
+                maxMagic, currentMagic, baseAttack, magicRegen, defense,
+                evasionRate, criticalRate)
 {
 }
 
@@ -20,7 +26,8 @@ void GhostPokemon::useSkill(std::shared_ptr<Pokemon> target)
         // Example skill effect: deals damage and has a chance to stun (requires status effect system)
         int damage = baseAttack * 1.8; // 180% of base attack
         target->takeDamage(damage);
-        std::cout << name << " 对 " << target->name << " 造成了 " << damage << " 点伤害！" << std::endl;
+        std::cout << name << " 对 " << target->name << " 造成了 " << damage
+                  << " 点伤害！" << std::endl;
         std::cout << target->name << " 感到一阵恐惧！" << std::endl;
     }
     else

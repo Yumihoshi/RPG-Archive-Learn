@@ -2,12 +2,18 @@
 #include <iostream>
 
 GrassPokemon::GrassPokemon(int level) :
-    Pokemon(GRASS, level)
+        Pokemon(GRASS, level)
 {
 }
 
-GrassPokemon::GrassPokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
-    Pokemon(name, type, level, experience, maxHealth, currentHealth, maxMagic, currentMagic, baseAttack, magicRegen, defense, evasionRate, criticalRate)
+GrassPokemon::GrassPokemon(std::string name, PokeType type, int level,
+                           int experience, int maxHealth, int currentHealth,
+                           int maxMagic, int currentMagic, int baseAttack,
+                           int magicRegen, int defense, double evasionRate,
+                           double criticalRate) :
+        Pokemon(name, type, level, experience, maxHealth, currentHealth,
+                maxMagic, currentMagic, baseAttack, magicRegen, defense,
+                evasionRate, criticalRate)
 {
 }
 
@@ -19,7 +25,8 @@ void GrassPokemon::useSkill(std::shared_ptr<Pokemon> target)
         std::cout << name << " 释放了光合作用！" << std::endl;
         int healAmount = 10;
         heal(healAmount);
-        std::cout << name << " 恢复了 " << healAmount << " 点生命值！" << std::endl;
+        std::cout << name << " 恢复了 " << healAmount << " 点生命值！"
+                  << std::endl;
     }
     else
     {

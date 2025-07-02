@@ -8,7 +8,7 @@
 #include "../../include/Equip/Accessory.h"
 #include "../../include/Equip/Armor.h"
 
-// Constructor for new Pokemon
+// 宝可梦构造函数
 Pokemon::Pokemon(PokeType type, int level) :
         type(type),
         level(level),
@@ -25,8 +25,11 @@ Pokemon::Pokemon(PokeType type, int level) :
     currentMagic = maxMagic;
 }
 
-// Constructor for loading from JSON
-    Pokemon::Pokemon(std::string name, PokeType type, int level, int experience, int maxHealth, int currentHealth, int maxMagic, int currentMagic, int baseAttack, int magicRegen, int defense, double evasionRate, double criticalRate) :
+// 用于JSON序列化的构造函数
+Pokemon::Pokemon(std::string name, PokeType type, int level, int experience,
+                 int maxHealth, int currentHealth, int maxMagic,
+                 int currentMagic, int baseAttack, int magicRegen, int defense,
+                 double evasionRate, double criticalRate) :
         name(name),
         type(type),
         level(level),
@@ -73,7 +76,7 @@ Pokemon::Pokemon(const Pokemon &other) :
     }
 }
 
-    Pokemon &Pokemon::operator=(const Pokemon &other)
+Pokemon &Pokemon::operator=(const Pokemon &other)
 {
     if (this == &other)
     {
@@ -111,17 +114,17 @@ Pokemon::Pokemon(const Pokemon &other) :
     return *this;
 }
 
-void Pokemon::applyStatusEffect(const std::string& effectName, int duration)
+void Pokemon::applyStatusEffect(const std::string &effectName, int duration)
 {
     statusEffects[effectName] = duration;
 }
 
-void Pokemon::removeStatusEffect(const std::string& effectName)
+void Pokemon::removeStatusEffect(const std::string &effectName)
 {
     statusEffects.erase(effectName);
 }
 
-bool Pokemon::hasStatusEffect(const std::string& effectName) const
+bool Pokemon::hasStatusEffect(const std::string &effectName) const
 {
     return statusEffects.count(effectName) > 0;
 }
@@ -129,7 +132,7 @@ bool Pokemon::hasStatusEffect(const std::string& effectName) const
 void Pokemon::decrementStatusEffects()
 {
     std::vector<std::string> effectsToRemove;
-    for (auto& pair : statusEffects)
+    for (auto &pair: statusEffects)
     {
         pair.second--;
         if (pair.second <= 0)
@@ -137,7 +140,7 @@ void Pokemon::decrementStatusEffects()
             effectsToRemove.push_back(pair.first);
         }
     }
-    for (const auto& effect : effectsToRemove)
+    for (const auto &effect: effectsToRemove)
     {
         removeStatusEffect(effect);
     }
@@ -172,8 +175,7 @@ nlohmann::json Pokemon::toJson() const
 }
 
 
-
-// Initialize base stats based on Pokemon type
+// 根据宝可梦属性初始化基础属性
 void Pokemon::initializeStats(PokeType type)
 {
     switch (type)
@@ -226,7 +228,7 @@ void Pokemon::initializeStats(PokeType type)
     }
 }
 
-// Apply random fluctuation to stats
+// 应用随机波动
 void Pokemon::applyRandomFluctuation()
 {
     std::random_device rd;
@@ -242,7 +244,7 @@ void Pokemon::applyRandomFluctuation()
     criticalRate = criticalRate * distrib(gen);
 }
 
-// Get a random name based on Pokemon type
+// 获取随机名字
 std::string Pokemon::getRandomName(PokeType type)
 {
     std::random_device rd;
@@ -271,7 +273,7 @@ std::string Pokemon::getRandomName(PokeType type)
     return names[distrib(gen)];
 }
 
-// Handle experience gain and leveling up
+// 应用经验和升级
 void Pokemon::gainExperience(int exp)
 {
     experience += exp;
@@ -280,17 +282,17 @@ void Pokemon::gainExperience(int exp)
         experience -= 100;
         level++;
         std::cout << name << "升级了！现在是等级 " << level << "！" << std::endl;
-        // Increase stats on level up (example, can be more sophisticated)
+        // 升级提高属性
         maxHealth += 10;
         maxMagic += 5;
         baseAttack += 2;
         defense += 1;
-        currentHealth = maxHealth; // Fully heal on level up
-        currentMagic = maxMagic;   // Fully restore magic on level up
+        currentHealth = maxHealth; // 升级回复生命值
+        currentMagic = maxMagic;   // 升级回复魔法值
     }
 }
 
-// Handle taking damage
+// 处理受到伤害
 void Pokemon::takeDamage(int damage)
 {
     currentHealth -= damage;
@@ -300,7 +302,7 @@ void Pokemon::takeDamage(int damage)
     }
 }
 
-// Handle healing
+// 回血
 void Pokemon::heal(int amount)
 {
     currentHealth += amount;
@@ -310,7 +312,7 @@ void Pokemon::heal(int amount)
     }
 }
 
-// Handle magic restoration
+// 回魔
 void Pokemon::restoreMagic(int amount)
 {
     currentMagic += amount;
@@ -321,13 +323,13 @@ void Pokemon::restoreMagic(int amount)
     std::cout << name << "恢复了" << amount << "点魔法。" << std::endl;
 }
 
-// Check if the Pokemon is fainted
+// 是否死亡
 bool Pokemon::isFainted() const
 {
     return currentHealth <= 0;
 }
 
-// Display Pokemon stats
+// 显示状态信息
 void Pokemon::displayStats() const
 {
     std::cout << "--------------------" << std::endl;
