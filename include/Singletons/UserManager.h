@@ -37,6 +37,23 @@ public:
 
     std::shared_ptr<User> getUserByUsername(const std::string &username) const;
 
+    // 管理员对普通用户宝可梦的装备管理
+    void equipPokemonAccessory(const std::string &username, int saveSlotIndex,
+                               int pokemonIndex,
+                               std::shared_ptr<Accessory> accessory);
+
+    void unequipPokemonAccessory(const std::string &username, int saveSlotIndex,
+                                 int pokemonIndex);
+
+    void equipPokemonArmor(const std::string &username, int saveSlotIndex,
+                           int pokemonIndex, std::shared_ptr<Armor> armor);
+
+    void unequipPokemonArmor(const std::string &username, int saveSlotIndex,
+                             int pokemonIndex);
+
+    void listPokemonEquipment(const std::string &username, int saveSlotIndex,
+                              int pokemonIndex) const;
+
 private:
     std::map<std::string, std::shared_ptr<User>> users; // Map username to User object
 

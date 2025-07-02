@@ -10,7 +10,7 @@
 #include "../../include/Singletons/UI.h"
 #include "../../include/Singletons/Game.h"
 #include "../../include/Singletons/UserManager.h"
-#include "../../include/Singletons/EquipManager.h"
+
 
 void UI::displayAllPokemon(
         const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const

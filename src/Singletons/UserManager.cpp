@@ -9,6 +9,8 @@
 #include <fstream>
 #include "../../include/Singletons/UserManager.h"
 #include "../../include/Singletons/PokemonFactory.h"
+#include "../../include/Equip/Accessory.h"
+#include "../../include/Equip/Armor.h"
 
 
 // UserManager class implementation
@@ -199,4 +201,199 @@ UserManager::getUserByUsername(const std::string &username) const
 std::string UserManager::getUserDataFilePath() const
 {
     return "users.json"; // Or a more robust path like in a data directory
+}
+
+void UserManager::equipPokemonAccessory(const std::string &username,
+                                        int saveSlotIndex, int pokemonIndex,
+                                        std::shared_ptr<Accessory> accessory)
+{
+    auto user = getUserByUsername(username);
+    if (!user || user->getUserType() != User::PLAYER)
+    {
+        std::cout << "用户不存在或不是玩家。" << std::endl;
+        return;
+    }
+
+    if (saveSlotIndex < 0 || saveSlotIndex >= user->saveSlots.size())
+    {
+        std::cout << "无效的存档槽位。" << std::endl;
+        return;
+    }
+
+    if (pokemonIndex < 0 ||
+        pokemonIndex >= user->saveSlots[saveSlotIndex].size())
+    {
+        std::cout << "无效的宝可梦索引。" << std::endl;
+        return;
+    }
+
+    auto pokemon = user->saveSlots[saveSlotIndex][pokemonIndex];
+    if (pokemon->accessory)
+    {
+        pokemon->accessory->removeEffect(pokemon);
+    }
+    pokemon->accessory = accessory;
+    if (accessory)
+    {
+        accessory->applyEffect(pokemon);
+    }
+    saveUsers();
+    std::cout << pokemon->name << " 装备了饰品 " << accessory->name << std::endl;
+}
+
+void UserManager::unequipPokemonAccessory(const std::string &username,
+                                          int saveSlotIndex, int pokemonIndex)
+{
+    auto user = getUserByUsername(username);
+    if (!user || user->getUserType() != User::PLAYER)
+    {
+        std::cout << "用户不存在或不是玩家。" << std::endl;
+        return;
+    }
+
+    if (saveSlotIndex < 0 || saveSlotIndex >= user->saveSlots.size())
+    {
+        std::cout << "无效的存档槽位。" << std::endl;
+        return;
+    }
+
+    if (pokemonIndex < 0 ||
+        pokemonIndex >= user->saveSlots[saveSlotIndex].size())
+    {
+        std::cout << "无效的宝可梦索引。" << std::endl;
+        return;
+    }
+
+    auto pokemon = user->saveSlots[saveSlotIndex][pokemonIndex];
+    if (pokemon->accessory)
+    {
+        pokemon->accessory->removeEffect(pokemon);
+        std::cout << pokemon->name << " 卸下了饰品 " << pokemon->accessory->name
+                  << std::endl;
+        pokemon->accessory = nullptr;
+        saveUsers();
+    }
+    else
+    {
+        std::cout << pokemon->name << " 没有装备饰品。" << std::endl;
+    }
+}
+
+void UserManager::equipPokemonArmor(const std::string &username,
+                                    int saveSlotIndex, int pokemonIndex,
+                                    std::shared_ptr<Armor> armor)
+{
+    auto user = getUserByUsername(username);
+    if (!user || user->getUserType() != User::PLAYER)
+    {
+        std::cout << "用户不存在或不是玩家。" << std::endl;
+        return;
+    }
+
+    if (saveSlotIndex < 0 || saveSlotIndex >= user->saveSlots.size())
+    {
+        std::cout << "无效的存档槽位。" << std::endl;
+        return;
+    }
+
+    if (pokemonIndex < 0 ||
+        pokemonIndex >= user->saveSlots[saveSlotIndex].size())
+    {
+        std::cout << "无效的宝可梦索引。" << std::endl;
+        return;
+    }
+
+    auto pokemon = user->saveSlots[saveSlotIndex][pokemonIndex];
+    if (pokemon->armor)
+    {
+        pokemon->armor->removeEffect(pokemon);
+    }
+    pokemon->armor = armor;
+    if (armor)
+    {
+        armor->applyEffect(pokemon);
+    }
+    saveUsers();
+    std::cout << pokemon->name << " 装备了防具 " << armor->name << std::endl;
+}
+
+void UserManager::unequipPokemonArmor(const std::string &username,
+                                       int saveSlotIndex, int pokemonIndex)
+{
+    auto user = getUserByUsername(username);
+    if (!user || user->getUserType() != User::PLAYER)
+    {
+        std::cout << "用户不存在或不是玩家。" << std::endl;
+        return;
+    }
+
+    if (saveSlotIndex < 0 || saveSlotIndex >= user->saveSlots.size())
+    {
+        std::cout << "无效的存档槽位。" << std::endl;
+        return;
+    }
+
+    if (pokemonIndex < 0 ||
+        pokemonIndex >= user->saveSlots[saveSlotIndex].size())
+    {
+        std::cout << "无效的宝可梦索引。" << std::endl;
+        return;
+    }
+
+    auto pokemon = user->saveSlots[saveSlotIndex][pokemonIndex];
+    if (pokemon->armor)
+    {
+        pokemon->armor->removeEffect(pokemon);
+        std::cout << pokemon->name << " 卸下了防具 " << pokemon->armor->name
+                  << std::endl;
+        pokemon->armor = nullptr;
+        saveUsers();
+    }
+    else
+    {
+        std::cout << pokemon->name << " 没有装备防具。" << std::endl;
+    }
+}
+
+void UserManager::listPokemonEquipment(const std::string &username,
+                                       int saveSlotIndex, int pokemonIndex) const
+{
+    auto user = getUserByUsername(username);
+    if (!user || user->getUserType() != User::PLAYER)
+    {
+        std::cout << "用户不存在或不是玩家。" << std::endl;
+        return;
+    }
+
+    if (saveSlotIndex < 0 || saveSlotIndex >= user->saveSlots.size())
+    {
+        std::cout << "无效的存档槽位。" << std::endl;
+        return;
+    }
+
+    if (pokemonIndex < 0 ||
+        pokemonIndex >= user->saveSlots[saveSlotIndex].size())
+    {
+        std::cout << "无效的宝可梦索引。" << std::endl;
+        return;
+    }
+
+    auto pokemon = user->saveSlots[saveSlotIndex][pokemonIndex];
+    std::cout << pokemon->name << " 的装备:" << std::endl;
+    if (pokemon->accessory)
+    {
+        std::cout << "  饰品: " << pokemon->accessory->name << std::endl;
+    }
+    else
+    {
+        std::cout << "  饰品: 无" << std::endl;
+    }
+    if (pokemon->armor)
+    {
+        std::cout << "  防具: " << pokemon->armor->name << std::endl;
+    }
+    else
+    {
+        std::cout << "  防具: 无" << std::endl;
+    }
 }
