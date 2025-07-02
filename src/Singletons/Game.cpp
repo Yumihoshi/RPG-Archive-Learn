@@ -118,7 +118,10 @@ void Game::adminMenu()
         std::cout << "2. 删除用户" << std::endl;
         std::cout << "3. 更新用户密码" << std::endl;
         std::cout << "4. 列出所有用户" << std::endl;
-        std::cout << "5. 返回登录界面" << std::endl;
+        std::cout << "5. 查看用户存档" << std::endl;
+        std::cout << "6. 管理用户宝可梦" << std::endl;
+        std::cout << "7. 管理用户宝可梦装备" << std::endl;
+        std::cout << "8. 返回登录界面" << std::endl;
         std::cout << "请输入你的选择: ";
         std::cin >> choice;
         clearInputBuffer();
@@ -154,7 +157,19 @@ void Game::adminMenu()
         {
             UserManager::GetInstance().listAllUsers();
         }
-        else if (choice == "5" || choice == "exit")
+        else if (choice == "5")
+        {
+            adminViewUserSave();
+        }
+        else if (choice == "6")
+        {
+            adminManageUserPokemon();
+        }
+        else if (choice == "7")
+        {
+            adminManageUserPokemonEquipment();
+        }
+        else if (choice == "8" || choice == "exit")
         {
             break;
         }
@@ -162,6 +177,184 @@ void Game::adminMenu()
         {
             std::cout << "无效选择，请重新输入。" << std::endl;
         }
+    }
+}
+
+void Game::adminViewUserSave()
+{
+    std::string username;
+    std::cout << "请输入要查看存档的用户名: ";
+    std::getline(std::cin, username);
+
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    if (user && user->getUserType() == User::PLAYER)
+    {
+        std::cout << "\n--- 用户 " << username << " 的存档 ---" << std::endl;
+        for (size_t i = 0; i < user->saveSlots.size(); ++i)
+        {
+            std::cout << "存档槽位 " << (i + 1) << ": ";
+            if (user->saveSlots[i].empty())
+            {
+                std::cout << "空" << std::endl;
+            }
+            else
+            {
+                std::cout << user->saveSlots[i].size() << " 只宝可梦" << std::endl;
+                UI::GetInstance().displayAllPokemon(user->saveSlots[i]);
+            }
+        }
+    }
+    else
+    {
+        std::cout << "用户 " << username << " 不存在或不是玩家。" << std::endl;
+    }
+}
+
+void Game::adminManageUserPokemon()
+{
+    std::string username;
+    std::cout << "请输入要管理宝可梦的用户名: ";
+    std::getline(std::cin, username);
+
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    if (user && user->getUserType() == User::PLAYER)
+    {
+        std::string choice;
+        while (true)
+        {
+            std::cout << "\n--- 管理用户 " << username << " 的宝可梦 ---" << std::endl;
+            std::cout << "1. 查看所有宝可梦" << std::endl;
+            std::cout << "2. 添加宝可梦" << std::endl;
+            std::cout << "3. 删除宝可梦" << std::endl;
+            std::cout << "4. 返回" << std::endl;
+            std::cout << "请输入你的选择: ";
+            std::cin >> choice;
+            clearInputBuffer();
+
+            if (choice == "1")
+            {
+                UI::GetInstance().displayAllPokemon(user->saveSlots[0]); // Assuming managing slot 0
+            }
+            else if (choice == "2")
+            {
+                std::cout << "请输入要添加的宝可梦类型 (0: 火, 1: 草, 2: 冰, 3: 飞行, 4: 幽灵): ";
+                int typeChoice;
+                std::cin >> typeChoice;
+                clearInputBuffer();
+                if (typeChoice >= 0 && typeChoice <= 4)
+                {
+                    user->saveSlots[0].push_back(std::make_shared<Pokemon>(static_cast<Pokemon::PokeType>(typeChoice)));
+                    UserManager::GetInstance().saveUsers();
+                    std::cout << "宝可梦添加成功！" << std::endl;
+                }
+                else
+                {
+                    std::cout << "无效的宝可梦类型。" << std::endl;
+                }
+            }
+            else if (choice == "3")
+            {
+                std::cout << "请输入要删除的宝可梦ID: ";
+                int pokemonId;
+                std::cin >> pokemonId;
+                clearInputBuffer();
+                if (pokemonId > 0 && pokemonId <= user->saveSlots[0].size())
+                {
+                    user->saveSlots[0].erase(user->saveSlots[0].begin() + pokemonId - 1);
+                    UserManager::GetInstance().saveUsers();
+                    std::cout << "宝可梦删除成功！" << std::endl;
+                }
+                else
+                {
+                    std::cout << "无效的宝可梦ID。" << std::endl;
+                }
+            }
+            else if (choice == "4" || choice == "exit")
+            {
+                break;
+            }
+            else
+            {
+                std::cout << "无效选择，请重新输入。" << std::endl;
+            }
+        }
+    }
+    else
+    {
+        std::cout << "用户 " << username << " 不存在或不是玩家。" << std::endl;
+    }
+}
+
+void Game::adminManageUserPokemonEquipment()
+{
+    std::string username;
+    std::cout << "请输入要管理宝可梦装备的用户名: ";
+    std::getline(std::cin, username);
+
+    std::shared_ptr<User> user = UserManager::GetInstance().getUserByUsername(username);
+    if (user && user->getUserType() == User::PLAYER)
+    {
+        std::string choice;
+        while (true)
+        {
+            std::cout << "\n--- 管理用户 " << username << " 的宝可梦装备 ---" << std::endl;
+            UI::GetInstance().displayAllPokemon(user->saveSlots[0]);
+            std::cout << "请输入宝可梦ID进行操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品, exit: 返回): ";
+            std::string pokemonChoice;
+            std::getline(std::cin, pokemonChoice);
+
+            if (pokemonChoice == "exit")
+            {
+                break;
+            }
+
+            try
+            {
+                int pokemonId = std::stoi(pokemonChoice);
+                if (pokemonId > 0 && pokemonId <= user->saveSlots[0].size())
+                {
+                    std::shared_ptr<Pokemon> selectedPokemon = user->saveSlots[0][pokemonId - 1];
+                    std::cout << "已选择宝可梦: " << selectedPokemon->name << std::endl;
+                    std::cout << "请选择操作 (A1: 装备防具, A2: 卸下防具, D1: 装备饰品, D2: 卸下饰品): ";
+                    std::string equipChoice;
+                    std::getline(std::cin, equipChoice);
+
+                    if (equipChoice == "A1")
+                    {
+                        EquipManager::GetInstance().equipPokemon(std::make_shared<Armor>("管理员防具", 50, 0.1), selectedPokemon);
+                    }
+                    else if (equipChoice == "A2")
+                    {
+                        EquipManager::GetInstance().unequipPokemon(EquipType::Armor, selectedPokemon);
+                    }
+                    else if (equipChoice == "D1")
+                    {
+                        EquipManager::GetInstance().equipPokemon(std::make_shared<Accessory>("管理员饰品", 20, 20, 0.1), selectedPokemon);
+                    }
+                    else if (equipChoice == "D2")
+                    {
+                        EquipManager::GetInstance().unequipPokemon(EquipType::Accessory, selectedPokemon);
+                    }
+                    else
+                    {
+                        std::cout << "无效操作。" << std::endl;
+                    }
+                    UserManager::GetInstance().saveUsers();
+                }
+                else
+                {
+                    std::cout << "无效宝可梦ID。" << std::endl;
+                }
+            }
+            catch (const std::invalid_argument& e)
+            {
+                std::cout << "无效输入。" << std::endl;
+            }
+        }
+    }
+    else
+    {
+        std::cout << "用户 " << username << " 不存在或不是玩家。" << std::endl;
     }
 }
 

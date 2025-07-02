@@ -26,6 +26,9 @@ public:
     void loadPlayerSave(std::shared_ptr<User> player, int slotIndex);
     void savePlayerSave(std::shared_ptr<User> player, int slotIndex);
     void selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList);
+    void adminViewUserSave();
+    void adminManageUserPokemon();
+    void adminManageUserPokemonEquipment();
 
 private:
     Game();
