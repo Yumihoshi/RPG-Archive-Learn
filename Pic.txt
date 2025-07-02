@@ -1,0 +1,64 @@
+```mermaid
+classDiagram
+    direction LR
+
+    class Singleton {
+        <<template>>
+        +T& getInstance()
+    }
+
+    class Equipment {
+        <<Abstract>>
+    }
+    class Accessory
+    class Armor
+
+    Equipment <|-- Accessory
+    Equipment <|-- Armor
+
+    class Pokemon {
+        <<Abstract>>
+        +equip(Equipment*)
+        +unequip(Equipment*)
+    }
+
+    class FirePokemon
+    class GrassPokemon
+    class IcePokemon
+    class FlyingPokemon
+    class GhostPokemon
+
+    Pokemon <|-- FirePokemon
+    Pokemon <|-- GrassPokemon
+    Pokemon <|-- IcePokemon
+    Pokemon <|-- FlyingPokemon
+    Pokemon <|-- GhostPokemon
+
+    class User {
+        +list~Pokemon~ pokemons
+    }
+
+    class Game
+    class UserManager
+    class PokemonFactory
+    class EquipManager
+    class UI
+
+    Singleton <|.. Game
+    Singleton <|.. UserManager
+    Singleton <|.. PokemonFactory
+    Singleton <|.. EquipManager
+    Singleton <|.. UI
+
+    Game --> UI : uses
+    Game --> UserManager : uses
+    Game --> PokemonFactory : uses
+    Game --> EquipManager : uses
+
+    UserManager "1" *-- "many" User : manages
+    User "1" *-- "many" Pokemon : has
+    Pokemon "1" *-- "0..2" Equipment : equipped with
+
+    PokemonFactory ..> Pokemon : creates
+    EquipManager ..> Equipment : creates
+```

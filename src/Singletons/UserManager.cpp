@@ -31,6 +31,16 @@ UserManager::login(const std::string &username, const std::string &password)
 void UserManager::registerUser(const std::string &username,
                                const std::string &password, User::UserType type)
 {
+    if (username.empty())
+    {
+        std::cout << "用户名不能为空。" << std::endl;
+        return;
+    }
+    if (password.empty())
+    {
+        std::cout << "密码不能为空。" << std::endl;
+        return;
+    }
     if (users.find(username) == users.end())
     {
         users[username] = std::make_shared<User>(username, password, type);

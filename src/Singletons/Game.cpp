@@ -120,10 +120,11 @@ void Game::adminMenu()
         std::cout << "2. 删除用户" << std::endl;
         std::cout << "3. 更新用户密码" << std::endl;
         std::cout << "4. 列出所有用户" << std::endl;
-        std::cout << "5. 查看用户存档" << std::endl;
-        std::cout << "6. 管理用户宝可梦" << std::endl;
-        std::cout << "7. 管理用户宝可梦装备" << std::endl;
-        std::cout << "8. 返回登录界面" << std::endl;
+        std::cout << "5. 按用户名搜索用户" << std::endl;
+        std::cout << "6. 查看用户存档" << std::endl;
+        std::cout << "7. 管理用户宝可梦" << std::endl;
+        std::cout << "8. 管理用户宝可梦装备" << std::endl;
+        std::cout << "9. 返回登录界面" << std::endl;
         std::cout << "请输入你的选择: ";
         std::cin >> choice;
         clearInputBuffer();
@@ -161,17 +162,32 @@ void Game::adminMenu()
         }
         else if (choice == "5")
         {
-            adminViewUserSave();
+            std::cout << "请输入要搜索的用户名: ";
+            std::getline(std::cin, username);
+            // 新增用户查询逻辑
+            auto user = UserManager::GetInstance().getUserByUsername(username);
+            if(user) {
+                std::cout << "找到用户: " << user->getUsername()
+                          << ", 类型: "
+                          << (user->getUserType() == User::PLAYER ? "玩家" : "管理员")
+                          << std::endl;
+            } else {
+                std::cout << "用户 " << username << " 不存在。" << std::endl;
+            }
         }
         else if (choice == "6")
         {
-            adminManageUserPokemon();
+            adminViewUserSave();
         }
         else if (choice == "7")
         {
+            adminManageUserPokemon();
+        }
+        else if (choice == "8")
+        {
             adminManageUserPokemonEquipment();
         }
-        else if (choice == "8" || choice == "exit")
+        else if (choice == "9" || choice == "exit")
         {
             break;
         }
