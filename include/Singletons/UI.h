@@ -25,7 +25,7 @@ public:
 
     void showPokemonManagementMenu();
 
-    void displayAllPokemon(const std::vector<Pokemon> &pokemonList) const;
+    void displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const;
 
     void displayBattleStatus() const;
 private:

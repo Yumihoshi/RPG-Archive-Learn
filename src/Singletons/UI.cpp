@@ -10,7 +10,7 @@
 #include "../../include/Singletons/UI.h"
 #include "../../include/Singletons/Game.h"
 #include "../../include/Singletons/UserManager.h"
-
+#include "../../include/Singletons/EquipManager.h"
 
 void UI::showLoginScreen()
 {
@@ -107,11 +107,11 @@ void UI::showLoginScreen()
                                 break; // Should not happen
                         }
                         Game::GetInstance().currentUser->saveSlots[0].push_back(
-                                Pokemon(initialType));
+                                std::make_shared<Pokemon>(initialType));
                         std::cout << "你选择了 "
-                                  << Game::GetInstance().currentUser->saveSlots[0][0].name
+                                  << Game::GetInstance().currentUser->saveSlots[0][0]->name
                                   << " 作为你的初始宝可梦！" << std::endl;
-                        Game::GetInstance().playerActivePokemon = std::make_shared<Pokemon>(Game::GetInstance().currentUser->saveSlots[0][0]); // Set initial active Pokemon
+                        Game::GetInstance().playerActivePokemon = std::move(Game::GetInstance().currentUser->saveSlots[0][0]); // Set initial active Pokemon
                         showPlayerMainMenu();
                     }
                     else
@@ -349,8 +349,9 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().equipPokemon(EquipType::Armor, std::make_shared<Pokemon>(
-                        Game::GetInstance().currentUser->saveSlots[0][pokemonId]));
+                // 直接操作存档槽中的原始对象
+                auto& pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                EquipManager::GetInstance().equipPokemon(EquipType::Armor, pokemon);  // 使用引用
             }
             else
             {
@@ -362,8 +363,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().unequipPokemon(EquipType::Armor, std::make_shared<Pokemon>(
-                        Game::GetInstance().currentUser->saveSlots[0][pokemonId]));
+                auto& pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                EquipManager::GetInstance().unequipPokemon(EquipType::Armor, pokemon);
             }
             else
             {
@@ -375,7 +376,8 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().equipPokemon(EquipType::Accessory,
+                auto &pokemon = Game::GetInstance().currentUser->saveSlots[0][pokemonId];
+                EquipManager::GetInstance().equipPokemon(EquipType::Accessory,
                         std::make_shared<Pokemon>(
                                 Game::GetInstance().currentUser->saveSlots[0][pokemonId])); // Re-using equip for accessory
             }
@@ -389,7 +391,7 @@ void UI::showPokemonManagementMenu()
             int pokemonId = std::stoi(input.substr(3)) - 1;
             if (pokemonId >= 0 && pokemonId < Game::GetInstance().currentUser->saveSlots[0].size())
             {
-                Game::GetInstance().unequipPokemon(EquipType::Accessory,
+                EquipManager::GetInstance().unequipPokemon(EquipType::Accessory,
                         std::make_shared<Pokemon>(
                                 Game::GetInstance().currentUser->saveSlots[0][pokemonId])); // Re-using unequip for accessory
             }
@@ -423,7 +425,7 @@ void UI::showPokemonManagementMenu()
     }
 }
 
-void UI::displayAllPokemon(const std::vector<Pokemon> &pokemonList) const
+void UI::displayAllPokemon(const std::vector<std::shared_ptr<Pokemon>> &pokemonList) const
 {
     if (pokemonList.empty())
     {
@@ -434,7 +436,7 @@ void UI::displayAllPokemon(const std::vector<Pokemon> &pokemonList) const
     for (size_t i = 0; i < pokemonList.size(); ++i)
     {
         std::cout << "ID: " << (i + 1) << std::endl;
-        pokemonList[i].displayStats();
+        pokemonList[i]->displayStats();
     }
 }
 

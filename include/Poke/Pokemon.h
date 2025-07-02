@@ -26,6 +26,7 @@ public:
         FIRE, GRASS, ICE, FLYING, GHOST
     };
 
+    Pokemon(Pokemon& other);
     Pokemon(Type type, int level = 1);
 
     // Basic attributes

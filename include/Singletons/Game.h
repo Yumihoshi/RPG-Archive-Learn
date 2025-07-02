@@ -20,9 +20,7 @@ public:
     void startBattle();
     void loadPlayerSave(std::shared_ptr<User> player, int slotIndex);
     void savePlayerSave(std::shared_ptr<User> player, int slotIndex);
-    void selectActivePokemon(std::vector<Pokemon> &pokemonList);
-    void equipPokemon(EquipType eType, std::shared_ptr<Pokemon> pokemon);
-    void unequipPokemon(EquipType eType, std::shared_ptr<Pokemon> pokemon);
+    void selectActivePokemon(std::vector<std::shared_ptr<Pokemon>> &pokemonList);
 
 private:
     Game();

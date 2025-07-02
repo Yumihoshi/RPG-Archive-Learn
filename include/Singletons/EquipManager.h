@@ -9,11 +9,14 @@
 #define RPG_EQUIPMANAGER_H
 
 #include "../Base/Singleton.h"
+#include "../Common/Types.h"
+#include "../Poke/Pokemon.h"
 
 class EquipManager : public Singleton<EquipManager>
 {
 public:
-
+    void equipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon);
+    void unequipPokemon(EquipType eType, const std::shared_ptr<Pokemon>& pokemon);
 private:
     EquipManager() = default;
     friend class Singleton<EquipManager>;

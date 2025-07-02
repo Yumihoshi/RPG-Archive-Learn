@@ -9,6 +9,8 @@
 #include "../../include/Equip/Armor.h"
 
 // Constructor
+Pokemon::Pokemon(Pokemon& other) : Pokemon(const_cast<const Pokemon&>(other)) {}
+
 Pokemon::Pokemon(Type type, int level) :
         type(type),
         level(level),
@@ -286,6 +288,7 @@ void Pokemon::restoreMagic(int amount)
     {
         currentMagic = maxMagic;
     }
+    std::cout << name << "恢复了" << amount << "点魔法。" << std::endl;
 }
 
 // Check if the Pokemon is fainted
@@ -328,7 +331,7 @@ void Pokemon::displayStats() const
     std::cout << "防御力: " << defense << std::endl;
     std::cout << "闪避率: " << evasionRate << std::endl;
     std::cout << "暴击率: " << criticalRate << std::endl;
-    std::cout << "饰品: " << (accessory ? "已装备" : "无") << std::endl;
-    std::cout << "防具: " << (armor ? "已装备" : "无") << std::endl;
+    std::cout << "饰品: " << (accessory ? accessory->name : "无") << std::endl;
+    std::cout << "防具: " << (armor ? armor->name : "无") << std::endl;
     std::cout << "--------------------" << std::endl;
 }
