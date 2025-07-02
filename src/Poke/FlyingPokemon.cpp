@@ -16,11 +16,9 @@ void FlyingPokemon::useSkill(std::shared_ptr<Pokemon> target)
     if (currentMagic >= 10)
     {
         currentMagic -= 10;
-        std::cout << name << " 释放了暴风！" << std::endl;
-        // Example skill effect: deals high damage
-        int damage = baseAttack * 2; // 200% of base attack
-        target->takeDamage(damage);
-        std::cout << name << " 对 " << target->name << " 造成了 " << damage << " 点伤害！" << std::endl;
+        std::cout << name << " 释放了顺风！" << std::endl;
+        evasionRate += 0.1;
+        std::cout << name << " 的闪避率增加了0.1！" << std::endl;
     }
     else
     {
