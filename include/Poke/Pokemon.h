@@ -15,7 +15,7 @@ class Armor;
 class Pokemon
 {
 public:
-    // JSON序列化和反序列化
+    // JSON序列化
     nlohmann::json toJson() const;
 
 public:

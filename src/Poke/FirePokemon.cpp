@@ -1,4 +1,6 @@
 #include "../../include/Poke/FirePokemon.h"
+#include "../../include/Equip/Accessory.h"
+#include "../../include/Equip/Armor.h"
 #include <iostream>
 
 FirePokemon::FirePokemon(int level) :
@@ -37,18 +39,27 @@ void FirePokemon::useSkill(std::shared_ptr<Pokemon> target)
 
 std::shared_ptr<FirePokemon> FirePokemon::fromJson(const nlohmann::json &j)
 {
-    return std::make_shared<FirePokemon>(j["name"].get<std::string>(),
-                                         static_cast<Pokemon::PokeType>(j["type"]),
-                                         j["level"].get<int>(),
-                                         j["experience"].get<int>(),
-                                         j["maxHealth"].get<int>(),
-                                         j["currentHealth"].get<int>(),
-                                         j["maxMagic"].get<int>(),
-                                         j["currentMagic"].get<int>(),
-                                         j["baseAttack"].get<int>(),
-                                         j["magicRegen"].get<int>(),
-                                         j["defense"].get<int>(),
-                                         j["evasionRate"].get<double>(),
-                                         j["criticalRate"].get<double>(),
-                                         j["criticalTurns"].get<int>());
+    std::shared_ptr<FirePokemon> pokemon = std::make_shared<FirePokemon>(j["name"].get<std::string>(),
+                                                                         static_cast<Pokemon::PokeType>(j["type"]),
+                                                                         j["level"].get<int>(),
+                                                                         j["experience"].get<int>(),
+                                                                         j["maxHealth"].get<int>(),
+                                                                         j["currentHealth"].get<int>(),
+                                                                         j["maxMagic"].get<int>(),
+                                                                         j["currentMagic"].get<int>(),
+                                                                         j["baseAttack"].get<int>(),
+                                                                         j["magicRegen"].get<int>(),
+                                                                         j["defense"].get<int>(),
+                                                                         j["evasionRate"].get<double>(),
+                                                                         j["criticalRate"].get<double>(),
+                                                                         j["criticalTurns"].get<int>());
+    if (j.contains("accessory"))
+    {
+        pokemon->accessory = Accessory::fromJson(j["accessory"]);
+    }
+    if (j.contains("armor"))
+    {
+        pokemon->armor = Armor::fromJson(j["armor"]);
+    }
+    return pokemon;
 }

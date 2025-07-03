@@ -49,8 +49,6 @@ private:
 
     friend class Singleton<Game>;
 
-    void createNewPlayerSave(std::shared_ptr<User> player);
-
     // 战斗
 
     void battleTurn(std::shared_ptr<Pokemon> attacker,

@@ -116,15 +116,22 @@ void UserManager::loadUsers()
             {
                 if (it.value().contains("saveSlots"))
                 {
+                    int slotIndex = 0;
                     for (const auto &slotJson: it.value()["saveSlots"])
                     {
-                        std::vector<std::shared_ptr<Pokemon>> pokemonList;
-                        for (const auto &pokemonJson: slotJson)
-                        {
-                            pokemonList.push_back(
-                                    PokemonFactory::createPokemon(pokemonJson));
+                        if (slotIndex < user->saveSlots.size()) {
+                            std::vector<std::shared_ptr<Pokemon>> pokemonList;
+                            for (const auto &pokemonJson: slotJson)
+                            {
+                                pokemonList.push_back(
+                                        PokemonFactory::createPokemon(pokemonJson));
+                            }
+                            user->saveSlots[slotIndex] = pokemonList;
+                        } else {
+                            // Handle case where saveSlots has more entries than expected (e.g., corrupted file)
+                            std::cerr << "警告: 存档槽位索引超出范围，跳过加载。" << std::endl;
                         }
-                        user->saveSlots.push_back(pokemonList);
+                        slotIndex++;
                     }
                 }
             }
